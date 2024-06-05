@@ -33,17 +33,7 @@ jobs:
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init
 
-    # - name: Force Unlock State
-    #   if: always()  # Ensure this runs even if previous steps fail
-    #   run: |
-    #     # Set environment variables for Azure authentication
-    #     export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-    #     export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-    #     export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-    #     export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-
-    #     # Automatically confirm the force unlock prompt using the 'yes' command
-    #     yes yes | terraform force-unlock 683ea54b-f695-92fa-b9a4-597e08304a55 || true
+  
 
     - name: Terraform Format
       run: terraform fmt -recursive
