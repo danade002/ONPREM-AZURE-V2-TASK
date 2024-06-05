@@ -13,7 +13,7 @@ subnet_address_prefix = "10.0.1.0/24"
 vm_name        = "app-v1"
 vm_size        = "Standard_B4ms"
 admin_username = "azureuser"
-admin_ssh_key  = "../AZ_DEV_KEYS/azure_dev_key.pub"
+admin_ssh_key  = "./AZ_DEV_KEYS/azure_dev_key.pub"
 
 # Azure Container Registry (ACR)
 registry_name = "insaitcontainerregistry"
