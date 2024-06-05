@@ -48,6 +48,7 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform plan -var-file='dev.tfvars'
+        
 
     - name: Terraform Apply
       if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
