@@ -41,8 +41,6 @@ jobs:
             export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
             export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
             export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-    
-            # Automatically confirm the force unlock prompt by piping "yes" into the command
             echo  "yes" | terraform force-unlock 683ea54b-f695-92fa-b9a4-597e08304a55
           
       - name: Terraform Format
