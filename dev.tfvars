@@ -1,5 +1,5 @@
 location            = "eastus"
-resource_group_name = "daniel-sandbox-onprem"
+resource_group_name = "daniel-sandbox"
 
 # Networking
 vnet_name            = "insaitvnet"
