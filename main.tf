@@ -61,12 +61,12 @@ module "postgresql" {
   databases           = var.pg_databases
 }
 
-module "blob_storage" {
-  source               = "./modules/blob_storage"
-  resource_group_name  = module.resource_group.resource_group_name
-  location             = var.location
-  storage_account_name = var.storage_account_name
-}
+# module "blob_storage" {
+#   source               = "./modules/blob_storage"
+#   resource_group_name  = module.resource_group.resource_group_name
+#   location             = var.location
+#   storage_account_name = var.storage_account_name
+# }
 
 module "dns" {
   source              = "./modules/dns"
