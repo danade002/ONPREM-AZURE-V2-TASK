@@ -7,83 +7,74 @@ on:
 
 permissions:
   contents: read
-  
+
 jobs:
-    terraform:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDS }}
-          
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.8.2
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDS }}
         
-      - name: Terraform Init
-        run: |
-          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          terraform init
-      - name: Force Unlock State
-        if: always()  # Ensure this runs even if previous steps fail
-        run: |
-            # Set environment variables for Azure authentication
-            export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-            export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-            export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-            export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-    
-            - name: Force Unlock State
-            if: always()  # Ensure this runs even if previous steps fail
-            run: |
-              # Set environment variables for Azure authentication
-              export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-              export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-              export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-              export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.8.2
       
-              # Automatically confirm the force unlock prompt using the 'yes' command
-              yes yes | terraform force-unlock 683ea54b-f695-92fa-b9a4-597e08304a55 || true
-          
-      - name: Terraform Format
-        run: terraform fmt -recursive
+    - name: Terraform Init
+      run: |
+        export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+        export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+        export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+        export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        terraform init
 
-      - name: Terraform Validate
-        run: terraform validate
+    - name: Force Unlock State
+      if: always()  # Ensure this runs even if previous steps fail
+      run: |
+        # Set environment variables for Azure authentication
+        export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+        export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+        export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+        export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
 
-      - name: Terraform Plan
-        run: |
-          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          terraform plan -var-file='dev.tfvars'
+        # Automatically confirm the force unlock prompt using the 'yes' command
+        yes yes | terraform force-unlock 683ea54b-f695-92fa-b9a4-597e08304a55 || true
 
-      - name: Terraform Apply
-        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
-        run: |
-          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          terraform apply -var-file='dev.tfvars'  -auto-approve   
-      
-      # - name: Notify Slack on Success
-      #   if: ${{ always() && (github.ref == 'refs/heads/main'}}
-      #   uses: rtCamp/action-slack-notify@v2
-      #   env:
-      #     SLACK_COLOR: ${{ job.status }}
-      #     SLACK_MESSAGE_ON_SUCCESS: "Infrustructure deployed [SUCCESSFULLY] to Dev}"
-      #     SLACK_MESSAGE_ON_FAILURE: "Infrustructure deployment [FAILED]  to Dev}"
-      #     SLACK_TITLE: "Deployment status"
-      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-      #     SLACK_FOOTER: ''
-     
+    - name: Terraform Format
+      run: terraform fmt -recursive
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: |
+        export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+        export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+        export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+        export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        terraform plan -var-file='dev.tfvars'
+
+    - name: Terraform Apply
+      if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+      run: |
+        export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+        export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+        export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+        export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        terraform apply -var-file='dev.tfvars' -auto-approve
+
+    # - name: Notify Slack on Success
+    #   if: always() && github.ref == 'refs/heads/main'
+    #   uses: rtCamp/action-slack-notify@v2
+    #   env:
+    #     SLACK_COLOR: ${{ job.status }}
+    #     SLACK_MESSAGE_ON_SUCCESS: "Infrastructure deployed [SUCCESSFULLY] to Dev}"
+    #     SLACK_MESSAGE_ON_FAILURE: "Infrastructure deployment [FAILED] to Dev}"
+    #     SLACK_TITLE: "Deployment status"
+    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+    #     SLACK_FOOTER: ''
