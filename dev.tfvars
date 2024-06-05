@@ -23,7 +23,7 @@ pg_server_name = "insaitpgserver"
 pg_databases   = ["insait_backend", "metabase", "bank_db"] # Ensure this is a list
 
 # Storage Account
-storage_account_name = "insaittfstatedev"
+storage_account_name = "testademeso"
 
 # Azure DNS Zone
 dns_zone_name = "insaitdnszone.com"
