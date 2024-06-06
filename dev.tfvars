@@ -14,9 +14,10 @@ vm_name        = "app-v1"
 vm_size        = "Standard_B4ms"
 admin_username = "azureuser"
 admin_ssh_key {
-    username   = var.admin_username
-    public_key = jsondecode(azapi_resource_action.ssh_public_key_gen.output).publicKey
-  }
+  username   = var.admin_username
+  public_key = jsondecode(azapi_resource_action.ssh_public_key_gen.output).publicKey
+}
+parent_id = module.resource_group.id
 
 
 # Azure Container Registry (ACR)

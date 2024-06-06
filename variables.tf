@@ -148,3 +148,7 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "parent_id" {
+  description = "resource group id"
+  type = string
+}

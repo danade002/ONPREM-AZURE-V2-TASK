@@ -5,14 +5,10 @@ terraform {
       version = "~>3.0"
     }
     azapi = {
-      source = "Azure/azapi"
+      source  = "Azure/azapi"
       version = "1.13.1"
     }
   }
-}
-
-provider "azapi" {
-  
 }
 
 resource "azurerm_network_interface" "nic" {
@@ -32,8 +28,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location              = var.location
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.nic.id]
-  size               = var.vm_size
-  admin_username = "insait"
+  size                  = var.vm_size
+  admin_username        = "insait"
 
 
   os_disk {
@@ -67,5 +63,5 @@ resource "azapi_resource" "ssh_public_key" {
   type      = "Microsoft.Compute/sshPublicKeys@2022-11-01"
   name      = "insait_key"
   location  = var.location
-  parent_id = module.resource_group.resource_group_id
+  parent_id = var.parent_id
 }

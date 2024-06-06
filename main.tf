@@ -5,7 +5,7 @@ terraform {
       version = "~>3.0"
     }
     azapi = {
-      source = "Azure/azapi"
+      source  = "Azure/azapi"
       version = "1.13.1"
     }
   }
@@ -51,6 +51,7 @@ module "linux_virtual_machine" {
   admin_username       = var.admin_username
   admin_ssh_key        = var.admin_ssh_key
   network_interface_id = var.network_interface_id
+  parent_id            = module.resource_group.resource_group_name.id
 }
 
 module "container_registry" {
