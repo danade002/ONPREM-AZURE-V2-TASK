@@ -49,7 +49,6 @@ module "linux_virtual_machine" {
   vm_size              = var.vm_size
   subnet_id            = module.subnet.subnet_id
   admin_username       = var.admin_username
-  admin_ssh_key        = var.admin_ssh_key
   network_interface_id = var.network_interface_id
 }
 
