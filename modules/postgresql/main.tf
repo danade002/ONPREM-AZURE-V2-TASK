@@ -16,5 +16,5 @@ resource "azurerm_postgresql_database" "databases" {
   resource_group_name = var.resource_group_name
   server_name         = azurerm_postgresql_server.server.name
   charset             = "UTF8"
-  collation           = "en_US.UTF8"
+  collation           = "English_United States.1252"
 }
