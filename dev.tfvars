@@ -12,7 +12,7 @@ subnet_address_prefix = "10.0.1.0/24"
 # Virtual Machine
 vm_name        = "app-v1"
 vm_size        = "Standard_B4ms"
-admin_username = "azureuser"
+admin_username = "insait"
 
 
 # Azure Container Registry (ACR)
