@@ -63,5 +63,11 @@ resource "azapi_resource" "ssh_public_key" {
   type      = "Microsoft.Compute/sshPublicKeys@2022-11-01"
   name      = "insait_key"
   location  = var.location
-  parent_id = var.parent_id
+  parent_id = module.resource_group.resource_group_name.id
+}
+
+module "resource_group" {
+  source = "../resource_group"
+  location = var.location
+  resource_group_name = var.resource_group_name
 }
