@@ -29,7 +29,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.nic.id]
   size                  = var.vm_size
-  admin_username        = "insait"
+  admin_username        = var.admin_username
 
 
   os_disk {
