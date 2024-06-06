@@ -13,7 +13,11 @@ subnet_address_prefix = "10.0.1.0/24"
 vm_name        = "app-v1"
 vm_size        = "Standard_B4ms"
 admin_username = "azureuser"
-admin_ssh_key  = "/home/TONYCASH/Downloads/AZ_DEV_KEYS_id_rsa.pub"
+admin_ssh_key {
+    username   = var.admin_username
+    public_key = jsondecode(azapi_resource_action.ssh_public_key_gen.output).publicKey
+  }
+
 
 # Azure Container Registry (ACR)
 registry_name = "insaitcontainerregistry"
