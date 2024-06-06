@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>3.0"
+    }
+    azapi = {
+      source  = "Azure/azapi"
+      version = "1.13.1"
+    }
+  }
+}
+
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
   location            = var.location
@@ -10,41 +23,51 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_linux_virtual_machine" "vm" {
   name                  = var.vm_name
   location              = var.location
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.nic.id]
-  vm_size               = var.vm_size
+  size                  = var.vm_size
+  admin_username        = "insait"
 
-  storage_os_disk {
-    name              = "${var.vm_name}-osdisk"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
 
-  storage_image_reference {
+  source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
     version   = "latest"
   }
 
-  os_profile {
-    computer_name  = var.vm_name
-    admin_username = var.admin_username
-    custom_data    = file("cloud-init.sh")  # Cloud-init script for installing Docker and Azure CLI
+  admin_ssh_key {
+    username   = var.admin_username
+    public_key = var.admin_ssh_key
   }
-
-  os_profile_linux_config {
-    disable_password_authentication = true
-
-  #   ssh_keys {
-  #     path     = "/home/${var.admin_username}/.ssh/authorized_keys"
-  #     key_data = var.admin_ssh_key
-  #   }
-   }
 }
 
+# resource "azapi_resource_action" "ssh_public_key_gen" {
+#   type        = "Microsoft.Compute/sshPublicKeys@2022-11-01"
+#   resource_id = azapi_resource.ssh_public_key.id
+#   action      = "generateKeyPair"
+#   method      = "POST"
 
+#   response_export_values = ["publicKey", "privateKey"]
+# }
+
+# resource "azapi_resource" "ssh_public_key" {
+#   type      = "Microsoft.Compute/sshPublicKeys@2022-11-01"
+#   name      = "insait_key"
+#   location  = var.location
+#   parent_id = module.resource_group.resource_group_name.id
+# }
+
+# module "resource_group" {
+#   source = "../resource_group"
+#   location = var.location
+#   resource_group_name = var.resource_group_name
+# }

@@ -37,10 +37,10 @@ variable "admin_username" {
   type        = string
 }
 
-variable "admin_ssh_key" {
-  description = "The admin SSH key for the Linux virtual machine"
-  type        = string
-}
+# variable "admin_ssh_key" {
+#   description = "The admin SSH key for the Linux virtual machine"
+#   type        = string
+# }
 
 variable "network_interface_id" {
   description = "The ID of the network interface"
@@ -148,3 +148,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "admin_ssh_key" {
+  description = "The admin SSH key for the Linux virtual machine"
+  type        = string
+  
+}
+# variable "parent_id" {
+#   description = "resource group id"
+#   type = string
+# }

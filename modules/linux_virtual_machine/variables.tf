@@ -34,7 +34,11 @@ variable "admin_ssh_key" {
 }
 
 variable "subnet_id" {
-    description = "value of subnet_id"
-    type        = string
-  
+  description = "value of subnet_id"
+  type        = string
 }
+
+# variable "parent_id" {
+#   description = "resource group id"
+#   type = string
+# }
