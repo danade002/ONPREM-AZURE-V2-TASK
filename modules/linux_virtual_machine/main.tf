@@ -1,3 +1,20 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>3.0"
+    }
+    azapi = {
+      source = "Azure/azapi"
+      version = "1.13.1"
+    }
+  }
+}
+
+provider "azapi" {
+  
+}
+
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
   location            = var.location
