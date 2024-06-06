@@ -38,7 +38,7 @@ variable "subnet_id" {
   type        = string
 }
 
-variable "parent_id" {
-  description = "resource group id"
-  type = string
-}
+# variable "parent_id" {
+#   description = "resource group id"
+#   type = string
+# }

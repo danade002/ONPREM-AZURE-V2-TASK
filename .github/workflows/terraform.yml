@@ -49,7 +49,8 @@ jobs:
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        terraform plan -var-file='dev.tfvars'
+        export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
+        terraform plan -var-file='dev.tfvars' -var="admin_ssh_key=$ADMIN_SSH_KEY"
         
 
     - name: Terraform Apply
@@ -59,7 +60,8 @@ jobs:
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        terraform apply -var-file='dev.tfvars' -auto-approve
+        export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
+        terraform apply -var-file='dev.tfvars' -var="admin_ssh_key=$ADMIN_SSH_KEY" -auto-approve 
 
     # - name: Notify Slack on Success
     #   if: always() && github.ref == 'refs/heads/main'

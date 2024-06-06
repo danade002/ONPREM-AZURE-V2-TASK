@@ -46,28 +46,28 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_ssh_key {
     username   = var.admin_username
-    public_key = jsondecode(azapi_resource_action.ssh_public_key_gen.output).publicKey
+    public_key = var.admin_ssh_key
   }
 }
 
-resource "azapi_resource_action" "ssh_public_key_gen" {
-  type        = "Microsoft.Compute/sshPublicKeys@2022-11-01"
-  resource_id = azapi_resource.ssh_public_key.id
-  action      = "generateKeyPair"
-  method      = "POST"
+# resource "azapi_resource_action" "ssh_public_key_gen" {
+#   type        = "Microsoft.Compute/sshPublicKeys@2022-11-01"
+#   resource_id = azapi_resource.ssh_public_key.id
+#   action      = "generateKeyPair"
+#   method      = "POST"
 
-  response_export_values = ["publicKey", "privateKey"]
-}
+#   response_export_values = ["publicKey", "privateKey"]
+# }
 
-resource "azapi_resource" "ssh_public_key" {
-  type      = "Microsoft.Compute/sshPublicKeys@2022-11-01"
-  name      = "insait_key"
-  location  = var.location
-  parent_id = module.resource_group.resource_group_name.id
-}
+# resource "azapi_resource" "ssh_public_key" {
+#   type      = "Microsoft.Compute/sshPublicKeys@2022-11-01"
+#   name      = "insait_key"
+#   location  = var.location
+#   parent_id = module.resource_group.resource_group_name.id
+# }
 
-module "resource_group" {
-  source = "../resource_group"
-  location = var.location
-  resource_group_name = var.resource_group_name
-}
+# module "resource_group" {
+#   source = "../resource_group"
+#   location = var.location
+#   resource_group_name = var.resource_group_name
+# }
