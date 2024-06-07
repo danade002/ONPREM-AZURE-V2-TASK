@@ -49,9 +49,7 @@ jobs:
     - name: Terraform Validate
       run: terraform validate
           
-    - name: Terraform refresh
-      run:  Terraform refresh
-      working-directory: ./terraform  
+   
 
     - name: Terraform Plan
       run: |
