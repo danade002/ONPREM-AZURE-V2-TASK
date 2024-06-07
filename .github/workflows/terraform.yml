@@ -50,7 +50,8 @@ jobs:
       run: terraform validate
           
     - name: Terraform refresh
-      run:  Terraform refresh 
+      run:  Terraform refresh
+      working-directory: ./terraform  
 
     - name: Terraform Plan
       run: |
