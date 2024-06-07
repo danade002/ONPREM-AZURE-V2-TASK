@@ -16,7 +16,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "${var.vm_name}-public-ip"
   location            = var.location
   resource_group_name = var.resource_group_name
-  allocation_method   = "Dynamic"  # or "Static" depending on your requirement
+  allocation_method   = "Dynamic"  
 }
 
 # Network Interface with Public IP association
