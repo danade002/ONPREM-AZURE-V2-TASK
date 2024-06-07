@@ -11,6 +11,15 @@ terraform {
   }
 }
 
+# Define a Public IP Address
+resource "azurerm_public_ip" "public_ip" {
+  name                = "${var.vm_name}-public-ip"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  allocation_method   = "Dynamic"  # or "Static" depending on your requirement
+}
+
+# Network Interface with Public IP association
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
   location            = var.location
@@ -20,9 +29,11 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
 }
 
+# Linux Virtual Machine
 resource "azurerm_linux_virtual_machine" "vm" {
   name                  = var.vm_name
   location              = var.location
@@ -30,7 +41,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = [azurerm_network_interface.nic.id]
   size                  = var.vm_size
   admin_username        = var.admin_username
-
 
   os_disk {
     caching              = "ReadWrite"
@@ -49,25 +59,3 @@ resource "azurerm_linux_virtual_machine" "vm" {
     public_key = file("./admin_ssh_key.pub")
   }
 }
-
-# resource "azapi_resource_action" "ssh_public_key_gen" {
-#   type        = "Microsoft.Compute/sshPublicKeys@2022-11-01"
-#   resource_id = azapi_resource.ssh_public_key.id
-#   action      = "generateKeyPair"
-#   method      = "POST"
-
-#   response_export_values = ["publicKey", "privateKey"]
-# }
-
-# resource "azapi_resource" "ssh_public_key" {
-#   type      = "Microsoft.Compute/sshPublicKeys@2022-11-01"
-#   name      = "insait_key"
-#   location  = var.location
-#   parent_id = module.resource_group.resource_group_name.id
-# }
-
-# module "resource_group" {
-#   source = "../resource_group"
-#   location = var.location
-#   resource_group_name = var.resource_group_name
-# }
