@@ -1,49 +1,89 @@
 trigger:
-- main
-- develop
+  branches:
+    include:
+      - main
+      - develop
 
-pr: none
+pr:
+  branches:
+    include:
+      - main
+      - develop
 
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
-  AZURE_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
-  AZURE_TENANT_ID: $(AZURE_TENANT_ID)
-  AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+  ARM_CLIENT_ID: $(AZURE_CLIENT_ID)
+  ARM_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
+  ARM_TENANT_ID: $(AZURE_TENANT_ID)
+  ARM_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
   ADMIN_SSH_KEY: $(ADMIN_SSH_KEY)
 
-steps:
-- checkout: self
+jobs:
+- job: terraform
+  steps:
+  - task: Checkout@v2
+    displayName: 'Checkout code'
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
+  - task: AzureCLI@2
+    displayName: 'Azure Login'
+    inputs:
+      azureSubscription: 'AzureDevOpsConnection'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo "Logged into Azure"
+
+  - task: UseTerraform@0
+    displayName: 'Setup Terraform'
+    inputs:
+      terraformVersion: '1.8.2'
+
+  - script: |
+      echo $(ADMIN_SSH_KEY) > admin_ssh_key.pub
+      ls -la
+    displayName: 'Get Admin SSH Key'
+
+  - script: |
       export ARM_CLIENT_ID=$(AZURE_CLIENT_ID)
       export ARM_CLIENT_SECRET=$(AZURE_CLIENT_SECRET)
       export ARM_TENANT_ID=$(AZURE_TENANT_ID)
       export ARM_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID)
       terraform init
-      terraform fmt -recursive
-      terraform validate
+    displayName: 'Terraform Init'
 
-# - task: TerraformTaskV2@2
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'plan'
-#     commandOptions: '-var-file=dev.tfvars'
-#     environmentServiceNameAzureRM: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
-#     workingDirectory: '$(System.DefaultWorkingDirectory)'
+  - script: terraform fmt -recursive
+    displayName: 'Terraform Format'
 
-# - task: TerraformTaskV2@2
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'apply'
-#     commandOptions: '-var-file=dev.tfvars -auto-approve'
-#     environmentServiceNameAzureRM: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
-#     workingDirectory: '$(System.DefaultWorkingDirectory)'
-#     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  - script: terraform validate
+    displayName: 'Terraform Validate'
+
+  - script: |
+      export ARM_CLIENT_ID=$(AZURE_CLIENT_ID)
+      export ARM_CLIENT_SECRET=$(AZURE_CLIENT_SECRET)
+      export ARM_TENANT_ID=$(AZURE_TENANT_ID)
+      export ARM_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID)
+      export ADMIN_SSH_KEY=$(ADMIN_SSH_KEY)
+      terraform plan -var-file='dev.tfvars'
+    displayName: 'Terraform Plan'
+
+  - script: |
+      export ARM_CLIENT_ID=$(AZURE_CLIENT_ID)
+      export ARM_CLIENT_SECRET=$(AZURE_CLIENT_SECRET)
+      export ARM_TENANT_ID=$(AZURE_TENANT_ID)
+      export ARM_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID)
+      export ADMIN_SSH_KEY=$(ADMIN_SSH_KEY)
+      terraform apply -var-file='dev.tfvars' -auto-approve
+    displayName: 'Terraform Apply'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.Reason'], 'Manual'))
+
+  - script: |
+      export ARM_CLIENT_ID=$(AZURE_CLIENT_ID)
+      export ARM_CLIENT_SECRET=$(AZURE_CLIENT_SECRET)
+      export ARM_TENANT_ID=$(AZURE_TENANT_ID)
+      export ARM_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID)
+      export ADMIN_SSH_KEY=$(ADMIN_SSH_KEY)
+      terraform destroy -var-file='dev.tfvars' -auto-approve
+    displayName: 'Terraform Destroy'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.Reason'], 'Manual'))
