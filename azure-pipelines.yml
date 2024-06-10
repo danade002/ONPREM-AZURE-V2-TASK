@@ -19,7 +19,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
+    azureSubscription: 'AzureDevOpsConnection' 
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
@@ -31,19 +31,19 @@ steps:
       terraform fmt -recursive
       terraform validate
 
-# - task: TerraformTaskV2@2
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'plan'
-#     commandOptions: '-var-file=dev.tfvars'
-#     environmentServiceNameAzureRM: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
-#     workingDirectory: '$(System.DefaultWorkingDirectory)'
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    commandOptions: '-var-file=dev.tfvars'
+    environmentServiceNameAzureRM: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-# - task: TerraformTaskV2@2
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'apply'
-#     commandOptions: '-var-file=dev.tfvars -auto-approve'
-#     environmentServiceNameAzureRM: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
-#     workingDirectory: '$(System.DefaultWorkingDirectory)'
-#     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: '-var-file=dev.tfvars -auto-approve'
+    environmentServiceNameAzureRM: 'AzureDevOpsConnection'  # Replace with your Azure service connection name
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
