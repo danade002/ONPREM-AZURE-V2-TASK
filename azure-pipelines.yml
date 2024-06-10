@@ -1,0 +1,123 @@
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+
+pr:
+  branches:
+    include:
+      - '*'
+
+variables:
+  terraformVersion: '1.8.2'
+
+jobs:
+- job: terraform
+  displayName: 'Terraform Deployment'
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '5.x'
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '$(AZURE_CREDS)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo "##[set-env name=ARM_CLIENT_ID]$(AZURE_CLIENT_ID)"
+        echo "##[set-env name=ARM_CLIENT_SECRET]$(AZURE_CLIENT_SECRET)"
+        echo "##[set-env name=ARM_TENANT_ID]$(AZURE_TENANT_ID)"
+        echo "##[set-env name=ARM_SUBSCRIPTION_ID]$(AZURE_SUBSCRIPTION_ID)"
+        echo "##[set-env name=ADMIN_SSH_KEY]$(ADMIN_SSH_KEY)"
+      environment:
+        AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
+        AZURE_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
+        AZURE_TENANT_ID: $(AZURE_TENANT_ID)
+        AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+        ADMIN_SSH_KEY: $(ADMIN_SSH_KEY)
+
+  - task: Checkout@v2
+    displayName: 'Checkout code'
+
+  - task: UseTerraform@0
+    displayName: 'Install Terraform'
+    inputs:
+      terraformVersion: $(terraformVersion)
+
+  - script: |
+      echo "$(ADMIN_SSH_KEY)" > admin_ssh_key.pub
+      ls -la
+    displayName: 'Get Admin SSH Key'
+    env:
+      ADMIN_SSH_KEY: $(ADMIN_SSH_KEY)
+
+  - script: terraform init
+    displayName: 'Terraform Init'
+    env:
+      ARM_CLIENT_ID: $(AZURE_CLIENT_ID)
+      ARM_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
+      ARM_TENANT_ID: $(AZURE_TENANT_ID)
+      ARM_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+
+  - script: terraform fmt -recursive
+    displayName: 'Terraform Format'
+
+  - script: terraform validate
+    displayName: 'Terraform Validate'
+
+  - script: terraform plan -var-file='dev.tfvars'
+    displayName: 'Terraform Plan'
+    env:
+      ARM_CLIENT_ID: $(AZURE_CLIENT_ID)
+      ARM_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
+      ARM_TENANT_ID: $(AZURE_TENANT_ID)
+      ARM_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+      ADMIN_SSH_KEY: $(ADMIN_SSH_KEY)
+
+  - script: terraform apply -var-file='dev.tfvars' -auto-approve
+    displayName: 'Terraform Apply'
+    condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main'))
+    env:
+      ARM_CLIENT_ID: $(AZURE_CLIENT_ID)
+      ARM_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
+      ARM_TENANT_ID: $(AZURE_TENANT_ID)
+      ARM_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+      ADMIN_SSH_KEY: $(ADMIN_SSH_KEY)
+
+  # - script: terraform destroy -var-file='dev.tfvars' -auto-approve
+  #   displayName: 'Terraform Destroy'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main'))
+  #   env:
+  #     ARM_CLIENT_ID: $(AZURE_CLIENT_ID)
+  #     ARM_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
+  #     ARM_TENANT_ID: $(AZURE_TENANT_ID)
+  #     ARM_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+  #     ADMIN_SSH_KEY: $(ADMIN_SSH_KEY)
+
+  # - task: SlackNotification@1
+  #   inputs:
+  #     slackHook: $(SLACK_WEBHOOK_URL)
+  #     notifyOnSuccess: 'true'
+  #     notifyOnFailure: 'true'
+  #     message: 'Infrastructure deployment [SUCCESSFULLY/FAILED] to Dev'
+  #     messageType: 'text'
+  #   condition: always()
+  #   displayName: 'Notify Slack on Success/Failure'
+```
+
+### Key Points:
+1. **Triggers**: The `trigger` and `pr` sections ensure that the pipeline runs on pushes to `main` and `develop` branches and on pull requests.
+2. **Variables**: Use variables to store the Terraform version.
+3. **Service Connection**: Replace `<your-service-connection-name>` with the name of your Azure DevOps service connection.
+4. **Environment Variables**: Use environment variables for the sensitive data stored in Azure DevOps secrets.
+5. **Conditions**: The `Terraform Apply` step is conditioned to run only on the `main` branch and on successful builds.
+
+Ensure that you have set the required secrets (`AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `ADMIN_SSH_KEY`, `SLACK_WEBHOOK_URL`) in your Azure DevOps project.
