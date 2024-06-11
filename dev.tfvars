@@ -50,7 +50,7 @@ app_name = "insaitapp"
 #source code path
 source_code_path = "/path/to/your/source/code"
 
-key_vault_name        = "danielkeyvault"
+key_vault_name        = "danielinsaitvault12"
 app_service_name      = "onpremV2-app-service"
 app_service_plan_name = "onpremV2-app-service-plan"
 domain_name           = "insait.io"
