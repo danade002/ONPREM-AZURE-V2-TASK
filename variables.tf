@@ -1,14 +1,15 @@
 
 # Networking
+
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
 }
 
-variable "vnet_address_space" {
-  description = "The address space of the virtual network"
-  type        = list(string)
-}
+# variable "vnet_address_space" {
+#   description = "The address space of the virtual network"
+#   type        = list(string)
+# }
 
 variable "subnet_name" {
   description = "The name of the subnet"
@@ -54,10 +55,10 @@ variable "pg_server_name" {
   type        = string
 }
 
-variable "pg_databases" {
-  description = "The names of the PostgreSQL databases"
-  type        = list(string)
-}
+# variable "pg_databases" {
+#   description = "The names of the PostgreSQL databases"
+#   type        = list(string)
+# }
 
 # Storage Account
 variable "storage_account_name" {
@@ -269,7 +270,15 @@ variable "administrator_login_password" {
   type        = string
 }
 
+variable "pg_databases" {
+  type    = list(string)
+  default = ["database1", "database2"]
+}
 
+variable "vnet_address_space" {
+  type    = list(string)
+  default = ["10.0.0.0/16"]
+}
 # variable "app_service_url" {
 #   description = "The default URL of the App Service"
 #   type        = string
