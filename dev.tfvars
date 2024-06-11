@@ -65,6 +65,12 @@ dns_zone_id = "insait of dns_zone_id"
 # custom_hostname_binding_id = "insait.io"
 
 
+administrator_login   = "danielinsait"
+administrator_login_password = "Daniel@1234"
+
+
+
+
 
 
   

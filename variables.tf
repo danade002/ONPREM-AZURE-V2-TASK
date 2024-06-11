@@ -253,6 +253,17 @@ variable "certificate_uri" {
   
 }
 
+variable "administrator_login" {
+  description = "The administrator login for the PostgreSQL server"
+  type        = string
+}
+
+variable "administrator_login_password" {
+  description = "The administrator login password for the PostgreSQL server"
+  type        = string
+}
+
+
 # variable "app_service_url" {
 #   description = "The default URL of the App Service"
 #   type        = string

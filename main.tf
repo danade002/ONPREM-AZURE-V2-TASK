@@ -18,6 +18,17 @@ provider "azurerm" {
 
 provider "azapi" {}
 
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_deleted_secrets_on_destroy = true
+      recover_soft_deleted_secrets          = true
+    }
+  }
+}
+
+data "azurerm_client_config" "current" {}
+
 module "resource_group" {
   source              = "./modules/resource_group"
   resource_group_name = var.resource_group_name
@@ -66,6 +77,8 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
+  administrator_login         = data.azurerm_key_vault_secret.admin_login.value
+  administrator_login_password = data.azurerm_key_vault_secret.admin_password.value
 }
 
 module "keyvault" {
@@ -76,6 +89,10 @@ module "keyvault" {
   dns_zone_name = var.dns_zone_name
   certificate_name = var.certificate_name
   certificate_uri  = var.certificate_uri
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  object_id                   = data.azurerm_client_config.current.object_id
+  administrator_login         = var.administrator_login
+  administrator_login_password = var.administrator_login_password
 }
 
 
@@ -104,3 +121,12 @@ module "dns" {
 }
 
 
+data "azurerm_key_vault_secret" "admin_login" {
+  name         = "administrator-login"
+  key_vault_id = module.keyvault.key_vault_id
+}
+
+data "azurerm_key_vault_secret" "admin_password" {
+  name         = "administrator-password"
+  key_vault_id = module.keyvault.key_vault_id
+}

@@ -16,3 +16,4 @@ output "certificate_uri" {
   description = "The URI of the certificate in the Key Vault"
   value       = var.certificate_uri
 }
+
