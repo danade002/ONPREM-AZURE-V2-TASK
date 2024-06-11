@@ -22,3 +22,9 @@ variable "domain_name" {
   description = "The custom domain name for the App Service"
   type        = string
 }
+
+variable "app_service_url" {
+  description = "The default URL of the App Service"
+  type        = string
+  
+}
