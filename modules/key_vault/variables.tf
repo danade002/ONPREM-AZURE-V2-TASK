@@ -29,3 +29,47 @@ variable "certificate_uri" {
   type        = string
   
 }
+
+variable "tenant_id" {
+  description = "The tenant ID for the Key Vault"
+  type        = string
+}
+
+variable "object_id" {
+  description = "The object ID for the Key Vault access policy"
+  type        = string
+}
+
+variable "sku_name" {
+  description = "The SKU name for the Key Vault"
+  type        = string
+  default     = "premium"
+}
+
+variable "soft_delete_retention_days" {
+  description = "The number of days to retain deleted secrets"
+  type        = number
+  default     = 7
+}
+
+variable "key_permissions" {
+  description = "The key permissions for the Key Vault access policy"
+  type        = list(string)
+  default     = ["Create", "Get"]
+}
+
+variable "secret_permissions" {
+  description = "The secret permissions for the Key Vault access policy"
+  type        = list(string)
+  default     = ["Set", "Get", "Delete", "Purge", "Recover"]
+}
+
+variable "administrator_login" {
+  description = "The administrator login for the database"
+  type        = string
+}
+
+variable "administrator_login_password" {
+  description = "The administrator login password for the database"
+  type        = string
+}
