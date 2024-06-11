@@ -241,3 +241,14 @@ variable "app_service_plan_name" {
 }
 
 
+variable "dns_zone_id" {
+  description = "The ID of the DNS zone"
+  type        = string
+  
+}
+
+variable "certificate_uri" {
+  description = "The URI of the certificate"
+  type        = string
+  
+}

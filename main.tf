@@ -74,6 +74,7 @@ module "keyvault" {
   key_vault_name      = var.key_vault_name
   dns_zone_name = var.dns_zone_name
   certificate_name = var.certificate_name
+  certificate_uri  = var.certificate_uri
 }
 
 module "app_service" {
@@ -93,6 +94,7 @@ module "dns" {
   machine_ip          = var.machine_ip
   location            = var.location
   dns_zone_name       = var.dns_zone_name
+  dns_zone_id         = var.dns_zone_id
   
 }
 
