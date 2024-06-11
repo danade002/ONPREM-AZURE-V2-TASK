@@ -13,3 +13,4 @@ resource "azurerm_key_vault" "keyvault" {
 
 data "azurerm_client_config" "current" {}
 
+

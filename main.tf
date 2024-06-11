@@ -69,7 +69,7 @@ module "postgresql" {
 }
 
 module "keyvault" {
-  source              = "./modules/keyvault"
+  source              = "./modules/key_vault"
   resource_group_name = var.resource_group_name
   location            = var.location
   key_vault_name      = var.key_vault_name
