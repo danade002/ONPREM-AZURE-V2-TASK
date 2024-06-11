@@ -1,3 +1,5 @@
+
+
 resource "azurerm_postgresql_server" "server" {
   name                         = var.server_name
   location                     = var.location
