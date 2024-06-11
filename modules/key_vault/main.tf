@@ -1,5 +1,5 @@
 # modules/keyvault/main.tf
-resource "azurerm_key_vault" "dev_key_vault" {
+resource "azurerm_key_vault" "dev" {
   name                = var.key_vault_name
   location            = var.location
   resource_group_name = var.resource_group_name
