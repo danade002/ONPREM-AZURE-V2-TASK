@@ -67,6 +67,7 @@ dns_zone_id = "insait of dns_zone_id"
 
 administrator_login   = "danielinsait"
 administrator_login_password = "Daniel@1234"
+key_vault_id = "danielinsaitvault12"
 
 
 

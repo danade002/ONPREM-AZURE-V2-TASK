@@ -11,14 +11,10 @@ terraform {
   }
 }
 
-provider "azurerm" {
-  skip_provider_registration = true
-  features {}
-}
-
 provider "azapi" {}
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_deleted_secrets_on_destroy = true
@@ -26,6 +22,9 @@ provider "azurerm" {
     }
   }
 }
+
+
+
 
 data "azurerm_client_config" "current" {}
 
@@ -79,7 +78,12 @@ module "postgresql" {
   databases           = var.pg_databases
   administrator_login         = data.azurerm_key_vault_secret.admin_login.value
   administrator_login_password = data.azurerm_key_vault_secret.admin_password.value
+  postgresql_server_administrator_login = data.azurerm_key_vault_secret.admin_login.value
+  postgresql_server_administrator_login_password = data.azurerm_key_vault_secret.admin_password.value
+  postgresql_server_name = var.pg_server_name
+
 }
+
 
 module "keyvault" {
   source              = "./modules/key_vault"
@@ -93,6 +97,7 @@ module "keyvault" {
   object_id                   = data.azurerm_client_config.current.object_id
   administrator_login         = var.administrator_login
   administrator_login_password = var.administrator_login_password
+  key_vault_id                 = var.key_vault_id
 }
 
 

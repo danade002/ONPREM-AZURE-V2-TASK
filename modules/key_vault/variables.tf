@@ -73,3 +73,9 @@ variable "administrator_login_password" {
   description = "The administrator login password for the database"
   type        = string
 }
+
+variable "key_vault_id" {
+  description = "The ID of the Key Vault"
+  type        = string
+  
+}

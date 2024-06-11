@@ -161,6 +161,12 @@ variable "key_vault_name" {
   type        = string
 }
 
+variable "key_vault_id" {
+  description = "The ID of the Key Vault."
+  type        = string
+  
+}
+
 variable "certificate_name" {
   description = "The name of the certificate."
   type        = string

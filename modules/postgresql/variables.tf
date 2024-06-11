@@ -27,3 +27,21 @@ variable "administrator_login_password" {
   description = "The administrator login password for the PostgreSQL server"
   type        = string
 }
+
+variable "postgresql_server_administrator_login" {
+  description = "The administrator login for the PostgreSQL server"
+  type        = string
+  
+}
+
+variable "postgresql_server_administrator_login_password" {
+  description = "The administrator login password for the PostgreSQL server"
+  type        = string
+  
+}
+
+variable "postgresql_server_name" {
+  description = "The name of the PostgreSQL server"
+  type        = string
+  
+}
