@@ -67,16 +67,36 @@ module "postgresql" {
   databases           = var.pg_databases
 }
 
-# module "blob_storage" {
-#   source               = "./modules/blob_storage"
-#   resource_group_name  = module.resource_group.resource_group_name
-#   location             = var.location
-#   storage_account_name = var.storage_account_name
-# }
+module "keyvault" {
+  source              = "./modules/Keyvault"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  key_vault_name      = var.key_vault_name
+  tenant_id           = var.tenant_id
+  certificate_name    = var.certificate_name
+  certificate_path    = var.certificate_path
+  certificate_password = var.certificate_password
+}
+
+module "app_service" {
+  source                = "./modules/app_service"
+  resource_group_name   = var.resource_group_name
+  location              = var.location
+  app_service_name      = var.app_service_name
+  app_service_plan_name = var.app_service_plan_name
+  domain_name           = var.domain_name
+}
 
 module "dns" {
   source              = "./modules/dns"
-  resource_group_name = module.resource_group.resource_group_name
+  resource_group_name = var.resource_group_name
+  domain_name         = var.domain_name
+  subdomain_name      = var.subdomain_name
+  machine_ip          = var.machine_ip
   location            = var.location
   dns_zone_name       = var.dns_zone_name
+  
 }
+
+
+

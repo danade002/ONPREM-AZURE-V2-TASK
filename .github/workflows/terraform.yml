@@ -26,15 +26,6 @@ jobs:
       with:
         terraform_version: 1.8.2
 
-    - name: Get PostgreSQL Credentials from Azure Key Vault
-      id: keyvault
-      uses: azure/cli@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          export POSTGRES_USERNAME=$(az keyvault secret show --name "postgres-username-secret-name" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-            export POSTGRES_PASSWORD=$(az keyvault secret show --name "postgres-password-secret-name" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-  
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
