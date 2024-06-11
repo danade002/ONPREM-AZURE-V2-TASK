@@ -20,7 +20,8 @@ registry_name = "insaitcontainerregistry"
 
 # PostgreSQL Server
 pg_server_name = "insaitpgserver"
-pg_databases   = ["insait_backend", "metabase", "bank_db"] # Ensure this is a list
+pg_databases   = ["insait_backend", "metabase", "bank_db"]
+
 
 # Storage Account
 storage_account_name = "testademeso"
@@ -48,3 +49,19 @@ app_name = "insaitapp"
 
 #source code path
 source_code_path = "/path/to/your/source/code"
+
+key_vault_name        = "dev"
+app_service_name      = "onpremV2-app-service"
+app_service_plan_name = "onpremV2-app-service-plan"
+domain_name           = "insait.io"
+subdomain_name        = "test.insait.io"
+machine_ip            = "172.191.4.28"
+
+certificate_dns_names = ["insait.io", "test.insait.io"]
+certificate_name = "insait-certificate"
+certificate_uri = "insait of certificate_uri"
+dns_zone_id = "insait of dns_zone_id"
+
+
+
+  

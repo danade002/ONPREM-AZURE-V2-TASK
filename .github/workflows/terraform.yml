@@ -26,30 +26,6 @@ jobs:
       with:
         terraform_version: 1.8.2
 
-    - name: Set up Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDS }}
-      
-    - name: Set active Azure account
-      run: az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-      env:
-          AZURE_CREDENTIALS: "${{ secrets.AZURE_CREDS }}"
-          AZURE_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-      
-    - name: Get PostgreSQL Credentials from Azure Key Vault
-      id: keyvault
-      uses: azure/cli@v2
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          export POSTGRES_USERNAME=$(az keyvault secret show --name "pg-username" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-          export POSTGRES_PASSWORD=$(az keyvault secret show --name "pg-password" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-      
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
@@ -63,10 +39,9 @@ jobs:
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        export POSTGRES_USERNAME=$(az keyvault secret show --name "pg-username" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-        export POSTGRES_PASSWORD=$(az keyvault secret show --name "pg-password" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-  
         terraform init
+        
+      
 
       
       
@@ -86,9 +61,6 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-        export POSTGRES_USERNAME=$(az keyvault secret show --name "pg-username" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-        export POSTGRES_PASSWORD=$(az keyvault secret show --name "pg-password" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-  
         terraform plan -var-file='dev.tfvars'
         
 
@@ -100,9 +72,6 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-        export POSTGRES_USERNAME=$(az keyvault secret show --name "pg-username" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-        export POSTGRES_PASSWORD=$(az keyvault secret show --name "pg-password" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-  
         terraform apply -var-file='dev.tfvars' -auto-approve 
 
     - name: Terraform Destroy
@@ -113,9 +82,6 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-        export POSTGRES_USERNAME=$(az keyvault secret show --name "pg-username" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-        export POSTGRES_PASSWORD=$(az keyvault secret show --name "pg-password" --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query 'value' -o tsv)
-  
         terraform destroy -var-file='dev.tfvars' -auto-approve
 
     # - name: Notify Slack on Success
