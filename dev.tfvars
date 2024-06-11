@@ -61,8 +61,8 @@ certificate_dns_names = ["insait.io", "test.insait.io"]
 certificate_name = "insait-certificate"
 certificate_uri = "insait of certificate_uri"
 dns_zone_id = "insait of dns_zone_id"
-app_service_url = "insait.io"
-custom_hostname_binding_id = "insait.io"
+# app_service_url = "insait.io"
+# custom_hostname_binding_id = "insait.io"
 
 
 
