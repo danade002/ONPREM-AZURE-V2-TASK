@@ -253,6 +253,17 @@ variable "certificate_uri" {
   
 }
 
+# variable "app_service_url" {
+#   description = "The default URL of the App Service"
+#   type        = string
+  
+# }
+# variable "custom_hostname_binding_id" {
+#   description = "The hostname of the App Service"
+#   type        = string
+  
+# }
+
 # variable "admin_ssh_key" {
 #   description = "The admin SSH key for the Linux virtual machine"
 #   type        = string

@@ -50,7 +50,7 @@ app_name = "insaitapp"
 #source code path
 source_code_path = "/path/to/your/source/code"
 
-key_vault_name        = "dev"
+key_vault_name        = "devkeyvault"
 app_service_name      = "onpremV2-app-service"
 app_service_plan_name = "onpremV2-app-service-plan"
 domain_name           = "insait.io"
@@ -61,6 +61,9 @@ certificate_dns_names = ["insait.io", "test.insait.io"]
 certificate_name = "insait-certificate"
 certificate_uri = "insait of certificate_uri"
 dns_zone_id = "insait of dns_zone_id"
+# app_service_url = "insait.io"
+# custom_hostname_binding_id = "insait.io"
+
 
 
 
