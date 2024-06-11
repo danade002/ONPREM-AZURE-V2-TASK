@@ -29,4 +29,8 @@ variable "machine_ip" {
   type        = string
 }
 
-
+variable "dns_zone_id" {
+  description = "The ID of the DNS zone"
+  type        = string
+  
+}

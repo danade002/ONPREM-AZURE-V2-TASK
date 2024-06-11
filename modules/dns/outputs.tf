@@ -1,6 +1,6 @@
 
 output "dns_zone_id" {
-  value = azurerm_dns_zone.dns_zone.id
+  value = var.dns_zone_id 
 }
 
 
@@ -17,5 +17,5 @@ output "subdomain_name" {
 
 output "machine_ip" {
   description = "The IP address associated with the subdomain"
-  value       = azurerm_dns_a_record.subdomain.records[0]
+  value       = var.machine_ip
 }

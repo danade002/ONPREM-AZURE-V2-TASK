@@ -23,3 +23,9 @@ variable "dns_zone_name" {
   description = "The DNS zone name"
   type        = string
 }
+
+variable "certificate_uri" {
+  description = "The URI of the certificate"
+  type        = string
+  
+}
