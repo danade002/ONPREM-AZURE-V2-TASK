@@ -1,15 +1,21 @@
-output "server_name" {
-  value = var.server_name.name
-}
 
 output "database_names" {
-  value = var.databases_names.name
+  value = azurerm_postgresql_database.databases
 }
 
 output "postgresql_server_name" {
-  value = var.postgresql_server_name.name
+  value = azurerm_postgresql_server.server.name
 }
 
-output "postgresql_server_administrator_login" {
-  value = var.postgresql_server_administrator_login.login
+
+output "server_name" {
+  description = "The name of the PostgreSQL server"
+  value       =  azurerm_postgresql_server.server.name
+}
+
+output "administrator_login" {
+  description = "The administrator login for the PostgreSQL server"
+  value       = azurerm_postgresql_server.server.administrator_login
+
+  
 }

@@ -19,17 +19,17 @@ resource "azurerm_key_vault" "danielinsaitvault12" {
 resource "azurerm_key_vault_secret" "admin_login" {
   name         = "administrator-login"
   value        = var.administrator_login
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = var.administrator_login
 }
 
 resource "azurerm_key_vault_secret" "admin_password" {
   name         = "administrator-password"
   value        = var.administrator_login_password
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = var.administrator_login_password
 }
 
 output "key_vault_id" {
-  value = azurerm_key_vault.example.id
+  value = var.key_vault_id
 }
 
 output "admin_login_secret_id" {
