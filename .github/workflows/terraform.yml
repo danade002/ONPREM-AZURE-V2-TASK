@@ -26,6 +26,7 @@ jobs:
       with:
         terraform_version: 1.8.2
 
+
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
@@ -40,7 +41,8 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init
-        terraform force-unlock -force 9d34b7e0-69c1-fbb8-57ce-fb097c8a3c1b
+
+      
       
         
     - name: Terraform Format

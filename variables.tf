@@ -1,4 +1,3 @@
-
 # Networking
 
 variable "vnet_name" {
@@ -6,10 +5,10 @@ variable "vnet_name" {
   type        = string
 }
 
-# variable "vnet_address_space" {
-#   description = "The address space of the virtual network"
-#   type        = list(string)
-# }
+variable "vnet_address_space" {
+  description = "The address space of the virtual network"
+  type        = list(string)
+}
 
 variable "subnet_name" {
   description = "The name of the subnet"
@@ -22,6 +21,7 @@ variable "subnet_address_prefix" {
 }
 
 # Virtual Machine
+
 variable "vm_name" {
   description = "The name of the Linux virtual machine"
   type        = string
@@ -37,11 +37,16 @@ variable "admin_username" {
   type        = string
 }
 
+# variable "admin_ssh_key" {
+#   description = "The admin SSH key for the Linux virtual machine"
+#   type        = string
+# }
 
 variable "network_interface_id" {
   description = "The ID of the network interface"
   type        = string
 }
+
 
 # Azure Container Registry (ACR)
 variable "registry_name" {
@@ -55,11 +60,10 @@ variable "pg_server_name" {
   type        = string
 }
 
-# variable "pg_databases" {
-#   description = "The names of the PostgreSQL databases"
-#   type        = list(string)
-# }
-
+variable "pg_databases" {
+  description = "The names of the PostgreSQL databases"
+  type        = list(string)
+}
 # Storage Account
 variable "storage_account_name" {
   description = "The name of the blob storage account"
@@ -88,6 +92,7 @@ variable "container_group_name" {
   description = "The name of the container group"
   type        = string
 }
+
 
 variable "container_name" {
   description = "The name of the container"
@@ -130,169 +135,25 @@ variable "source_code_path" {
   type        = string
 }
 
-# General Resources
+#location  
+
 variable "location" {
   description = "The location of the resources"
   type        = string
 }
- 
+
+#Resoure group name 
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
 }
-
-variable "domain_name" {
-  description = "The root domain name"
-  type        = string
-}
-
-variable "subdomain_name" {
-  description = "The subdomain name"
-  type        = string
-}
-
-variable "machine_ip" {
-  description = "The IP address of the machine"
-  type        = string
-}
-
-# Key Vault
-variable "key_vault_name" {
-  description = "The name of the Key Vault."
-  type        = string
-}
-
-variable "key_vault_id" {
-  description = "The ID of the Key Vault."
-  type        = string
-  
-}
-
-variable "certificate_name" {
-  description = "The name of the certificate."
-  type        = string
-}
-
-# variable "certificate_dns_names" {
-#   description = "List of DNS names for the certificate."
-#   type        = list(string)
-# }
-
-variable "certificate_permissions" {
-  description = "List of certificate permissions for the Key Vault."
-  type        = list(string)
-  default = [
-    "Create",
-    "Delete",
-    "DeleteIssuers",
-    "Get",
-    "GetIssuers",
-    "Import",
-    "List",
-    "ListIssuers",
-    "ManageContacts",
-    "ManageIssuers",
-    "Purge",
-    "SetIssuers",
-    "Update",
-  ]
-}
-
-variable "key_permissions" {
-  description = "List of key permissions for the Key Vault."
-  type        = list(string)
-  default = [
-    "Backup",
-    "Create",
-    "Decrypt",
-    "Delete",
-    "Encrypt",
-    "Get",
-    "Import",
-    "List",
-    "Purge",
-    "Recover",
-    "Restore",
-    "Sign",
-    "UnwrapKey",
-    "Update",
-    "Verify",
-    "WrapKey",
-  ]
-}
-
-variable "secret_permissions" {
-  description = "List of secret permissions for the Key Vault."
-  type        = list(string)
-  default = [
-    "Backup",
-    "Delete",
-    "Get",
-    "List",
-    "Purge",
-    "Recover",
-    "Restore",
-    "Set",
-  ]
-}
-
-# App Service Variables
-variable "app_service_name" {
-  description = "The name of the App Service"
-  type        = string
-}
-
-variable "app_service_plan_name" {
-  description = "The name of the App Service Plan"
-  type        = string
-}
-
-
-variable "dns_zone_id" {
-  description = "The ID of the DNS zone"
-  type        = string
-  
-}
-
-variable "certificate_uri" {
-  description = "The URI of the certificate"
-  type        = string
-  
-}
-
-variable "administrator_login" {
-  description = "The administrator login for the PostgreSQL server"
-  type        = string
-}
-
-variable "administrator_login_password" {
-  description = "The administrator login password for the PostgreSQL server"
-  type        = string
-}
-
-variable "pg_databases" {
-  type    = list(string)
-  default = ["database1", "database2"]
-}
-
-variable "vnet_address_space" {
-  type    = list(string)
-  default = ["10.0.0.0/16"]
-}
-# variable "app_service_url" {
-#   description = "The default URL of the App Service"
-#   type        = string
-  
-# }
-# variable "custom_hostname_binding_id" {
-#   description = "The hostname of the App Service"
-#   type        = string
-  
-# }
 
 # variable "admin_ssh_key" {
 #   description = "The admin SSH key for the Linux virtual machine"
 #   type        = string
   
 # }
-
+# variable "parent_id" {
+#   description = "resource group id"
+#   type = string
+# }
