@@ -20,7 +20,8 @@ registry_name = "insaitcontainerregistry"
 
 # PostgreSQL Server
 pg_server_name = "insaitpgserver"
-pg_databases   = ["insait_backend", "metabase", "bank_db"] # Ensure this is a list
+pg_databases   = ["insait_backend", "metabase", "bank_db"]
+
 
 # Storage Account
 storage_account_name = "testademeso"

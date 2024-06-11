@@ -50,6 +50,7 @@ module "linux_virtual_machine" {
   subnet_id            = module.subnet.subnet_id
   admin_username       = var.admin_username
   network_interface_id = var.network_interface_id
+  admin_ssh_key        = var.admin_ssh_key
 }
 
 module "container_registry" {
@@ -97,6 +98,5 @@ module "dns" {
   dns_zone_id         = var.dns_zone_id
   
 }
-
 
 

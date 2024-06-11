@@ -166,10 +166,10 @@ variable "certificate_name" {
   type        = string
 }
 
-variable "certificate_dns_names" {
-  description = "List of DNS names for the certificate."
-  type        = list(string)
-}
+# variable "certificate_dns_names" {
+#   description = "List of DNS names for the certificate."
+#   type        = list(string)
+# }
 
 variable "certificate_permissions" {
   description = "List of certificate permissions for the Key Vault."
@@ -252,3 +252,10 @@ variable "certificate_uri" {
   type        = string
   
 }
+
+variable "admin_ssh_key" {
+  description = "The admin SSH key for the Linux virtual machine"
+  type        = string
+  
+}
+
