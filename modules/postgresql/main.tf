@@ -8,6 +8,7 @@ resource "azurerm_postgresql_server" "server" {
   administrator_login_password = "Daniel@1234"
   version                      = "11"
   ssl_enforcement_enabled      = true
+  
 }
 
 resource "azurerm_postgresql_database" "databases" {
