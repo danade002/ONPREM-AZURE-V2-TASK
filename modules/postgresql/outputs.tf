@@ -16,4 +16,6 @@ output "server_name" {
 output "administrator_login" {
   description = "The administrator login for the PostgreSQL server"
   value       = azurerm_postgresql_server.server.administrator_login
+
+  
 }
