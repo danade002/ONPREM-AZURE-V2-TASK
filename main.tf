@@ -72,10 +72,8 @@ module "keyvault" {
   resource_group_name = var.resource_group_name
   location            = var.location
   key_vault_name      = var.key_vault_name
-  tenant_id           = var.tenant_id
-  certificate_name    = var.certificate_name
-  certificate_path    = var.certificate_path
-  certificate_password = var.certificate_password
+  dns_zone_name = var.dns_zone_name
+  certificate_name = var.certificate_name
 }
 
 module "app_service" {
