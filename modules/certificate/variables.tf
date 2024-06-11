@@ -12,3 +12,9 @@ variable "dns_names" {
   description = "List of DNS names for the certificate."
   type        = list(string)
 }
+
+variable "certificate_name" {
+  description = "The name of the certificate."
+  type        = string
+  
+}
