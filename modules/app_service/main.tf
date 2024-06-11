@@ -21,7 +21,7 @@ resource "azurerm_app_service_custom_hostname_binding" "app_service_custom_hostn
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_app_service_managed_certificate" "certificate" {
-  custom_hostname_binding_id = var.custom_hostname_binding_id
+# resource "azurerm_app_service_managed_certificate" "certificate" {
+#   custom_hostname_binding_id = var.custom_hostname_binding_id
   
-}
+# }

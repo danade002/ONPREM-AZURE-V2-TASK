@@ -86,9 +86,9 @@ module "app_service" {
   app_service_name      = var.app_service_name
   app_service_plan_name = var.app_service_plan_name
   domain_name           = var.domain_name
-  app_service_url       = var.app_service_url
-  custom_hostname_binding_id = var.custom_hostname_binding_id
+
 }
+
 
 module "dns" {
   source              = "./modules/dns"
