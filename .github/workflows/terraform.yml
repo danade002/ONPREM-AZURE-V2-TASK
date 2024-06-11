@@ -32,9 +32,9 @@ jobs:
         creds: ${{ secrets.AZURE_CREDS }}
       
     - name: Set active Azure account
-      run: az account set --subscription <subscription_id>
+      run: az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
       env:
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDS }}
+          AZURE_CREDENTIALS: "${{ secrets.AZURE_CREDS }}"
           AZURE_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
       
     - name: Get PostgreSQL Credentials from Azure Key Vault
