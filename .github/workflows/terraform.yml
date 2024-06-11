@@ -81,6 +81,9 @@ jobs:
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
         terraform destroy -var-file='dev.tfvars' -auto-approve
 
+
+        
+
     # - name: Notify Slack on Success
     #   if: always() && github.ref == 'refs/heads/main'
     #   uses: rtCamp/action-slack-notify@v2
