@@ -55,3 +55,5 @@ app_service_plan_name = "onpremV2-app-service-plan"
 domain_name           = "insait.io"
 subdomain_name        = "test.insait.io"
 machine_ip            = "172.191.4.28"
+
+certificate_dns_names = ["insait.io", "test.insait.io"]
