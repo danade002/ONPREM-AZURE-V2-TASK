@@ -58,3 +58,4 @@ subdomain_name        = "test.insait.io"
 machine_ip            = "172.191.4.28"
 
 certificate_dns_names = ["insait.io", "test.insait.io"]
+certificate_name = "insait-certificate"
