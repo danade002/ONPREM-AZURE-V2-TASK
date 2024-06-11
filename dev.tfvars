@@ -61,7 +61,7 @@ certificate_dns_names = ["insait.io", "test.insait.io"]
 certificate_name = "insait-certificate"
 certificate_uri = "insait of certificate_uri"
 dns_zone_id = "insait of dns_zone_id"
-dns_zone_name = "insait of dns_zone_name"
+
 
 
   
