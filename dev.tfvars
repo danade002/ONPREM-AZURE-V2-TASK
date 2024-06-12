@@ -73,3 +73,8 @@ app_service_name = "insaitappservice12"
 app_service_plan_id = "onpremV2-app-service-plan"
 secret_name = "insait-cert"
 certificate_id = "insait of certificate_id"
+key_vault_id = "insait of key_vault_id"
+sku_name = "standard"
+key_permissions = ["get", "list"]
+secret_permissions = ["get", "list"]
+
