@@ -124,3 +124,15 @@ module "app_service" {
 
  
 }
+
+data "azurerm_client_config" "current" {}
+
+output "tenant_id" {
+  value = data.azurerm_client_config.current.tenant_id
+}
+
+data "azurerm_client_config" "current" {}
+
+output "object_id" {
+  value = data.azurerm_client_config.current.object_id
+}
