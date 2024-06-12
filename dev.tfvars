@@ -10,7 +10,7 @@ subnet_name           = "insaitsubnet"
 subnet_address_prefix = "10.0.1.0/24"
 
 # Virtual Machine
-vm_name        = "app-v1"
+vm_name        = "Insait-Vm"
 vm_size        = "Standard_B4ms"
 admin_username = "insait"
 
@@ -48,3 +48,19 @@ app_name = "insaitapp"
 
 #source code path
 source_code_path = "/path/to/your/source/code"
+
+
+# Domain and Subdomain Variables
+domain_name         = "insit.io"
+subdomain_name      = "test.insiat.io"
+machine_ip          = "203.0.113.10"
+
+
+
+# Key Vault Variables
+key_vault_name      = "danielkeyvault12"
+soft_delete_retention_days = 7
+certificate_name    = "generated-cert"
+dns_names           = ["insait.io", "test.insait.io"]
+subject             = "CN=hello-world"
+validity_in_months  = 12

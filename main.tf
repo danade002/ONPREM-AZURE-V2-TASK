@@ -67,16 +67,45 @@ module "postgresql" {
   databases           = var.pg_databases
 }
 
-# module "blob_storage" {
-#   source               = "./modules/blob_storage"
-#   resource_group_name  = module.resource_group.resource_group_name
-#   location             = var.location
-#   storage_account_name = var.storage_account_name
-# }
 
 module "dns" {
   source              = "./modules/dns"
   resource_group_name = module.resource_group.resource_group_name
   location            = var.location
   dns_zone_name       = var.dns_zone_name
+  machine_ip          = var.machine_ip
+  subdomain_name      = var.subdomain_name
+  domain_name         = var.domain_name
+}
+
+
+data "azurerm_client_config" "current" {}
+
+
+
+
+
+module "key_vault" {
+  source = "./modules/key_vault"
+  location            = module.resource_group.location
+  resource_group_name = module.resource_group.resource_group_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = data.azurerm_client_config.current.object_id
+  soft_delete_retention_days = var.soft_delete_retention_days
+  name                = var.key_vault_name
+  certificate_name    = var.certificate_name
+  certificate_path    = var.certificate_path
+  certificate_password = var.certificate_password
+  certificate_uri = var.certificate_uri
+  id = var.id
+  key_vault_name = var.key_vault_name
+}
+
+module "key_vault_certificate" {
+  source = "./modules/key_vault_certificate"
+  key_vault_id      = module.key_vault.id
+  dns_names         = var.dns_names
+  subject           = var.subject
+  validity_in_months = var.validity_in_months
+  certificate_name = var.certificate_name
 }
