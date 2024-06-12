@@ -1,19 +1,8 @@
-variable "certificate_name" {
-  description = "The name of the Key Vault Certificate"
-  type        = string
-}
 
 variable "certificate_password" {
   description = "The password for the certificate file"
   type        = string
   sensitive   = true
-}
-
-
-
-variable "key_vault_id" {
-  description = "The ID of the Key Vault"
-  type        = string
 }
 
 variable "dns_names" {
@@ -41,4 +30,24 @@ variable "thumbprint" {
   description = "The thumbprint of the certificate stored in Azure Key Vault"
   type        = string
   
+}
+
+variable "certificate_name" {
+  description = "Name of the Azure Key Vault certificate"
+  type        = string
+}
+
+variable "key_vault_id" {
+  description = "ID of the Azure Key Vault where the certificate will be stored"
+  type        = string
+}
+
+variable "secret_name" {
+  description = "Name of the secret for the Azure Key Vault certificate"
+  type        = string
+}
+
+variable "certificate_path" {
+  description = "Path to the certificate file"
+  type        = string
 }

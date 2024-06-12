@@ -107,6 +107,8 @@ module "key_vault_certificate" {
   certificate_password = var.certificate_password
   certificate_uri = var.certificate_uri
   thumbprint = var.thumbprint
+  secret_name   = var.secret_name
+  certificate_path = var.certificate_path
  
 }
 
