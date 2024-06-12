@@ -79,11 +79,6 @@ module "dns" {
 }
 
 
-data "azurerm_client_config" "current" {}
-
-
-
-
 
 module "key_vault" {
   source = "./modules/key_vault"
