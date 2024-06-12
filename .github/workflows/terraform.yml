@@ -41,7 +41,7 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init
-       
+        terraform force-unlock -force ec9a6465-f1e0-c898-d4f0-0c7f33f31060
       
         
     - name: Terraform Format
