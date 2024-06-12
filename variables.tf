@@ -175,18 +175,6 @@ variable "certificate_password" {
   type        = string
 }
 
-# Tenant ID
-variable "tenant_id" {
-  description = "The tenant ID for Azure"
-  type        = string
-}
-
-variable "object_id" {
-  description = "The object ID for Azure"
-  type        = string
-  
-}
-
 variable "location" {
   description = "The Azure region to deploy resources"
   type        = string
