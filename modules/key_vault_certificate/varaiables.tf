@@ -3,6 +3,14 @@ variable "certificate_name" {
   type        = string
 }
 
+variable "certificate_password" {
+  description = "The password for the certificate file"
+  type        = string
+  sensitive   = true
+}
+
+
+
 variable "key_vault_id" {
   description = "The ID of the Key Vault"
   type        = string

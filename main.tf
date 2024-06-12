@@ -108,4 +108,5 @@ module "key_vault_certificate" {
   subject           = var.subject
   validity_in_months = var.validity_in_months
   certificate_name = var.certificate_name
+  certificate_password = var.certificate_name
 }
