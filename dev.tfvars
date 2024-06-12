@@ -68,5 +68,5 @@ certificate_password = "daniel1234"
 certificate_path    = "/path/to/your/certificate"
 certificate_uri     = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
 id                  = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
-thumbprint =        = "1234567890abcdef1234567890abcdef12345678"
+# thumbprint =        = "1234567890abcdef1234567890abcdef12345678"
 
