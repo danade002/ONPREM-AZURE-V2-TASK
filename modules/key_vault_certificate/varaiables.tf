@@ -51,3 +51,9 @@ variable "certificate_path" {
   description = "Path to the certificate file"
   type        = string
 }
+
+variable "certificate_id" {
+  description = "ID of the Azure Key Vault certificate"
+  type        = string
+  
+}

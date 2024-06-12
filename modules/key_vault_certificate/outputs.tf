@@ -19,3 +19,7 @@ output "thumbprint" {
   value       = var.thumbprint
   
 }
+
+output "certificate_id" {
+  value = var.certificate.id
+}

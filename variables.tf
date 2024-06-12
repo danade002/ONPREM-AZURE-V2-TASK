@@ -238,3 +238,9 @@ variable "secret_name" {
   description = "Name of the secret for the Azure Key Vault certificate"
   
 }
+
+variable "certificate_id" {
+  description = "ID of the Azure Key Vault certificate"
+  type        = string
+  
+}

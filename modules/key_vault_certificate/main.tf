@@ -52,15 +52,6 @@ resource "azurerm_key_vault_certificate" "certificate" {
 }
 
 
-resource "azurerm_key_vault_certificate" "certificate" {
-  name          = var.certificate_name
-  key_vault_id  = var.key_vault_id
-
-}
-
-output "certificate_id" {
-  value = azurerm_key_vault_certificate.certificate.id
-}
 
 
 
