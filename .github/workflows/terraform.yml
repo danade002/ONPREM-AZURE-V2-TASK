@@ -2,7 +2,7 @@ name: 'CI PIPELINE'
 
 on:
   push:
-    branches: [ main, develop, develop_ssl ]
+    branches: [ main, develop ]
   pull_request:
 
 permissions:
