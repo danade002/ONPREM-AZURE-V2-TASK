@@ -21,5 +21,5 @@ output "thumbprint" {
 }
 
 output "certificate_id" {
-  value = var.certificate.id
+  value = azurerm_key_vault_certificate.certificate.id
 }
