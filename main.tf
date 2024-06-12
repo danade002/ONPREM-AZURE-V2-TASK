@@ -24,11 +24,7 @@ module "resource_group" {
   location            = var.location
 }
 
-data "azurerm_client_config" "current" {}
 
-output "object_id" {
-  value = data.azurerm_client_config.current.object_id
-}
 
 module "virtual_network" {
   source              = "./modules/virtual_network"
@@ -125,9 +121,14 @@ module "app_service" {
  
 }
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "auth_config" {}
 
 output "tenant_id" {
-  value = data.azurerm_client_config.current.tenant_id
+  value = data.azurerm_client_config.auth_config.tenant_id
 }
 
+data "azurerm_client_config" "current" {}
+
+output "object_id" {
+  value = data.azurerm_client_config.current.object_id
+}
