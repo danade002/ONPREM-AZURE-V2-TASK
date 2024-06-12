@@ -70,5 +70,6 @@ certificate_uri     = "https://danielkeyvault12.vault.azure.net/secrets/insait-c
 id                  = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
 thumbprint          = "1234567890abcdef1234567890abcdef12345678"
 app_service_name = "insaitappservice12"
+app_service_plan_id = "/subscriptions/12345678-1234-1234-1234-1234567890ab/resourceGroups/daniel-sandbox12/providers/Microsoft.Web/serverfarms/insaitappserviceplan12"
 
 
