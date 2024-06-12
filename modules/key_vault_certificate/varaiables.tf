@@ -30,3 +30,15 @@ variable "validity_in_months" {
   description = "The validity period of the certificate in months"
   type        = number
 }
+
+variable "certificate_uri" {
+  description = "The URI of the certificate in the Key Vault"
+  type        = string
+  
+}
+
+variable "thumbprint" {
+  description = "The thumbprint of the certificate stored in Azure Key Vault"
+  type        = string
+  
+}

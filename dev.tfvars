@@ -60,9 +60,13 @@ machine_ip          = "203.0.113.10"
 # Key Vault Variables
 key_vault_name      = "danielkeyvault12"
 soft_delete_retention_days = 7
-certificate_name    = "generated-cert"
+certificate_name    = "insait-cert"
 dns_names           = ["insait.io", "test.insait.io"]
 subject             = "CN=hello-world"
 validity_in_months  = 12
 certificate_password = "daniel1234"
 certificate_path    = "/path/to/your/certificate"
+certificate_uri     = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
+id                  = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
+thumbprint =        = "1234567890abcdef1234567890abcdef12345678"
+

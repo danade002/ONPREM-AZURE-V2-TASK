@@ -108,5 +108,19 @@ module "key_vault_certificate" {
   subject           = var.subject
   validity_in_months = var.validity_in_months
   certificate_name = var.certificate_name
-  certificate_password = var.certificate_name
+  certificate_password = var.certificate_password
+  certificate_uri = var.certificate_uri
+  thumbprint = var.thumbprint
+ 
+}
+
+module "app_service" {
+  source                = "./modules/app_service"
+  resource_group_name   = var.resource_group_name
+  location              = var.location
+  app_service_name      = var.app_service_name
+  app_service_plan_id = var.app_service_plan_id
+  thumbprint = module.key_vault_certificate.thumbprint
+
+ 
 }
