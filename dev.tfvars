@@ -65,3 +65,4 @@ dns_names           = ["insait.io", "test.insait.io"]
 subject             = "CN=hello-world"
 validity_in_months  = 12
 certificate_password = "daniel1234"
+certificate_path    = "/path/to/your/certificate"
