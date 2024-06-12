@@ -244,3 +244,27 @@ variable "certificate_id" {
   type        = string
   
 }
+variable "sku_name" {
+  description = "The SKU name for the Key Vault"
+  type        = string
+  
+}
+
+variable "key_vault_id" {
+  description = "The ID of the Key Vault"
+  type        = string
+  
+}
+
+variable "key_permissions" {
+  description = "The key permissions for the Key Vault access policy"
+  type        = list(string)
+  
+}
+
+
+variable "secret_permissions" {
+  description = "The secret permissions for the Key Vault access policy"
+  type        = list(string)
+  
+}

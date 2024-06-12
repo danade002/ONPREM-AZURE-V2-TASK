@@ -95,6 +95,10 @@ module "key_vault" {
   certificate_uri = var.certificate_uri
   id = var.id
   key_vault_name = var.key_vault_name
+  key_vault_id = var.key_vault_id
+  sku_name = var.sku_name
+  secret_permissions =  var.secret_permissions
+  key_permissions = var.key_permissions
 }
 
 module "key_vault_certificate" {

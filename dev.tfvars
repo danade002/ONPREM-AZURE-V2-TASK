@@ -53,7 +53,7 @@ source_code_path = "/path/to/your/source/code"
 # Domain and Subdomain Variables
 domain_name         = "insit.io"
 subdomain_name      = "test.insiat.io"
-machine_ip          = "203.0.113.10"
+machine_ip          = "172.191.4.28"
 
 
 
@@ -66,11 +66,9 @@ subject             = "CN=hello-world"
 validity_in_months  = 12
 certificate_password = "daniel1234"
 certificate_path    = "/path/to/your/certificate"
-certificate_uri     = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
-id                  = "https://danielkeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
+certificate_uri     = "insait of certificate_uri"
+id                  = "insait of dns_zone_id"
 thumbprint          = "1234567890abcdef1234567890abcdef12345678"
 app_service_name = "insaitappservice12"
-app_service_plan_id = "/subscriptions/12345678-1234-1234-1234-1234567890ab/resourceGroups/daniel-sandbox12/providers/Microsoft.Web/serverfarms/insaitappserviceplan12"
-certificate_id = "danilekeyvault12.vault.azure.net/secrets/insait-cert/1234567890abcdef1234567890abcdef"
-secret_name = "insait-cert"
-
+app_service_plan_id = "onpremV2-app-service-plan"
+secret_name = "insait-cert"""
