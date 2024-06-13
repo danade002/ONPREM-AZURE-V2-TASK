@@ -125,4 +125,6 @@ module "keyvault" {
   dns_zone_name = var.dns_zone_name
   certificate_name = var.certificate_name
   certificate_uri = var.certificate_uri
+  postgresql_server_administrator_login = var.postgresql_server_administrator_login
+  postgresql_server_administrator_login_password = var.postgresql_server_administrator_login_password
 }

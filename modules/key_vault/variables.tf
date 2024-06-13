@@ -70,3 +70,7 @@ variable "key_vault_id" {
   type        = string
   
 }
+
+variable "postgresql_server_administrator_login" {}
+
+variable "postgresql_server_administrator_login_password" {}

@@ -26,3 +26,14 @@ output "key_vault_id" {
 data "azurerm_client_config" "current" {}
 
 
+resource "azurerm_key_vault_secret" "admin_login" {
+  name         = "postgresql-server-admin-login"
+  value        = var.postgresql_server_administrator_login
+  key_vault_id = azurerm_key_vault.danielinsaitvault12.id
+}
+
+resource "azurerm_key_vault_secret" "admin_password" {
+  name         = "postgresql-server-admin-password"
+  value        = var.postgresql_server_administrator_login_password
+  key_vault_id = azurerm_key_vault.danielinsaitvault12.id
+}
