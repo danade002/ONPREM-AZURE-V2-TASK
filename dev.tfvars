@@ -65,6 +65,9 @@ dns_zone_id = "insait of dns_zone_id"
 # custom_hostname_binding_id = "insait.io"
 key_vault_id = "danielinsaitvault12"
 
+postgresql_server_administrator_login = "danielinsait"
+postgresql_server_administrator_login_password = "Daniel@1234"
+
 
 
 
