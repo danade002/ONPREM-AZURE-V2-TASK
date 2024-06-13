@@ -260,15 +260,15 @@ variable "certificate_uri" {
   
 }
 
-variable "administrator_login" {
-  description = "The administrator login for the PostgreSQL server"
-  type        = string
-}
+# variable "administrator_login" {
+#   description = "The administrator login for the PostgreSQL server"
+#   type        = string
+# }
 
-variable "administrator_login_password" {
-  description = "The administrator login password for the PostgreSQL server"
-  type        = string
-}
+# variable "administrator_login_password" {
+#   description = "The administrator login password for the PostgreSQL server"
+#   type        = string
+# }
 
 variable "pg_databases" {
   type    = list(string)
