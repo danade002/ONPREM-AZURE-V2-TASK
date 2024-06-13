@@ -83,18 +83,20 @@ module "postgresql" {
 }
 
 
-module "keyvault" {
-  source              = "./modules/key_vault"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  key_vault_name      = var.key_vault_name
-  dns_zone_name = var.dns_zone_name
-  certificate_name = var.certificate_name
-  certificate_uri  = var.certificate_uri
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  object_id                   = data.azurerm_client_config.current.object_id
-  key_vault_id                 = var.key_vault_id
-}
+# module "keyvault" {
+#   source              = "./modules/key_vault"
+#   resource_group_name = var.resource_group_name
+#   location            = var.location
+#   key_vault_name      = var.key_vault_name
+#   dns_zone_name = var.dns_zone_name
+#   certificate_name = var.certificate_name
+#   certificate_uri  = var.certificate_uri
+#   tenant_id                   = data.azurerm_client_config.current.tenant_id
+#   object_id                   = data.azurerm_client_config.current.object_id
+#   key_vault_id                 = var.key_vault_id
+# }
+
+
 
 
 module "app_service" {
@@ -122,12 +124,17 @@ module "dns" {
 }
 
 
-data "azurerm_key_vault_secret" "admin_login" {
-  name         = "administrator-login"
-  key_vault_id = module.keyvault.key_vault_id
-}
-
-data "azurerm_key_vault_secret" "admin_password" {
-  name         = "administrator-password"
-  key_vault_id = module.keyvault.key_vault_id
+module "keyvault" {
+  source              = "./modules/key_vault"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  key_vault_name      = var.key_vault_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = data.azurerm_client_config.current.object_id
+  key_permissions     = var.key_permissions
+  secret_permissions  = var.secret_permissions
+  key_vault_id =  var.key_vault_id
+  dns_zone_name = var.dns_zone_name
+  certificate_name = var.certificate_name
+  certificate_uri = var.certificate_uri
 }
