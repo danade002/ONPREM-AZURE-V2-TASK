@@ -10,3 +10,4 @@ resource "azurerm_dns_a_record" "subdomain" {
   ttl                 = 300
   records             = [var.machine_ip]
 }
+

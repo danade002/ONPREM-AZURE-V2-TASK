@@ -16,9 +16,14 @@ resource "azurerm_key_vault" "danielinsaitvault12" {
   }
 }
 
+
 output "key_vault_id" {
   value = var.key_vault_id
 }
+
+
+
+
 data "azurerm_client_config" "current" {}
 
 

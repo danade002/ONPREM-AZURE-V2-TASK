@@ -13,6 +13,12 @@ variable "location" {
   type        = string
 }
 
+
+variable "domain_name" {
+  description = "The root domain name"
+  type        = string
+}
+
 variable "subdomain_name" {
   description = "The subdomain name"
   type        = string
@@ -23,8 +29,8 @@ variable "machine_ip" {
   type        = string
 }
 
-variable "domain_name" {
-  description = "The root domain name"
+variable "dns_zone_id" {
+  description = "The ID of the DNS zone"
   type        = string
   
 }
