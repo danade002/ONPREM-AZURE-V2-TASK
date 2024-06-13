@@ -76,8 +76,6 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
-  administrator_login         = data.azurerm_key_vault_secret.admin_login.value
-  administrator_login_password = data.azurerm_key_vault_secret.admin_password.value
   postgresql_server_administrator_login = data.azurerm_key_vault_secret.admin_login.value
   postgresql_server_administrator_login_password = data.azurerm_key_vault_secret.admin_password.value
   postgresql_server_name = var.pg_server_name
