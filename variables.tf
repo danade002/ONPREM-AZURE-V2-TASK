@@ -173,10 +173,10 @@ variable "certificate_name" {
   type        = string
 }
 
-# variable "certificate_dns_names" {
-#   description = "List of DNS names for the certificate."
-#   type        = list(string)
-# }
+variable "certificate_dns_names" {
+  description = "List of DNS names for the certificate."
+  type        = list(string)
+}
 
 variable "certificate_permissions" {
   description = "List of certificate permissions for the Key Vault."
@@ -260,15 +260,15 @@ variable "certificate_uri" {
   
 }
 
-# variable "administrator_login" {
-#   description = "The administrator login for the PostgreSQL server"
-#   type        = string
-# }
+variable "administrator_login" {
+  description = "The administrator login for the PostgreSQL server"
+  type        = string
+}
 
-# variable "administrator_login_password" {
-#   description = "The administrator login password for the PostgreSQL server"
-#   type        = string
-# }
+variable "administrator_login_password" {
+  description = "The administrator login password for the PostgreSQL server"
+  type        = string
+}
 
 variable "pg_databases" {
   type    = list(string)
