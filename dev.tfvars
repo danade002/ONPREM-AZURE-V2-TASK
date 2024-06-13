@@ -10,7 +10,7 @@ subnet_name           = "insaitsubnet"
 subnet_address_prefix = "10.0.1.0/24"
 
 # Virtual Machine
-vm_name        = "Insait-Vm"
+vm_name        = "app-v1"
 vm_size        = "Standard_B4ms"
 admin_username = "insait"
 
@@ -20,7 +20,8 @@ registry_name = "insaitcontainerregistry"
 
 # PostgreSQL Server
 pg_server_name = "insaitpgserver"
-pg_databases   = ["insait_backend", "metabase", "bank_db"] # Ensure this is a list
+pg_databases   = ["insait_backend", "metabase", "bank_db"]
+
 
 # Storage Account
 storage_account_name = "testademeso"
@@ -49,18 +50,29 @@ app_name = "insaitapp"
 #source code path
 source_code_path = "/path/to/your/source/code"
 
+key_vault_name        = "danielinsaitvault12"
+app_service_name      = "onpremV2-app-service"
+app_service_plan_name = "onpremV2-app-service-plan"
+domain_name           = "insait.io"
+subdomain_name        = "test.insait.io"
+machine_ip            = "172.191.4.28"
 
-# Domain and Subdomain Variables
-domain_name         = "insit.io"
-subdomain_name      = "test.insiat.io"
-machine_ip          = "203.0.113.10"
+certificate_dns_names = ["insait.io", "test.insait.io"]
+certificate_name = "insait-certificate"
+certificate_uri = "insait of certificate_uri"
+dns_zone_id = "insait of dns_zone_id"
+# app_service_url = "insait.io"
+# custom_hostname_binding_id = "insait.io"
+key_vault_id = "danielinsaitvault12"
+
+postgresql_server_administrator_login = "danielinsait"
+postgresql_server_administrator_login_password = "Daniel@1234"
 
 
 
-# Key Vault Variables
-key_vault_name      = "danielkeyvault12"
-soft_delete_retention_days = 7
-certificate_name    = "generated-cert"
-dns_names           = ["insait.io", "test.insait.io"]
-subject             = "CN=hello-world"
-validity_in_months  = 12
+
+
+
+
+
+  

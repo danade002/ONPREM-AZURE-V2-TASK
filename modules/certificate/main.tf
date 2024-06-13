@@ -1,5 +1,5 @@
 resource "azurerm_key_vault_certificate" "certificate" {
-  name         = var.certificate_name
+  name         = var.name
   key_vault_id = var.key_vault_id
 
   certificate_policy {
@@ -44,10 +44,8 @@ resource "azurerm_key_vault_certificate" "certificate" {
         dns_names = var.dns_names
       }
 
-      subject            = var.subject
-      validity_in_months = var.validity_in_months
+      subject            = "CN=hello-world"
+      validity_in_months = 12
     }
   }
 }
-
-

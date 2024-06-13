@@ -26,7 +26,6 @@ jobs:
       with:
         terraform_version: 1.8.2
 
-
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
@@ -41,6 +40,7 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init
+        terraform force-unlock -force a054d0fc-dd52-3baf-5ba8-9339b14bcb9b
       
         
     - name: Terraform Format
@@ -80,9 +80,6 @@ jobs:
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
         terraform destroy -var-file='dev.tfvars' -auto-approve
-
-
-        
 
     # - name: Notify Slack on Success
     #   if: always() && github.ref == 'refs/heads/main'

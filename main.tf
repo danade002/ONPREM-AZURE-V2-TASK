@@ -11,12 +11,22 @@ terraform {
   }
 }
 
+provider "azapi" {}
+
 provider "azurerm" {
   skip_provider_registration = true
-  features {}
+  features {
+    key_vault {
+      purge_soft_deleted_secrets_on_destroy = true
+      recover_soft_deleted_secrets          = true
+    }
+  }
 }
 
-provider "azapi" {}
+
+
+
+data "azurerm_client_config" "current" {}
 
 module "resource_group" {
   source              = "./modules/resource_group"
@@ -50,6 +60,7 @@ module "linux_virtual_machine" {
   subnet_id            = module.subnet.subnet_id
   admin_username       = var.admin_username
   network_interface_id = var.network_interface_id
+
 }
 
 module "container_registry" {
@@ -65,47 +76,53 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
+  postgresql_server_administrator_login = var.postgresql_server_administrator_login
+  postgresql_server_administrator_login_password = var.postgresql_server_administrator_login_password
+  postgresql_server_name = var.pg_server_name
+  administrator_login = "danielinsait"
+  administrator_login_password = "Daniel@1234"
+
 }
 
+
+
+
+module "app_service" {
+  source                = "./modules/app_service"
+  resource_group_name   = var.resource_group_name
+  location              = var.location
+  app_service_name      = var.app_service_name
+  app_service_plan_name = var.app_service_plan_name
+  domain_name           = var.domain_name
+  
+  # app_service_url       = var.app_service_url
+  # custom_hostname_binding_id = var.custom_hostname_binding_id
+}
 
 module "dns" {
   source              = "./modules/dns"
-  resource_group_name = module.resource_group.resource_group_name
+  resource_group_name = var.resource_group_name
+  domain_name         = var.domain_name
+  subdomain_name      = var.subdomain_name
+  machine_ip          = var.machine_ip
   location            = var.location
   dns_zone_name       = var.dns_zone_name
-  machine_ip          = var.machine_ip
-  subdomain_name      = var.subdomain_name
-  domain_name         = var.domain_name
+  dns_zone_id         = var.dns_zone_id
+  
 }
 
 
-data "azurerm_client_config" "current" {}
-
-
-
-
-
-module "key_vault" {
-  source = "./modules/key_vault"
-  location            = module.resource_group.location
-  resource_group_name = module.resource_group.resource_group_name
+module "keyvault" {
+  source              = "./modules/key_vault"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  key_vault_name      = var.key_vault_name
   tenant_id           = data.azurerm_client_config.current.tenant_id
   object_id           = data.azurerm_client_config.current.object_id
-  soft_delete_retention_days = var.soft_delete_retention_days
-  name                = var.key_vault_name
-  certificate_name    = var.certificate_name
-  certificate_path    = var.certificate_path
-  certificate_password = var.certificate_password
-  certificate_uri = var.certificate_uri
-  id = var.id
-  key_vault_name = var.key_vault_name
-}
-
-module "key_vault_certificate" {
-  source = "./modules/key_vault_certificate"
-  key_vault_id      = module.key_vault.id
-  dns_names         = var.dns_names
-  subject           = var.subject
-  validity_in_months = var.validity_in_months
+  key_permissions     = var.key_permissions
+  secret_permissions  = var.secret_permissions
+  key_vault_id =  var.key_vault_id
+  dns_zone_name = var.dns_zone_name
   certificate_name = var.certificate_name
+  certificate_uri = var.certificate_uri
 }
