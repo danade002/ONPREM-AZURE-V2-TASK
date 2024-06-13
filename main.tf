@@ -79,22 +79,10 @@ module "postgresql" {
   postgresql_server_administrator_login = data.azurerm_key_vault_secret.admin_login.value
   postgresql_server_administrator_login_password = data.azurerm_key_vault_secret.admin_password.value
   postgresql_server_name = var.pg_server_name
+  administrator_login = "danielinsait"
+  administrator_login_password = "Daniel@1234"
 
 }
-
-
-# module "keyvault" {
-#   source              = "./modules/key_vault"
-#   resource_group_name = var.resource_group_name
-#   location            = var.location
-#   key_vault_name      = var.key_vault_name
-#   dns_zone_name = var.dns_zone_name
-#   certificate_name = var.certificate_name
-#   certificate_uri  = var.certificate_uri
-#   tenant_id                   = data.azurerm_client_config.current.tenant_id
-#   object_id                   = data.azurerm_client_config.current.object_id
-#   key_vault_id                 = var.key_vault_id
-# }
 
 
 
