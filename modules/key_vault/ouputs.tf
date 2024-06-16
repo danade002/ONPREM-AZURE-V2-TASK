@@ -17,3 +17,10 @@ output "certificate_uri" {
   value       = var.certificate_uri
 }
 
+output "admin_login_secret_id" {
+  value = azurerm_key_vault_secret.admin_login.id
+}
+
+output "admin_password_secret_id" {
+  value = azurerm_key_vault_secret.admin_password.id
+}
