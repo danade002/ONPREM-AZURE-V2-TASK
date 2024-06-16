@@ -47,3 +47,5 @@ app_name = "insaitapp"
 
 #source code path
 source_code_path = "/path/to/your/source/code"
+
+
