@@ -57,25 +57,14 @@ jobs:
       run: terraform validate
           
     - name: Terraform Plan
-      if: ${{ github.ref == 'refs/heads/develop' }}
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-        terraform plan -var-file='dev.tfvars' -backend-config='resource_group_name=${{ secrets.DEV_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.DEV_STG_NAME }}'
-    
-    - name: Terraform Plan
-      if: ${{ github.ref == 'refs/heads/main' }}
-      run: |
-          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-          terraform plan -var-file='dev.tfvars' -backend-config='resource_group_name=${{ secrets.PRD_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.PRD_STG_NAME }}'
-        
+        terraform plan -var-file='dev.tfvars'
+
     - name: Terraform Apply
       if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
       run: |
