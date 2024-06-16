@@ -22,12 +22,6 @@ provider "azurerm" {
 
 provider "azapi" {}
 
-module "resource_group" {
-  source              = "./modules/resource_group"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-}
-
 
 module "virtual_network" {
   source              = "./modules/virtual_network"
@@ -71,12 +65,6 @@ module "postgresql" {
   databases           = var.pg_databases
 }
 
-# module "blob_storage" {
-#   source               = "./modules/blob_storage"
-#   resource_group_name  = module.resource_group.resource_group_name
-#   location             = var.location
-#   storage_account_name = var.storage_account_name
-# }
 
 module "dns" {
   source              = "./modules/dns"
