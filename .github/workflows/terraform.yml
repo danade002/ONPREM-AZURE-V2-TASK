@@ -26,6 +26,7 @@ jobs:
       with:
         terraform_version: 1.8.2
 
+
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
@@ -40,7 +41,8 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init
-        
+
+      
       
         
     - name: Terraform Format
@@ -52,13 +54,24 @@ jobs:
    
 
     - name: Terraform Plan
+      if: ${{ github.ref == 'refs/heads/develop' }}
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-        terraform plan -var-file='dev.tfvars'
+        terraform plan -var-file='dev.tfvars' -backend-config='resource_group_name=${{ secrets.DEV_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.DEV_STG_NAME }}'
+    
+    - name: Terraform Plan
+      if: ${{ github.ref == 'refs/heads/main' }}
+      run: |
+          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
+          terraform plan -var-file='dev.tfvars' -backend-config='resource_group_name=${{ secrets.PRD_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.PRD_STG_NAME }}'
         
 
     - name: Terraform Apply

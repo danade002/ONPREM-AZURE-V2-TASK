@@ -1,4 +1,4 @@
-## Auzure Terraform Infrastructure for On-Prem
+## Azure Terraform Infrastructure for On-Prem
 
 ### Prerequisites
 Before running this code, make sure you have the following prerequisites:
@@ -36,3 +36,30 @@ All changes are applied in the CI. Open a pull request.
 ```bash
 git push (to your remote branch) + open a Pull request. 
 ```
+
+# Terraform Configuration for InSait Infrastructure
+
+This repository contains the Terraform configuration files for setting up the InSait infrastructure on Azure.
+
+## Configuration Variables (`dev.tfvars`)
+
+Here's a brief description of the variables in the `dev.tfvars` file:
+
+- `admin_username`: The username for the Azure admin account.
+- `admin_ssh_key`: The path to the public SSH key for the Azure admin account.
+- `registry_name`: The name of the Azure Container Registry (ACR).
+- `pg_server_name`: The name of the PostgreSQL server.
+- `pg_databases`: A list of databases to be created on the PostgreSQL server.
+- `storage_account_name`: The name of the Azure Storage Account.
+- `dns_zone_name`: The name of the Azure DNS Zone.
+- `public_ip_name`: The name of the public IP address.
+- `lb_name`: The name of the Load Balancer.
+
+## How to Use
+
+1. Update the `dev.tfvars` file with your specific configuration values.
+2. Run `terraform init` to initialize your Terraform workspace.
+3. Run `terraform plan -var-file=dev.tfvars` to see the changes that will be made.
+4. Run `terraform apply -var-file=dev.tfvars` to apply the changes.
+
+Please ensure you have the necessary permissions and the Azure CLI installed and configured before running these commands.
