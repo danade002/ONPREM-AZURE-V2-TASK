@@ -9,6 +9,10 @@ terraform {
       version = "1.13.1"
     }
   }
+  backend "azurerm" {
+    container_name = "tfstate"
+    key            = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
