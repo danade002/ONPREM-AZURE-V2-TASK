@@ -1,4 +1,5 @@
 location             = "eastus"
+resource_group_name  = "daniel-sandbox12"
 
 # Networking
 vnet_name            = "insaitvnet"
