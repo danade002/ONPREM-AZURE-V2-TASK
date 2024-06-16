@@ -10,8 +10,8 @@ terraform {
     }
   }
   backend "azurerm" {
-    container_name = "terraform.tfstate"
-    key            = "tfstate"
+    container_name = "tfstate"
+    key            = "terraform.tfstate"
   }
 }
 
