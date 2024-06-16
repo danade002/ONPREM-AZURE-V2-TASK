@@ -41,11 +41,6 @@ variable "admin_username" {
   type        = string
 }
 
-variable "admin_ssh_key" {
-  description = "The admin SSH key for the Linux virtual machine"
-  type        = string
-}
-
 # Azure Container Registry (ACR)
 variable "registry_name" {
   description = "The name of the Azure Container Registry"
