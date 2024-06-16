@@ -58,11 +58,7 @@ variable "pg_databases" {
   type        = list(string)
 }
 
-# Storage Account
-variable "storage_account_name" {
-  description = "The name of the blob storage account"
-  type        = string
-}
+
 
 # Azure DNS Zone
 variable "dns_zone_name" {
