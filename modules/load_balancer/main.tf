@@ -1,7 +1,7 @@
 resource "azurerm_public_ip" "public_ip" {
   name                = var.public_ip_name
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
@@ -9,7 +9,7 @@ resource "azurerm_public_ip" "public_ip" {
 resource "azurerm_lb" "load_balancer" {
   name                = var.lb_name
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
   sku                 = "Standard"
 
   frontend_ip_configuration {
@@ -42,3 +42,8 @@ resource "azurerm_lb_rule" "lb_rule" {
   probe_id                       = azurerm_lb_probe.lb_probe.id
 }
 
+
+data "azurerm_resource_group" "daniel-sandbox12" {
+  name = var.resource_group_name
+
+}
