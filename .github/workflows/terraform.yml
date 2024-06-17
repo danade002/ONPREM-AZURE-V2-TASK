@@ -29,6 +29,7 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.8.2
+        
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
