@@ -13,10 +13,14 @@ resource "azurerm_postgresql_server" "server" {
 resource "azurerm_postgresql_database" "databases" {
   count               = length(var.databases)
   name                = var.databases[count.index]
-  resource_group_name = var.resource_group_name
+  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
   server_name         = azurerm_postgresql_server.server.name
   charset             = "UTF8"
   collation           = "English_United States.1252"
 }
 
 
+data "azurerm_resource_group" "daniel-sandbox12" {
+  name = var.resource_group_name
+
+}

@@ -41,7 +41,7 @@ module "subnet" {
 
 module "linux_virtual_machine" {
   source               = "./modules/linux_virtual_machine"
-  resource_group_name  = module.resource_group.resource_group_name
+  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
   location             = var.location
   vm_name              = var.vm_name
   vm_size              = var.vm_size
