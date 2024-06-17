@@ -1,7 +1,7 @@
 resource "azurerm_postgresql_server" "server" {
   name                         = var.server_name
   location                     = var.location
-  resource_group_name          = var.resource_group_name
+  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
   sku_name                     = "B_Gen5_1"
   storage_mb                   = 5120
   administrator_login          = "danielinsait"
@@ -18,3 +18,5 @@ resource "azurerm_postgresql_database" "databases" {
   charset             = "UTF8"
   collation           = "English_United States.1252"
 }
+
+
