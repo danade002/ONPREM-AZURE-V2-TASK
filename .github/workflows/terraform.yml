@@ -37,16 +37,13 @@ jobs:
         ADMIN_SSH_KEY: "${{ secrets.ADMIN_SSH_KEY }}" 
       
     - name: Terraform Init
-      if: ${{ github.ref == 'refs/heads/develop' }}
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        terraform init -backend-config='resource_group_name=${{ secrets.DEV_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.DEV_STG_NAME }}'
-        
+        terraform init -backend-config='dev.config'
     - name: Terraform Init
-      if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/pull/') }}
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"

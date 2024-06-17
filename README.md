@@ -1,45 +1,21 @@
-## Azure Terraform Infrastructure for On-Prem
+# Azure Terraform Infrastructure for On-Prem
 
-### Prerequisites
+This repository contains the Terraform configuration files for setting up the On-Prem infrastructure on Azure.
+
+## Prerequisites
+
 Before running this code, make sure you have the following prerequisites:
 
 - Azure Service Principal credentials
+- Terraform 1.8.3
+- Azure CLI
 
-### Local env installation
-Follow these steps to set up the project: 
+## Local Environment Setup
 
-- Terraform **1.8.3**
-- Install Azure CLI
-- Initialize Azure CLI with credentials
+Follow these steps to set up the project:
 
-### Apply Changes
-- **You will not success to apply changes from your terminal.**
-- All changes are applied in the CI. 
-- On **EVERY** Pull Request the version should be bumped (patch if no required otherwise).
-- On a PR - init & plan is running on CI **without apply**
-- On merge of PR to main - init, plan & apply is running on Insait's azure subscription (dev).
-### Initialize the backend: 
-
-```bash
-# For Staging environment
-terraform init --backend-config=staging.config
-```
-### Verify before applying
-
-``` bash
-# Staging
-terraform plan -var-file staging.tfvars
-```
-### Applying changes 
-
-All changes are applied in the CI. Open a pull request.
-```bash
-git push (to your remote branch) + open a Pull request. 
-```
-
-# Terraform Configuration for InSait Infrastructure
-
-This repository contains the Terraform configuration files for setting up the InSait infrastructure on Azure.
+1. **Install Azure CLI**: Make sure you have the Azure CLI installed on your local machine.
+2. **Initialize Azure CLI with credentials**: Authenticate the Azure CLI with your Azure credentials.
 
 ## Configuration Variables (`dev.tfvars`)
 
@@ -63,3 +39,23 @@ Here's a brief description of the variables in the `dev.tfvars` file:
 4. Run `terraform apply -var-file=dev.tfvars` to apply the changes.
 
 Please ensure you have the necessary permissions and the Azure CLI installed and configured before running these commands.
+
+## CI/CD
+
+All changes are applied in the CI. On EVERY Pull Request, the version should be bumped (patch if no other changes are required).
+
+- **On a PR**: `init` & `plan` are run on CI without `apply`.
+- **On merge of PR to main**: `init`, `plan` & `apply` are run on Insait's Azure subscription (dev).
+
+## Modules
+
+This repository contains several modules, each responsible for creating a specific resource in Azure. These modules include:
+
+- `linux_virtual_machine`: Creates a Linux virtual machine.
+- `container_registry`: Creates an Azure Container Registry.
+- `postgresql`: Creates a PostgreSQL server and databases.
+- `dns`: Creates a DNS zone.
+- `virtual_network`: Creates a virtual network.
+- `subnet`: Creates a subnet within the virtual network.
+
+
