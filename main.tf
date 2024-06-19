@@ -83,6 +83,7 @@ module "azurerm_resource_group" {
   
 }
 
+
 module "load_balancer" {
   source = "./modules/load_balancer"
   resource_group_name = var.resource_group_name
