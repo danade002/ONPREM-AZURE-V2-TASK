@@ -11,6 +11,6 @@ variable "location" {
 variable "count" {
   description = "The number of resource groups to create"
   type        = number
-  default     = 1
+
   
 }
