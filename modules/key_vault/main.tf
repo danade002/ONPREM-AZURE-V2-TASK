@@ -56,8 +56,8 @@ resource "azurerm_key_vault" "key_vault" {
       "Restore",
       "GetSAS",
       "ListSAS",
-      "UpdateSAS",
-      "RegenerateSAS"
+      "SetSAS",
+      "DeleteSAS"
     ]
   }
 }
