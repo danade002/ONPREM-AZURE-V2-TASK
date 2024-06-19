@@ -53,7 +53,7 @@ source_code_path = "/path/to/your/source/code"
 
 
 key_vault_name = "onpremkeyvault"
-adadministrator_login = "value" = "insaitpgadmin"
+adadministrator_login = "insaitpgadmin"
 adadministrator_login_password = "hP7-MH1o-AOL5B4N20fe"
 soft_delete_retention_days = 7
 enabled_for_disk_encryption = true
