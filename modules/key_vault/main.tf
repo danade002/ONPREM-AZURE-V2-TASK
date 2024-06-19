@@ -16,15 +16,48 @@ resource "azurerm_key_vault" "key_vault" {
     object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
-      "Get ,List, Create, Delete, Recover, Backup, Restore, Encrypt, Decrypt, UnwrapKey, WrapKey, Verify, Sign, Purge",
+      "Get",
+      "List",
+      "Create",
+      "Delete",
+      "Recover",
+      "Backup",
+      "Restore",
+      "Encrypt",
+      "Decrypt",
+      "UnwrapKey",
+      "WrapKey",
+      "Verify",
+      "Sign",
+      "Purge"
     ]
 
     secret_permissions = [
-      "Get, List, Set, Delete, Recover, Backup, Restore, Purge, Recover, Backup, Restore, Purge, Encrypt, Decrypt, UnwrapKey, WrapKey, Verify, Sign, Purge",
+      "Get",
+      "List",
+      "Set",
+      "Delete",
+      "Recover",
+      "Backup",
+      "Restore",
+      "Purge"
     ]
 
     storage_permissions = [
-      "Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Purge, Get, List, Delete, Set, Update, RegenerateKey, Recover, Purge, Backup, Restore, Restore, Purge, Recover, Backup, Restore, Purge, GetSas, ListSas, UpdateSas, RegenerateSas, Recover, Backup, Restore, Pur",
+      "Get",
+      "List",
+      "Delete",
+      "Set",
+      "Update",
+      "RegenerateKey",
+      "Recover",
+      "Purge",
+      "Backup",
+      "Restore",
+      "GetSAS",
+      "ListSAS",
+      "UpdateSAS",
+      "RegenerateSAS"
     ]
   }
 }
