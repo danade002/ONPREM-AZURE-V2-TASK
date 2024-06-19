@@ -1,4 +1,4 @@
-location             = "eastus"
+location             = "east us"
 resource_group_name  = "daniel-sandbox12"
 storage_account_name = "danielstorageaccount12"
 
