@@ -1,7 +1,5 @@
-output "resource_group_name" {
-  value = azurerm_resource_group.rg.name
-}
+# modules/resource_group/outputs.tf
 
-output "location" {
-  value = azurerm_resource_group.rg.location
+output "resource_group_id" {
+  value = length(data.azurerm_resource_group.rg.*.name) == 0 ? azurerm_resource_group.rg[0].id : data.azurerm_resource_group.rg[0].id
 }

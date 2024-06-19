@@ -101,10 +101,9 @@ resource_group_name = var.resource_group_name
 
 
 module "resource_group" {
-  source = "./modules/resource_group"
+  source              = "./modules/resource_group"
   resource_group_name = var.resource_group_name
-  location = var.location
-  count = var.create_resource_group ? 1 : 0
+  location            = var.location
 }
 
 
