@@ -53,7 +53,7 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 
-key_vault_name = "onpremkeyvault"
+key_vault_name = "onpremkeyvault123"
 key_vault_location = "eastus"
 administrator_login = "insaitpgadmin"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
@@ -64,7 +64,7 @@ sku_name = "standard"
 key_permissions = ["Get", "List"]
 secret_permissions = ["Get", "List"]
 storage_permissions = ["Get", "List"]
-name = "onpremkeyvault"
+
 
 
 
