@@ -34,7 +34,7 @@ Here's a brief description of the variables in the `dev.tfvars` file:
 ## How to Use
 
 1. Update the `dev.tfvars` file with your specific configuration values.
-2. Run `terraform init` to initialize your Terraform workspace.
+2. Run `terraform init -backend-config='dev.config' `.
 3. Run `terraform plan -var-file=dev.tfvars` to see the changes that will be made.
 4. Run `terraform apply -var-file=dev.tfvars` to apply the changes.
 
@@ -57,5 +57,6 @@ This repository contains several modules, each responsible for creating a specif
 - `dns`: Creates a DNS zone.
 - `virtual_network`: Creates a virtual network.
 - `subnet`: Creates a subnet within the virtual network.
+
 
 

@@ -1,5 +1,6 @@
 location             = "eastus"
 resource_group_name  = "daniel-sandbox12"
+storage_account_name = "danielstorageaccount12"
 
 
 # Networking
@@ -11,7 +12,7 @@ subnet_name           = "insaitsubnet"
 subnet_address_prefix = "10.0.1.0/24"
 
 # Virtual Machine
-vm_name        = "app-v1"
+vm_name        = "insait-vm"
 vm_size        = "Standard_B4ms"
 admin_username = "insait"
 

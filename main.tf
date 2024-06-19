@@ -18,6 +18,7 @@ terraform {
 provider "azurerm" {
   skip_provider_registration = true
   features {}
+  
 }
 
 provider "azapi" {}
@@ -25,7 +26,7 @@ provider "azapi" {}
 
 module "virtual_network" {
   source              = "./modules/virtual_network"
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+  resource_group_name = var.resource_group_name
   location            = var.location
   vnet_name           = var.vnet_name
   address_space       = var.vnet_address_space
@@ -33,7 +34,7 @@ module "virtual_network" {
 
 module "subnet" {
   source              = "./modules/subnet"
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+  resource_group_name = var.resource_group_name
   vnet_name           = module.virtual_network.vnet_name
   subnet_name         = var.subnet_name
   address_prefix      = var.subnet_address_prefix
@@ -41,7 +42,7 @@ module "subnet" {
 
 module "linux_virtual_machine" {
   source               = "./modules/linux_virtual_machine"
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+  resource_group_name = var.resource_group_name
   location             = var.location
   vm_name              = var.vm_name
   vm_size              = var.vm_size
@@ -52,14 +53,14 @@ module "linux_virtual_machine" {
 
 module "container_registry" {
   source              = "./modules/container_registry"
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+  resource_group_name = var.resource_group_name
   location            = var.location
   registry_name       = var.registry_name
 }
 
 module "postgresql" {
   source              = "./modules/postgresql"
- resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+ resource_group_name =var.resource_group_name
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
@@ -68,12 +69,46 @@ module "postgresql" {
 
 module "dns" {
   source              = "./modules/dns"
-resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+resource_group_name = var.resource_group_name
   location            = var.location
   dns_zone_name       = var.dns_zone_name
 }
 
-data "azurerm_resource_group" "daniel-sandbox12" {
-  name = var.resource_group_name
 
+
+module "azurerm_resource_group" {
+  source = "./modules/azurerm_resource_group"
+  resource_group_name = var.resource_group_name
+  location = var.location
+  
+}
+
+module "load_balancer" {
+  source = "./modules/load_balancer"
+  resource_group_name = var.resource_group_name
+  location = var.location
+  lb_name = var.lb_name
+  public_ip_name = var.public_ip_name
+  
+}
+
+module "container_apps" {
+  source = "./modules/container_apps"
+  resource_group_name = var.resource_group_name
+  location = var.location
+  container_name = var.container_name
+  cpu = var.cpu
+  memory = var.memory
+  port = var.port
+  container_group_name = var.container_group_name
+  image = var.image
+  
+}
+
+module "static_web_app" {
+  source = "./modules/static_web_app"
+  resource_group_name = var.resource_group_name
+  location = var.location
+  static_site_name = var.static_site_name
+  
 }

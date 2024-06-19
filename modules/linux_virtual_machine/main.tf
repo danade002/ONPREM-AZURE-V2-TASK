@@ -4,10 +4,7 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~>3.0"
     }
-    azapi = {
-      source  = "Azure/azapi"
-      version = "1.13.1"
-    }
+
   }
 }
 
@@ -15,7 +12,7 @@ terraform {
 resource "azurerm_public_ip" "public_ip" {
   name                = "${var.vm_name}-public-ip"
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+  resource_group_name = var.resource_group_name
   allocation_method   = "Dynamic"  
 }
 
@@ -23,7 +20,7 @@ resource "azurerm_public_ip" "public_ip" {
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+ resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "internal"
@@ -37,10 +34,12 @@ resource "azurerm_network_interface" "nic" {
 resource "azurerm_linux_virtual_machine" "vm" {
   name                  = var.vm_name
   location              = var.location
-  resource_group_name = data.azurerm_resource_group.daniel-sandbox12.name
+  resource_group_name = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.nic.id]
   size                  = var.vm_size
   admin_username        = var.admin_username
+
+
 
   os_disk {
     caching              = "ReadWrite"
@@ -60,8 +59,3 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 }
 
-
-data "azurerm_resource_group" "daniel-sandbox12" {
-  name = var.resource_group_name
-
-}
