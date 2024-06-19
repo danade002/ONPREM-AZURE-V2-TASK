@@ -1,7 +1,7 @@
 location             = "east us"
 resource_group_name  = "danieltestrg"
 storage_account_name = "danieltestsa"
-create_resource_group = true
+create_resource_group = false
 
 
 
@@ -53,7 +53,7 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 
-key_vault_name = "onpremkeyvault123"
+key_vault_name = "onpremkeyvault"
 key_vault_location = "eastus"
 administrator_login = "insaitpgadmin"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
