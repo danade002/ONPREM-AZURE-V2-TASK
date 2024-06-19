@@ -34,11 +34,11 @@ data "azurerm_client_config" "current" {}
 resource "azurerm_key_vault_secret" "admin_login" {
   name         = "administrator-login"
   value        = var.administrator_login
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = azurerm_key_vault.key_vault.id
 }
 
 resource "azurerm_key_vault_secret" "admin_password" {
   name         = "administrator-login-password"
   value        = var.administrator_login_password
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = azurerm_key_vault.key_vault.id
 }
