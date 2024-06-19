@@ -2,14 +2,7 @@ location             = "east us"
 resource_group_name  = "danieltestrg"
 storage_account_name = "danieltestsa"
 
-key_vault_name = "onpremkeyvault"
-enabled_for_disk_encryption = true
-soft_delete_retention_days = 14
-purge_protection_enabled = true
-sku_name = "premium"
-key_permissions = ["Get", "List"]
-secret_permissions = ["Get", "List"]
-storage_permissions = ["Get", "List"]
+
 
 
 # Networking
