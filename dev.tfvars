@@ -1,6 +1,7 @@
 location             = "east us"
 resource_group_name  = "danieltestrg"
 storage_account_name = "danieltestsa"
+create_resource_group = true
 
 
 
