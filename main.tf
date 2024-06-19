@@ -99,32 +99,21 @@ resource_group_name = var.resource_group_name
   dns_zone_name       = var.dns_zone_name
 }
 
-
-# Define a null resource for the existence check
-resource "null_resource" "check_rg" {
-  triggers = {
-    resource_group_name = var.resource_group_name
-  }
-}
-
+# Data block to check if the resource group already exists
 data "azurerm_resource_group" "existing_rg" {
-  name    = var.resource_group_name
-  depends_on = [null_resource.check_rg]
-
+  name = var.resource_group_name
 }
 
-# Determine if the resource group should be created
-locals {
-  create_rg = length(data.azurerm_resource_group.existing_rg.id) == 0
-}
-
-
+# Conditional creation of the resource group if it doesn't exist
 module "resource_group" {
-  source   = "./modules/resource_group"
-  name     = "var.resource_group_name"
-  location = "var.location"
-  create   = local.create_rg
+  source              = "./modules/resource_group"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+
+  # Only create the resource group if it does not already exist
+  count = length(data.azurerm_resource_group.existing_rg.id) == 0 ? 1 : 0
 }
+
 
 
 module "load_balancer" {
