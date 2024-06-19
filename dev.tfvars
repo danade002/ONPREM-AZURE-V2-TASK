@@ -1,7 +1,7 @@
 location             = "east us"
-resource_group_name  = "daniel-sandbox12"
-storage_account_name = "danielstorageaccount12"
-create_resource_group = false  
+resource_group_name  = "valley-dev"
+storage_account_name = "valleystatedev"
+
 
 
 # Networking
