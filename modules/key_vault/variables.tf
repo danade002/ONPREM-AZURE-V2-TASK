@@ -63,3 +63,15 @@ variable "key_vault_name" {
   type        = string
   
 }
+
+variable "administrator_login" {
+  description = "The administrator login"
+  type        = string
+}
+
+
+  variable "administrator_login_password" {
+    description = "The administrator login password"
+    type        = string
+  
+}
