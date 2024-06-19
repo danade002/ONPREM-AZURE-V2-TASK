@@ -15,50 +15,11 @@ resource "azurerm_key_vault" "key_vault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
-    key_permissions = [
-      "Get",
-      "List",
-      "Create",
-      "Delete",
-      "Recover",
-      "Backup",
-      "Restore",
-      "Encrypt",
-      "Decrypt",
-      "UnwrapKey",
-      "WrapKey",
-      "Verify",
-      "Sign",
-      "Purge"
-    ]
+    key_permissions = var.key_permissions
 
-    secret_permissions = [
-      "Get",
-      "List",
-      "Set",
-      "Delete",
-      "Recover",
-      "Backup",
-      "Restore",
-      "Purge"
-    ]
+    secret_permissions = var.secret_permissions
 
-    storage_permissions = [
-      "Get",
-      "List",
-      "Delete",
-      "Set",
-      "Update",
-      "RegenerateKey",
-      "Recover",
-      "Purge",
-      "Backup",
-      "Restore",
-      "GetSAS",
-      "ListSAS",
-      "SetSAS",
-      "DeleteSAS"
-    ]
+    storage_permissions = var.storage_permissions
   }
 }
 
