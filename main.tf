@@ -93,25 +93,6 @@ module "load_balancer" {
   
 }
 
-# module "container_apps" {
-#   source = "./modules/container_apps"
-#   resource_group_name = var.resource_group_name
-#   location = var.location
-#   container_name = var.container_name
-#   cpu = var.cpu
-#   memory = var.memory
-#   port = var.port
-#   container_group_name = var.container_group_name
-#   image = var.image
-  
-# }
 
-module "static_web_app" {
-  source = "./modules/static_web_app"
-  resource_group_name = var.resource_group_name
-  location = var.location
-  static_site_name = var.static_site_name
-  
-}
 
 
