@@ -36,3 +36,4 @@ resource "azurerm_key_vault_secret" "admin_password" {
   value        = var.administrator_login_password
   key_vault_id = azurerm_key_vault.key_vault.id
 }
+
