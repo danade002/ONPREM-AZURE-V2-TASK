@@ -1,7 +1,7 @@
 location             = "east us"
-resource_group_name  = "danieltestrg"
-storage_account_name = "danieltestsa"
-
+resource_group_name  = "valley-dev"
+storage_account_name = "valleystatedev"
+create_resource_group = true
 
 
 
@@ -64,7 +64,7 @@ sku_name = "standard"
 key_permissions = ["Get", "List"]
 secret_permissions = ["Get", "List"]
 storage_permissions = ["Get", "List"]
-
+name = "onpremkeyvault"
 
 
 
