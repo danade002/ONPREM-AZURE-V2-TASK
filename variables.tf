@@ -208,3 +208,10 @@ variable "administrator_login_password" {
   type        = string
   
 }
+
+variable "create_resource_group" {
+  description = "Create a new resource group?"
+  type        = bool
+  default     = true
+  
+}
