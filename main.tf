@@ -16,15 +16,7 @@ terraform {
 }
 
 provider "azurerm" {
-  alias   = "default"
   skip_provider_registration = true
-  features {}
-}
-
-provider "azapi" {}
-
-provider "azurerm" {
-  alias = "key_vault_provider"
   features {
     key_vault {
       purge_soft_delete_on_destroy    = true
@@ -33,13 +25,14 @@ provider "azurerm" {
   }
 }
 
+provider "azapi" {}
+
+
 data "azurerm_client_config" "current" {}
 
+
 module "key_vault" {
-  source                  = "./modules/key_vault"
-  providers = {
-    azurerm = azurerm.key_vault_provider
-  }
+  source          = "./modules/key_vault"
   resource_group_name = var.resource_group_name
   location            = var.location
   soft_delete_retention_days = var.soft_delete_retention_days
