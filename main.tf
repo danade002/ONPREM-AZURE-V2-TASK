@@ -100,11 +100,21 @@ resource_group_name = var.resource_group_name
 }
 
 
-module "resource_group" {
-  source                = "./modules/resource_group"
-  resource_group_name   = var.resource_group_name
-  location              = var.location
+# Define a data source to check if the resource group exists
+data "azurerm_resource_group" "existing_rg" {
+  name = "existing-resource-group-name"
+}
 
+# Determine if the resource group should be created
+locals {
+  create_rg = length(data.azurerm_resource_group.existing_rg) == 0
+}
+
+module "resource_group" {
+  source   = "./modules/resource_group"
+  name     = "var.resource_group_name"
+  location = "var.location"
+  create   = local.create_rg
 }
 
 

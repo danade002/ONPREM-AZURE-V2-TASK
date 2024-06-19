@@ -1,9 +1,15 @@
-variable "resource_group_name" {
-  description = "The name of the resource group."
+variable "name" {
   type        = string
+  description = "The name of the resource group"
 }
 
 variable "location" {
-  description = "The location where the resource group will be created."
   type        = string
+  description = "The location of the resource group"
+}
+
+variable "create" {
+  type        = bool
+  description = "Flag to indicate whether to create the resource group"
+  default     = true
 }
