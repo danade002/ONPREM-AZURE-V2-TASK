@@ -1,5 +1,5 @@
 location             = "east us"
-resource_group_name  = "valley-dev"
+resource_group_name  = "valley-dev12"
 storage_account_name = "valleystatedev"
 
 

@@ -141,9 +141,3 @@ variable "storage_account_name" {
   type        = string
   
 }
-
-variable "create_resource_group" {
-  description = "A flag to create the resource group"
-  type        = bool
-  
-}
