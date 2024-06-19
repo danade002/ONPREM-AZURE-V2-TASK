@@ -53,7 +53,7 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 
-key_vault_name = "onpremkeyvault12345"
+key_vault_name = "onpremkeyvaultInsait1234"
 key_vault_location = "eastus"
 administrator_login = "insaitpgadmin"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
