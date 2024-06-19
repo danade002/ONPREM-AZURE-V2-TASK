@@ -23,6 +23,31 @@ provider "azurerm" {
 
 provider "azapi" {}
 
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy    = true
+      recover_soft_deleted_key_vaults = true
+    }
+  }
+}
+
+data "azurerm_client_config" "current" {}
+
+
+module "key_vault" {
+  source          = "./modules/key_vault"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = data.azurerm_client_config.current.object_id
+  admin_login = var.administrator_login
+  admin_password = var.administrator_login_password
+  soft_delete_retention_days = var.soft_delete_retention_days
+  name = var.key_vault_name
+  key_vault_name = var.key_vault_name
+}
+
 
 module "virtual_network" {
   source              = "./modules/virtual_network"

@@ -1,6 +1,15 @@
 location             = "east us"
-resource_group_name  = "daniel-sandbox12"
-storage_account_name = "danielstorageaccount12"
+resource_group_name  = "danieltestrg"
+storage_account_name = "danieltestsa"
+
+key_vault_name = "onpremkeyvault"
+enabled_for_disk_encryption = true
+soft_delete_retention_days = 14
+purge_protection_enabled = true
+sku_name = "premium"
+key_permissions = ["Get", "List"]
+secret_permissions = ["Get", "List"]
+storage_permissions = ["Get", "List"]
 
 
 # Networking
@@ -50,3 +59,17 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 
+key_vault_name = "onpremkeyvault"
+admin_login = "insaitpgadmin"
+admin_password = "hP7-MH1o-AOL5B4N20fe"
+soft_delete_retention_days = 7
+enabled_for_disk_encryption = true
+purge_protection_enabled  = true
+sku_name = "standard"
+key_permissions = ["Get", "List"]
+secret_permissions = ["Get", "List"]
+storage_permissions = ["Get", "List"]
+
+
+
+ 
