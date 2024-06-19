@@ -1,7 +1,7 @@
 location             = "east us"
 resource_group_name  = "valley-dev"
 storage_account_name = "valleystatedev"
-create_resource_group = true
+
 
 
 
@@ -53,7 +53,7 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 
-key_vault_name = "onpremkeyvault"
+key_vault_name = "onpremkeyvault12345"
 key_vault_location = "eastus"
 administrator_login = "insaitpgadmin"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
@@ -64,7 +64,7 @@ sku_name = "standard"
 key_permissions = ["Get", "List"]
 secret_permissions = ["Get", "List"]
 storage_permissions = ["Get", "List"]
-name = "onpremkeyvault"
+
 
 
 
