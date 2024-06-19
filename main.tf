@@ -100,15 +100,24 @@ resource_group_name = var.resource_group_name
 }
 
 
-# Define a data source to check if the resource group exists
+# Define a null resource for the existence check
+resource "null_resource" "check_rg" {
+  triggers = {
+    resource_group_name = var.resource_group_name
+  }
+}
+
 data "azurerm_resource_group" "existing_rg" {
-  name = "existing-resource-group-name"
+  name    = var.resource_group_name
+  depends_on = [null_resource.check_rg]
+
 }
 
 # Determine if the resource group should be created
 locals {
-  create_rg = length(data.azurerm_resource_group.existing_rg) == 0
+  create_rg = length(data.azurerm_resource_group.existing_rg.id) == 0
 }
+
 
 module "resource_group" {
   source   = "./modules/resource_group"
