@@ -17,36 +17,11 @@ terraform {
 
 provider "azurerm" {
   skip_provider_registration = true
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy    = true
-      recover_soft_deleted_key_vaults = true
-    }
-  }
+  features {}
+  
 }
 
 provider "azapi" {}
-
-
-data "azurerm_client_config" "current" {}
-
-
-module "key_vault" {
-  source          = "./modules/key_vault"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  soft_delete_retention_days = var.soft_delete_retention_days
-  name = var.key_vault_name
-  key_vault_name = var.key_vault_name
-  enabled_for_disk_encryption = var.enabled_for_disk_encryption
-  purge_protection_enabled = var.purge_protection_enabled
-  sku_name = var.sku_name
-  key_permissions = var.key_permissions
-  secret_permissions = var.secret_permissions
-  storage_permissions = var.storage_permissions
- administrator_login = var.administrator_login
- administrator_login_password = var.administrator_login_password
-}
 
 
 module "virtual_network" {
@@ -99,22 +74,14 @@ resource_group_name = var.resource_group_name
   dns_zone_name       = var.dns_zone_name
 }
 
-# Data block to check if the resource group already exists
-data "azurerm_resource_group" "existing_rg" {
-  name = var.resource_group_name
-}
 
-# Conditional creation of the resource group if it doesn't exist
+
 module "resource_group" {
-  source              = "./modules/resource_group"
+  source = "./modules/resource_group"
   resource_group_name = var.resource_group_name
-  location            = var.location
-
-  # Only create the resource group if it does not already exist
-  count = length(data.azurerm_resource_group.existing_rg.id) == 0 ? 1 : 0
+  location = var.location
+  count = var.create_resource_group ? 1 : 0
 }
-
-
 
 module "load_balancer" {
   source = "./modules/load_balancer"

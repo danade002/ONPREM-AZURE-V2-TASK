@@ -1,9 +1,7 @@
 location             = "east us"
-resource_group_name  = "valley-dev"
-storage_account_name = "valleystatedev"
-
-
-
+resource_group_name  = "daniel-sandbox12"
+storage_account_name = "danielstorageaccount12"
+create_resource_group = false  
 
 
 # Networking
@@ -53,19 +51,3 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 
-key_vault_name = "onpremkeyvault12345"
-key_vault_location = "eastus"
-administrator_login = "insaitpgadmin"
-administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
-soft_delete_retention_days = 7
-enabled_for_disk_encryption = true
-purge_protection_enabled  = true
-sku_name = "standard"
-key_permissions = ["Get", "List"]
-secret_permissions = ["Get", "List"]
-storage_permissions = ["Get", "List"]
-
-
-
-
- 
