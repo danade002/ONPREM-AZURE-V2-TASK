@@ -3,11 +3,13 @@ name: 'CI PIPELINE'
 on:
   push:
     branches: 
+      - main
       - develop
 
   pull_request:
     branches: 
       - main
+      - develop
 
 permissions:
   contents: read
@@ -44,6 +46,7 @@ jobs:
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init -backend-config='dev.config'
         
+        
       
        
     - name: Terraform Format
@@ -62,7 +65,6 @@ jobs:
         terraform plan -var-file='dev.tfvars'
 
     - name: Terraform Apply
-      if: github.ref =='refs/heads/main' && github.event.pull_request.merged == true
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
