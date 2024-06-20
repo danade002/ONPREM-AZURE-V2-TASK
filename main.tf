@@ -81,7 +81,7 @@ data "azurerm_resource_group" "resource_group" {
   name = var.resource_group_name
 }
 
-data "azurerm_resource_group" "existing_rg" {
+data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
   count = var.create_new_resource_group ? 0 : 1
 }
