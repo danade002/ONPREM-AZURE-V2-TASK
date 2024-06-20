@@ -76,19 +76,15 @@ resource_group_name = var.resource_group_name
 
 
 
-# Data block to check if the resource group already exists
+
 data "azurerm_resource_group" "resource_group" {
-  name = var.resource_group_name
+  name = "existing-resource-group"
 }
 
-# Conditional creation of the resource group if it doesn't exist
-module "resource_group" {
-  source              = "./modules/resource_group"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-
-  # Only create the resource group if it does not already exist
-  count = length(data.azurerm_resource_group.resource_group.id) == 0 ? 1 : 0
+resource "azurerm_resource_group" "resource_group" {
+  count = var.create_new_rg ? 1 : 0
+  name     = "new-resource-group"
+  location = "West US"
 }
 
 

@@ -1,6 +1,7 @@
 location             = "east us"
 resource_group_name  = "valley-dev123"
-storage_account_name = "valleystatedev123"
+create_new_rg = true
+
 
 
 

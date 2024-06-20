@@ -141,3 +141,11 @@ variable "storage_account_name" {
   type        = string
   
 }
+
+
+variable "create_new_rg" {
+  description = "Create a new resource group"
+  type        = bool
+  
+  
+}
