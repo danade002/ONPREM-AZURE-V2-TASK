@@ -5,6 +5,7 @@ on:
     branches: 
       - develop
       - main
+
   pull_request:
     branches: 
       - main
@@ -63,7 +64,7 @@ jobs:
         terraform plan -var-file='dev.tfvars'
 
     - name: Terraform Apply
-      if: (github.ref =='refs/heads/main') 
+      if: (github.ref =='refs/heads/main')
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"

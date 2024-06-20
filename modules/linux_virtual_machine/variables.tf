@@ -28,13 +28,8 @@ variable "admin_username" {
   type        = string
 }
 
-variable "admin_ssh_key" {
-  description = "The admin SSH key for the Linux virtual machine"
+variable "subnet_id" {
+  description = "value of subnet_id"
   type        = string
 }
 
-variable "subnet_id" {
-    description = "value of subnet_id"
-    type        = string
-  
-}
