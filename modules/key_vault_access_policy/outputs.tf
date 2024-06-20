@@ -17,3 +17,7 @@ output "secret_permissions" {
   description = "The secret permissions assigned"
   value       = azurerm_key_vault_access_policy.key_vault_access_policy.secret_permissions
 }
+
+output "id" {
+  value = azurerm_key_vault.key_vault_access_policy.id
+}
