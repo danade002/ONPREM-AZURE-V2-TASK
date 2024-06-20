@@ -138,8 +138,8 @@ variable "resource_group_name" {
 
 
 
-variable "resource_group_name_existing" {
-  description = "The name of the existing resource group"
-  type        = string
-  
+variable "create_new_resource_group" {
+  description = "Boolean flag to create a new resource group if true."
+  type        = bool
+  default     = false
 }
