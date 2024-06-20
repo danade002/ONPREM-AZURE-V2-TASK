@@ -117,6 +117,7 @@ module "load_balancer" {
   public_ip_name      = var.public_ip_name
 }
 
+
 # Key Vault
 module "key_vault" {
   source                      = "./modules/key_vault"
