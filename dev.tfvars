@@ -1,6 +1,7 @@
 location             = "east us"
-resource_group_name  = "valley-dev123"
-create_new_rg = true
+resource_group_name  = "valley-dev"
+resource_group_name_existing = "valley-dev123"
+
 
 
 

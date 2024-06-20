@@ -77,14 +77,13 @@ resource_group_name = var.resource_group_name
 
 
 
-data "azurerm_resource_group" "resource_group" {
-  name = "existing-resource-group"
+resource "azurerm_resource_group" "resource_group" {
+  name     = var.resource_group_name
+  location = "var.location"
 }
 
-resource "azurerm_resource_group" "resource_group" {
-  count = var.create_new_rg ? 1 : 0
-  name     = "new-resource-group"
-  location = "West US"
+data "azurerm_resource_group" "resource_group-existing" {
+  name = var.resource_group_name_existing
 }
 
 
