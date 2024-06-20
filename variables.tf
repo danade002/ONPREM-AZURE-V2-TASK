@@ -136,11 +136,6 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "storage_account_name" {
-  description = "The name of the storage account"
-  type        = string
-  
-}
 
 
 variable "create_new_rg" {
