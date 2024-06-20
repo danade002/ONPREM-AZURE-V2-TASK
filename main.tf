@@ -118,20 +118,7 @@ module "load_balancer" {
 }
 
 
-# Key Vault
-module "key_vault" {
-  source                      = "./modules/key_vault"
-  resource_group_name         = var.resource_group_name
-  location                    = var.location
-  name                        = var.key_vault_name
-  key_vault_name              = var.key_vault_name
-  soft_delete_retention_days  = var.soft_delete_retention_days
-  enabled_for_disk_encryption = var.enabled_for_disk_encryption
-  purge_protection_enabled    = var.purge_protection_enabled
-  sku_name                    = var.sku_name
-  administrator_login         = var.administrator_login
-  administrator_login_password = var.administrator_login_password
-}
+
 
 # Key Vault
 module "key_vault" {
