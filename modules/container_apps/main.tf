@@ -20,3 +20,4 @@ resource "azurerm_container_group" "container_group" {
     environment = "testing"
   }
 }
+

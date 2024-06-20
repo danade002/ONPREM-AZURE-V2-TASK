@@ -47,8 +47,7 @@ module "linux_virtual_machine" {
   vm_name              = var.vm_name
   vm_size              = var.vm_size
   subnet_id            = module.subnet.subnet_id
-  admin_ssh_key = var.admin_ssh_key
-  admin_username = var.admin_username
+  admin_username       = var.admin_username
   network_interface_id = var.network_interface_id
 }
 
@@ -101,3 +100,7 @@ module "load_balancer" {
   public_ip_name = var.public_ip_name
   
 }
+
+
+
+
