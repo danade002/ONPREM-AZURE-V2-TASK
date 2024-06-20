@@ -60,10 +60,19 @@ administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
 soft_delete_retention_days = 7
 enabled_for_disk_encryption = true
 purge_protection_enabled  = true
-sku_name = "standard"
-key_permissions = ["Get", "List"]
-secret_permissions = ["Get", "List"]
-storage_permissions = ["Get", "List"]
+sku_name = "premium"
+key_permissions = ["get", "list", "create", "delete", "purge", "recover", "backup", "restore"]
+secret_permissions = ["get", "list", "set", "delete", "purge", "recover", "backup", "restore"]
+
+# Access Policy variables for the current user
+current_user_key_permissions = ["Get"]
+current_user_secret_permissions = ["Get"]
+
+# Access Policy variables for the service principal
+service_principal_display_name = "example-app"
+service_principal_key_permissions = ["Get", "List", "Encrypt", "Decrypt"]
+service_principal_secret_permissions = [ "Get", "List", "Set", "Delete", "Backup", "Restore"]
+
 
 
 

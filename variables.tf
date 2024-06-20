@@ -173,30 +173,36 @@ variable "sku_name" {
   default     = "standard"
 }
 
+
+variable "service_principal_display_name" {
+  description = "The display name of the service principal"
+  type        = string
+  default     = "example-app"
+}
+
+variable "principal_key_permissions" {
+  description = "List of key permissions for the service principal"
+  type        = list(string)
+  
+}
+
+variable "principal_secret_permissions" {
+  description = "List of secret permissions for the service principal"
+  type        = list(string)
+  default     = []
+}
+
 variable "key_permissions" {
-  description = "Key permissions"
+  description = "List of key permissions for the main access policy"
   type        = list(string)
   default     = ["Get"]
 }
 
 variable "secret_permissions" {
-  description = "Secret permissions"
+  description = "List of secret permissions for the main access policy"
   type        = list(string)
   default     = ["Get"]
 }
-
-variable "storage_permissions" {
-  description = "Storage permissions"
-  type        = list(string)
-  default     = ["Get"]
-}
-
-variable "key_vault_location" {
-  description = "The location of the Key Vault"
-  type        = string
-  
-}
-
 variable "administrator_login" {
   description = "The administrator login for the Key Vault"
   type        = string
@@ -207,5 +213,31 @@ variable "administrator_login_password" {
   description = "The administrator login password for the Key Vault"
   type        = string
   
+}
+
+
+variable "service_principal_display_name" {
+  description = "The display name of the service principal"
+  type        = string
+}
+
+variable "current_user_key_permissions" {
+  description = "The key permissions for the current user"
+  type        = list(string)
+}
+
+variable "current_user_secret_permissions" {
+  description = "The secret permissions for the current user"
+  type        = list(string)
+}
+
+variable "service_principal_key_permissions" {
+  description = "The key permissions for the service principal"
+  type        = list(string)
+}
+
+variable "service_principal_secret_permissions" {
+  description = "The secret permissions for the service principal"
+  type        = list(string)
 }
 
