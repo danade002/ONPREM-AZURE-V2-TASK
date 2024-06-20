@@ -1,5 +1,5 @@
-
 # Networking
+
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
@@ -20,12 +20,8 @@ variable "subnet_address_prefix" {
   type        = string
 }
 
-variable "network_interface_id" {
-  description = "The ID of the network interface"
-  type        = string
-}
-
 # Virtual Machine
+
 variable "vm_name" {
   description = "The name of the Linux virtual machine"
   type        = string
@@ -36,16 +32,21 @@ variable "vm_size" {
   type        = string
 }
 
-
-variable "key_vault_location" {
-  description = "Location for the key vault"
-  type        = string
-  
-}
 variable "admin_username" {
   description = "The admin username for the Linux virtual machine"
   type        = string
 }
+
+variable "admin_ssh_key" {
+  description = "The admin SSH key for the Linux virtual machine"
+  type        = string
+}
+
+variable "network_interface_id" {
+  description = "The ID of the network interface"
+  type        = string
+}
+
 
 # Azure Container Registry (ACR)
 variable "registry_name" {
@@ -63,8 +64,11 @@ variable "pg_databases" {
   description = "The names of the PostgreSQL databases"
   type        = list(string)
 }
-
-
+# Storage Account
+variable "storage_account_name" {
+  description = "The name of the blob storage account"
+  type        = string
+}
 
 # Azure DNS Zone
 variable "dns_zone_name" {
@@ -88,6 +92,7 @@ variable "container_group_name" {
   description = "The name of the container group"
   type        = string
 }
+
 
 variable "container_name" {
   description = "The name of the container"
@@ -130,101 +135,16 @@ variable "source_code_path" {
   type        = string
 }
 
-# General Variables
+#location  
+
 variable "location" {
   description = "The location of the resources"
   type        = string
 }
 
-
+#Resoure group name 
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
-}
-
-variable "storage_account_name" {
-  description = "The name of the storage account"
-  type        = string
-  
-}
-
-variable "key_vault_name" {
-  description = "The name of the Key Vault"
-  type        = string
-}
-
-
-
-variable "enabled_for_disk_encryption" {
-  description = "Is disk encryption enabled?"
-  type        = bool
-  default     = true
-}
-
-variable "soft_delete_retention_days" {
-  description = "Number of days to retain soft deleted items"
-  type        = number
-  default     = 7
-}
-
-variable "purge_protection_enabled" {
-  description = "Is purge protection enabled?"
-  type        = bool
-  default     = false
-}
-
-variable "sku_name" {
-  description = "The SKU name"
-  type        = string
-  default     = "standard"
-}
-
-variable "key_permissions" {
-  description = "List of key permissions for the main access policy"
-  type        = list(string)
-  default     = ["Get"]
-}
-
-variable "secret_permissions" {
-  description = "List of secret permissions for the main access policy"
-  type        = list(string)
-  default     = ["Get"]
-}
-variable "administrator_login" {
-  description = "The administrator login for the Key Vault"
-  type        = string
-  
-}
-
-variable "administrator_login_password" {
-  description = "The administrator login password for the Key Vault"
-  type        = string
-  
-}
-
-
-variable "service_principal_display_name" {
-  description = "The display name of the service principal"
-  type        = string
-}
-
-variable "current_user_key_permissions" {
-  description = "The key permissions for the current user"
-  type        = list(string)
-}
-
-variable "current_user_secret_permissions" {
-  description = "The secret permissions for the current user"
-  type        = list(string)
-}
-
-variable "service_principal_key_permissions" {
-  description = "The key permissions for the service principal"
-  type        = list(string)
-}
-
-variable "service_principal_secret_permissions" {
-  description = "The secret permissions for the service principal"
-  type        = list(string)
 }
 
