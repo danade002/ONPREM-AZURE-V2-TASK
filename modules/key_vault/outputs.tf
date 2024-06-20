@@ -17,3 +17,8 @@ output "admin_password_secret_id" {
   description = "The ID of the administrator login password secret"
   value       = azurerm_key_vault_secret.admin_password.id
 }
+
+output "id" {
+  value = azurerm_key_vault.key_vault.id
+}
+
