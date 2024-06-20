@@ -173,25 +173,6 @@ variable "sku_name" {
   default     = "standard"
 }
 
-
-variable "service_principal_display_name" {
-  description = "The display name of the service principal"
-  type        = string
-  default     = "example-app"
-}
-
-variable "principal_key_permissions" {
-  description = "List of key permissions for the service principal"
-  type        = list(string)
-  
-}
-
-variable "principal_secret_permissions" {
-  description = "List of secret permissions for the service principal"
-  type        = list(string)
-  default     = []
-}
-
 variable "key_permissions" {
   description = "List of key permissions for the main access policy"
   type        = list(string)
