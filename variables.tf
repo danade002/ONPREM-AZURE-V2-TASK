@@ -1,5 +1,5 @@
-
 # Networking
+
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
@@ -20,12 +20,8 @@ variable "subnet_address_prefix" {
   type        = string
 }
 
-variable "network_interface_id" {
-  description = "The ID of the network interface"
-  type        = string
-}
-
 # Virtual Machine
+
 variable "vm_name" {
   description = "The name of the Linux virtual machine"
   type        = string
@@ -40,6 +36,17 @@ variable "admin_username" {
   description = "The admin username for the Linux virtual machine"
   type        = string
 }
+
+variable "admin_ssh_key" {
+  description = "The admin SSH key for the Linux virtual machine"
+  type        = string
+}
+
+variable "network_interface_id" {
+  description = "The ID of the network interface"
+  type        = string
+}
+
 
 # Azure Container Registry (ACR)
 variable "registry_name" {
@@ -57,8 +64,11 @@ variable "pg_databases" {
   description = "The names of the PostgreSQL databases"
   type        = list(string)
 }
-
-
+# Storage Account
+variable "storage_account_name" {
+  description = "The name of the blob storage account"
+  type        = string
+}
 
 # Azure DNS Zone
 variable "dns_zone_name" {
@@ -82,6 +92,7 @@ variable "container_group_name" {
   description = "The name of the container group"
   type        = string
 }
+
 
 variable "container_name" {
   description = "The name of the container"
@@ -124,14 +135,16 @@ variable "source_code_path" {
   type        = string
 }
 
-# General Variables
+#location  
+
 variable "location" {
   description = "The location of the resources"
   type        = string
 }
 
-
+#Resoure group name 
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
 }
+

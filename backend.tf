@@ -1,8 +1,8 @@
-# terraform {
-#   backend "azurerm" {
-#     # resource_group_name   = "valley-dev"
-#     # storage_account_name  = "valleytfstatedev"
-#     container_name        = "tfstate"
-#     key                   = "terraform.tfstate"
-#   }
-# }
+#terraform {
+#  backend "azurerm" {
+#    resource_group_name   = "InsaitResourceGroupDev"
+#    storage_account_name  = "insaittfstatedev"
+#    container_name        = "tfstate"
+#    key                   = "terraform.tfstate"
+#  }
+#}

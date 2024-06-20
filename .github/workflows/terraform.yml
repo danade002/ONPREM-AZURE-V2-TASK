@@ -3,12 +3,11 @@ name: 'CI PIPELINE'
 on:
   push:
     branches: 
-      - main
       - develop
+
   pull_request:
     branches: 
       - main
-      - develop
 
 permissions:
   contents: read
@@ -18,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
     - name: Azure Login
-      uses: azure/login@v2
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDS }}
         
@@ -29,6 +28,7 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.8.2
+
     - name: Get Admin SSH Key
       run: |
         echo "${{ secrets.ADMIN_SSH_KEY }}" > admin_ssh_key.pub
@@ -37,23 +37,15 @@ jobs:
         ADMIN_SSH_KEY: "${{ secrets.ADMIN_SSH_KEY }}" 
       
     - name: Terraform Init
-      if: ${{ github.ref == 'refs/heads/develop' }}
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        terraform init -backend-config='resource_group_name=${{ secrets.DEV_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.DEV_STG_NAME }}'
+        terraform init -backend-config='dev.config'
         
-    - name: Terraform Init
-      if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/pull/') }}
-      run: |
-        export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-        export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-        export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-        export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        terraform init -backend-config='resource_group_name=${{ secrets.DEV_RG_NAME }}' -backend-config='storage_account_name=${{ secrets.DEV_STG_NAME }}'
-
+      
+       
     - name: Terraform Format
       run: terraform fmt -recursive
 
@@ -70,7 +62,7 @@ jobs:
         terraform plan -var-file='dev.tfvars'
 
     - name: Terraform Apply
-      if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+      if: github.ref =='refs/heads/main' && github.event.pull_request.merged == true
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
@@ -79,15 +71,14 @@ jobs:
         export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
         terraform apply -var-file='dev.tfvars' -auto-approve 
 
-    - name: Terraform Destroy
-      if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
-      run: |
-        export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
-        export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
-        export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
-        export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
-        terraform destroy -var-file='dev.tfvars' -auto-approve
+    # - name: Terraform Destroy
+    #   run: |
+    #     export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+    #     export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+    #     export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+    #     export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+    #     export ADMIN_SSH_KEY="${{ secrets.ADMIN_SSH_KEY }}"
+    #     terraform destroy -var-file='dev.tfvars' -auto-approve
 
     # - name: Notify Slack on Success
     #   if: always() && github.ref == 'refs/heads/main'
@@ -99,3 +90,7 @@ jobs:
     #     SLACK_TITLE: "Deployment status"
     #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
     #     SLACK_FOOTER: ''
+
+
+
+    
