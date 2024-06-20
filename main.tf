@@ -133,10 +133,30 @@ module "key_vault" {
   administrator_login_password = var.administrator_login_password
 }
 
+# Key Vault
+module "key_vault" {
+  source                      = "./modules/key_vault"
+  resource_group_name         = var.resource_group_name
+  location                    = var.key_vault_location
+  name                        = var.key_vault_name
+  key_vault_name              = var.key_vault_name
+  soft_delete_retention_days  = var.soft_delete_retention_days
+  enabled_for_disk_encryption = var.enabled_for_disk_encryption
+  purge_protection_enabled    = var.purge_protection_enabled
+  sku_name                    = var.sku_name
+  administrator_login         = var.administrator_login
+  administrator_login_password = var.administrator_login_password
+
+  
+  key_permissions             = var.key_permissions
+  secret_permissions          = var.secret_permissions
+ 
+}
+
 # Key Vault Access Policies
 module "key_vault_access_policy_current" {
   source            = "./modules/key_vault_access_policy"
-  key_vault_id      = module.key_vault.id
+  key_vault_id      = module.key_vault.key_vault_id
   tenant_id         = data.azurerm_client_config.current.tenant_id
   object_id         = data.azurerm_client_config.current.object_id
   key_permissions   = var.current_user_key_permissions
@@ -145,7 +165,7 @@ module "key_vault_access_policy_current" {
 
 module "key_vault_access_policy_service_principal" {
   source            = "./modules/key_vault_access_policy"
-  key_vault_id      = module.key_vault.id
+  key_vault_id      = module.key_vault.key_vault_id
   tenant_id         = data.azurerm_client_config.current.tenant_id
   object_id         = data.azuread_service_principal.service_principal.object_id
   key_permissions   = var.service_principal_key_permissions
