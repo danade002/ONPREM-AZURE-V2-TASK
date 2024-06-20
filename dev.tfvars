@@ -69,7 +69,7 @@ current_user_key_permissions = ["Get"]
 current_user_secret_permissions = ["Get"]
 
 # Access Policy variables for the service principal
-service_principal_display_name = "example-app"
+service_principal_display_name = "Onprem Azure V2 task"
 service_principal_key_permissions = ["Get", "List", "Encrypt", "Decrypt"]
 service_principal_secret_permissions = [ "Get", "List", "Set", "Delete", "Backup", "Restore"]
 

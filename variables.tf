@@ -36,6 +36,12 @@ variable "vm_size" {
   type        = string
 }
 
+
+variable "key_vault_location" {
+  description = "Location for the key vault"
+  type        = string
+  
+}
 variable "admin_username" {
   description = "The admin username for the Linux virtual machine"
   type        = string

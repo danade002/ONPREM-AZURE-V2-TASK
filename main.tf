@@ -35,7 +35,7 @@ provider "azuread" {}
 data "azurerm_client_config" "current" {}
 
 # Check if resource group exists
-data "azurerm_resource_group" "existing_rg" {
+data "azurerm_resource_group" "valley-dev" {
   name = var.resource_group_name
 }
 
@@ -51,7 +51,7 @@ module "resource_group" {
   location            = var.location
 
   # Only create the resource group if it does not already exist
-  count = length(data.azurerm_resource_group.existing_rg.id) == 0 ? 1 : 0
+  count = length(data.azurerm_resource_group.valley-dev.id) == 0 ? 1 : 0
 }
 
 # Networking

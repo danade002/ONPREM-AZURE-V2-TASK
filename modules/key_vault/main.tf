@@ -11,13 +11,7 @@ resource "azurerm_key_vault" "key_vault" {
   
   sku_name = var.sku_name
 
-  access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-  
-  }
 }
-
-data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault_secret" "admin_login" {
   name         = "administrator-login"
