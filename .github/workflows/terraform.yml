@@ -9,7 +9,7 @@ on:
     branches: 
       - main
       - develop
-      
+
 permissions:
   contents: read
 
@@ -63,7 +63,7 @@ jobs:
         terraform plan -var-file='dev.tfvars'
 
     - name: Terraform Apply
-      if: (github.ref =='refs/heads/main') && (github.event.pull_request.merged == true)
+      if: (github.ref =='refs/heads/main') 
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
