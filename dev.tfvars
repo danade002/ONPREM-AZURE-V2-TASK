@@ -1,7 +1,8 @@
 use_existing_rg  = false
 existing_rg_name = "valley-dev"
+new_rg_name      = "testdaniel123"
 location     = "east us"
-resource_group_name = "testdaniel"
+resource_group_name = "testdan123"
 
 # Networking
 vnet_name            = "insaitvnet"
