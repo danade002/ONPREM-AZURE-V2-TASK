@@ -84,7 +84,7 @@ data "azurerm_resource_group" "existing_rg" {
 }
 
 module "resource_group" {
-  source                    = "../terraform-azure-rg-module"
+  source                    = "./modules/resource_group"
   resource_group_name       = var.resource_group_name
   location                  = var.location
   create_new_resource_group = var.create_new_resource_group
