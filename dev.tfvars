@@ -2,6 +2,7 @@ use_existing_rg  = false
 existing_rg_name = "valley-dev"
 location     = "east us"
 resource_group_name = "testademesoInsait"
+create_new_resource_group = true
 
 # Networking
 vnet_name            = "insaitvnet"

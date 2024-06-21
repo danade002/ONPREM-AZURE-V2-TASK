@@ -143,3 +143,9 @@ variable "existing_rg_name" {
   description = "The name of the existing resource group (if any)"
   type        = string
 }
+
+variable "create_new_resource_group" {
+  description = "Boolean to determine if a new resource group should be created"
+  type        = bool
+  
+}

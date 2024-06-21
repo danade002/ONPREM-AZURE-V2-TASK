@@ -78,13 +78,21 @@ resource_group_name = var.resource_group_name
 
 
 
-module "resource_group" {
-  source         = "./modules/resource_group"
-  use_existing   = var.use_existing_rg
-  existing_name  = var.existing_rg_name
-  new_name       = var.resource_group_name
-  resource_group_name = var.resource_group_name
-  location       = var.location
+# Data source to check if the resource group exists
+data "azurerm_resource_group" "existing" {
+  name  = var.resource_group_name
+  count = var.create_new_resource_group ? 0 : 1
+}
+
+resource "azurerm_resource_group" "rg" {
+  count    = var.create_new_resource_group ? 1 : 0
+  name     = var.resource_group_name
+  location = var.location
+}
+
+# Determine the resource group name to use
+locals {
+  resource_group_name = var.create_new_resource_group ? azurerm_resource_group.rg[0].name : var.resource_group_name
 }
 
 module "load_balancer" {
