@@ -1,8 +1,7 @@
 use_existing_rg  = false
 existing_rg_name = "valley-dev"
 location     = "east us"
-resource_group_name = "testdaniel"
-storage_account_name = "insaitstorageaccount123"
+resource_group_name = "testademesoInsait"
 
 # Networking
 vnet_name            = "insaitvnet"
