@@ -81,7 +81,7 @@ resource_group_name = var.resource_group_name
 module "resource_group" {
   source         = "./modules/resource_group"
   use_existing   = var.use_existing_rg
-  existing_name  = var.existing_rg_name
+  existing_name  = var.resource_group_name
   new_name       = var.new_rg_name
   location       = var.location
 }
