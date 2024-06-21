@@ -154,7 +154,7 @@ variable "new_rg_name" {
   
 }
 
-variable "storagg_account_name" {
+variable "storage_account_name" {
   description = "The name of the storage account"
   type        = string
   
