@@ -130,16 +130,26 @@ variable "location" {
   type        = string
 }
 
-
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
+  
 }
 
-
-
-variable "create_new_resource_group" {
-  description = "Boolean flag to create a new resource group if true."
+variable "use_existing_rg" {
+  description = "Boolean to determine if an existing resource group should be used"
   type        = bool
-  default     = false
+  
+}
+
+variable "existing_rg_name" {
+  description = "The name of the existing resource group (if any)"
+  type        = string
+  
+}
+
+variable "new_rg_name" {
+  description = "The name of the new resource group to be created"
+  type        = string
+  
 }
