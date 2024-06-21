@@ -144,3 +144,8 @@ variable "existing_rg_name" {
   type        = string
 }
 
+variable "new_rg_name" {
+  description = "The name of the new resource group to be created"
+  type        = string
+  
+}
