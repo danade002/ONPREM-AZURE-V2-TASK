@@ -1,6 +1,6 @@
 create_new_resource_group = true
 location     = "east us"
-resource_group_name = "valley-dev"
+resource_group_name = "valley-dev123"
 
 # Networking
 vnet_name            = "insaitvnet"
