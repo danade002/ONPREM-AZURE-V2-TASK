@@ -1,14 +1,6 @@
-
-
 use_existing_rg  = false
-existing_rg_name = "valley-dev"
-new_rg_name      = "testdaniel"
 location     = "east us"
 resource_group_name = "testdaniel"
-storage_account_name = "insaitstorageaccount123"
-
-
-
 
 # Networking
 vnet_name            = "insaitvnet"
@@ -23,14 +15,12 @@ vm_name        = "insait-vm"
 vm_size        = "Standard_B4ms"
 admin_username = "insait"
 
-
 # Azure Container Registry (ACR)
 registry_name = "insaitcontainerregistry"
 
 # PostgreSQL Server
 pg_server_name = "insaitpgserver"
 pg_databases   = ["insait_backend", "metabase", "bank_db"] 
-
 
 # Azure DNS Zone
 dns_zone_name = "insaitdnszone.com"
@@ -55,7 +45,3 @@ app_name = "insaitapp"
 
 #source code path
 source_code_path = "/path/to/your/source/code"
-
-
-
-
