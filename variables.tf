@@ -144,8 +144,3 @@ variable "existing_rg_name" {
   type        = string
 }
 
-variable "create_new_resource_group" {
-  description = "Boolean to determine if a new resource group should be created"
-  type        = bool
-  
-}
