@@ -76,21 +76,16 @@ resource_group_name = var.resource_group_name
 
 
 
-# Data block to check if the resource group already exists
-data "azurerm_resource_group" "resource_group" {
-  name = var.resource_group_name
-}
 
-# Conditional creation of the resource group if it doesn't exist
+
 module "resource_group" {
-  source              = "./modules/resource_group"
+  source         = "./modules/resource_group"
+  use_existing   = var.use_existing_rg
+  existing_name  = var.existing_rg_name
+  new_name       = var.new_rg_name
   resource_group_name = var.resource_group_name
-  location            = var.location
-
-  # Only create the resource group if it does not already exist
-  count = length(data.azurerm_resource_group.resource_group.id) == 0 ? 1 : 0
+  location       = var.location
 }
-
 
 module "load_balancer" {
   source = "./modules/load_balancer"
