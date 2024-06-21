@@ -1,7 +1,6 @@
-output "name" {
-  value = local.resource_group_name
-}
-
 output "location" {
   value = var.location
+}
+output "resource_group_name" {
+  value = var.resource_group_name
 }

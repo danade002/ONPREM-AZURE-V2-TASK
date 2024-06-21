@@ -77,14 +77,18 @@ resource_group_name = var.resource_group_name
 
 
 
+# Check if the resource group exists
+data "azurerm_resource_group" "existing_rg" {
+  name = var.resource_group_name
+  count = var.create_new_resource_group ? 0 : 1
+}
 
 module "resource_group" {
-  source         = "./modules/resource_group"
-  use_existing   = var.use_existing_rg
-  existing_name  = var.existing_rg_name
-  new_name       = var.new_rg_name
-  resource_group_name = var.resource_group_name
-  location       = var.location
+  source                    = "./modules/resource_group"
+  resource_group_name       = var.resource_group_name
+  location                  = var.location
+  create_new_resource_group = var.create_new_resource_group
+  resource_group_exists     = length(data.azurerm_resource_group.existing_rg) > 0
 }
 
 module "load_balancer" {
@@ -95,7 +99,3 @@ module "load_balancer" {
   public_ip_name = var.public_ip_name
   
 }
-
-
-
-

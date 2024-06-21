@@ -1,17 +1,13 @@
-variable "use_existing" {
-  description = "Boolean to determine if an existing resource group should be used"
+variable "create_new_resource_group" {
+  description = "Boolean flag to create a new resource group if true."
   type        = bool
+  default     = false
 }
 
-variable "existing_name" {
-  description = "The name of the existing resource group (if any)"
-  type        = string
-  default     = ""
-}
-
-variable "new_name" {
-  description = "The name of the new resource group to be created"
-  type        = string
+variable "resource_group_exists" {
+  description = "Boolean flag to check if the resource group already exists."
+  type        = bool
+  default     = false
 }
 
 variable "location" {
