@@ -1,7 +1,7 @@
 use_existing_rg  = true
 existing_rg_name = "valley-dev"
 location     = "east us"
-resource_group_name = "testdan"
+resource_group_name = "valley-dev"
 
 # Networking
 vnet_name            = "insaitvnet"
