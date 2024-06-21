@@ -1,6 +1,6 @@
 
 
-use_existing_rg  = true
+use_existing_rg  = false
 existing_rg_name = "valley-dev"
 new_rg_name      = "testdaniel"
 location     = "east us"
