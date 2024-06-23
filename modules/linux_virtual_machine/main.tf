@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.0"
-    }
-
-  }
-}
 
 # Define a Public IP Address
 resource "azurerm_public_ip" "public_ip" {
@@ -15,6 +6,7 @@ resource "azurerm_public_ip" "public_ip" {
   resource_group_name = var.resource_group_name
   allocation_method   = "Dynamic"  
 }
+
 
 # Network Interface with Public IP association
 resource "azurerm_network_interface" "nic" {

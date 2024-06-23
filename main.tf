@@ -74,9 +74,6 @@ resource_group_name = var.resource_group_name
   dns_zone_name       = var.dns_zone_name
 }
 
-
-
-
 # Check if the resource group exists
 data "azurerm_resource_group" "existing_rg" {
   name = var.resource_group_name
@@ -89,21 +86,6 @@ module "resource_group" {
   location                  = var.location
   create_new_resource_group = var.create_new_resource_group
   resource_group_exists     = length(data.azurerm_resource_group.existing_rg) > 0
-}
-
-data "azurerm_client_config" "current" {}
-
-module "key_vault" {
-  source                     = "./modules/key_vault"
-  name                       = var.key_vault_name
-  location                   = var.location
-  resource_group_name        = var.resource_group_name
-  tenant_id                  = data.azurerm_client_config.current.tenant_id
-  administrator_login        = var.administrator_login
-  administrator_login_password = var.administrator_login_password
-  soft_delete_retention_days = var.soft_delete_retention_days
-  sku_name = var.sku_name
-  
 }
 
 module "load_balancer" {

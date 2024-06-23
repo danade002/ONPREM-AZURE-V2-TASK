@@ -57,6 +57,8 @@ This repository contains several modules, each responsible for creating a specif
 - `dns`: Creates a DNS zone.
 - `virtual_network`: Creates a virtual network.
 - `subnet`: Creates a subnet within the virtual network.
+- `resource group` :create resource  a resource group tpo deploy the infrastructure.
+
 
 
 

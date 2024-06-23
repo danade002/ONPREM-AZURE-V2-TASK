@@ -1,13 +1,6 @@
-create_new_resource_group = false
+resource_group_name = "valley-dev12345"
 location     = "east us"
-resource_group_name = "valley-dev"
-
-# keyvault
-key_vault_name               = "Predective-keyvaults"
- administrator_login          = "insaitpgadmin"
- administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
- sku_name = "premium"
-  soft_delete_retention_days = 7
+create_new_resource_group = false
 
 # Networking
 vnet_name            = "insaitvnet"
@@ -52,4 +45,3 @@ app_name = "insaitapp"
 
 #source code path
 source_code_path = "/path/to/your/source/code"
-
