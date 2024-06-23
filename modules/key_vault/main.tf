@@ -5,9 +5,9 @@ resource "azurerm_key_vault" "key_vault" {
   sku_name                    = var.sku_name
   soft_delete_retention_days  = var.soft_delete_retention_days
   purge_protection_enabled    = var.purge_protection_enabled
-  tenant_id                  = data.azurerm_client_config.example.tenant_id
+  tenant_id                  = data.azurerm_client_config.key_vault.tenant_id
 }
- data "azurerm_client_config" "azurerm_key_vault_access_policy" {}
+ data "azurerm_client_config" "tenant_id" {}
 
 resource "azurerm_key_vault_access_policy" "azurerm_key_vault_access_policy" {
   key_vault_id = azurerm_key_vault.azurerm_key_vault_access_policy.id
