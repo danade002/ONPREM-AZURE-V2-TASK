@@ -97,12 +97,12 @@ module "key_vault" {
   key_vault_name             = var.key_vault_name
   location                   = var.location
   resource_group_name        = var.resource_group_name
-  tenant_id = data.azurerm_client_config.key_vault.tenant_id
   administrator_login        = var.administrator_login
   administrator_login_password = var.administrator_login_password
   sku_name = var.sku_name
   soft_delete_retention_days = var.soft_delete_retention_days
   purge_protection_enabled = var.purge_protection_enabled
+  tenant_id                   = data.azurerm_client_config.example.tenant_id
 }
 
-  data "azurerm_client_config" "tenant_id" {}
+  data "azurerm_client_config" "current" {}

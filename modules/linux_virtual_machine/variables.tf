@@ -32,4 +32,3 @@ variable "subnet_id" {
   description = "value of subnet_id"
   type        = string
 }
-

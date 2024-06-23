@@ -7,7 +7,6 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method   = "Dynamic"  
 }
 
-
 # Network Interface with Public IP association
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
