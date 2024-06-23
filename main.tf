@@ -74,19 +74,11 @@ resource_group_name = var.resource_group_name
   dns_zone_name       = var.dns_zone_name
 }
 
-# Check if the resource group exists
-data "azurerm_resource_group" "existing_rg" {
-  name = var.resource_group_name
-  count = var.create_new_resource_group ? 0 : 1
-}
-
 module "resource_group" {
   source                    = "./modules/resource_group"
   resource_group_name       = var.resource_group_name
   location                  = var.location
   create_new_resource_group = var.create_new_resource_group
-  resource_group_exists     = length(data.azurerm_resource_group.existing_rg) > 0
- 
 }
 
 module "load_balancer" {
