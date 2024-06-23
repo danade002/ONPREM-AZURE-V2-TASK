@@ -31,3 +31,9 @@ variable "administrator_login_password" {
 variable "sku_name" {
   
 }
+
+variable "soft_delete_retention_days" {
+  description = "The number of days to retain soft deleted keys."
+  type        = number
+  
+}

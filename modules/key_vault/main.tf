@@ -5,6 +5,7 @@ resource "azurerm_key_vault" "key_vault" {
 
   sku_name = var.sku_name
   tenant_id = var.tenant_id
+  soft_delete_retention_days  = var.soft_delete_retention_days
 
 }
 

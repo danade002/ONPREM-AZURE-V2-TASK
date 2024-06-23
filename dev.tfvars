@@ -7,6 +7,7 @@ key_vault_name               = "OnpremKeyVault012"
  administrator_login          = "insaitpgadmin"
  administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
  sku_name = "premium"
+  soft_delete_retention_days = 7
 
 # Networking
 vnet_name            = "insaitvnet"
