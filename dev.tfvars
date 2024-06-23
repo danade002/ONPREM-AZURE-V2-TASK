@@ -3,7 +3,7 @@ location     = "east us"
 resource_group_name = "valley-dev"
 
 # keyvault
-key_vault_name               = "OnpremKeyVault012"
+key_vault_name               = "Predective-keyvaults"
  administrator_login          = "insaitpgadmin"
  administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
  sku_name = "premium"
