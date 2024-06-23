@@ -81,6 +81,7 @@ module "resource_group" {
   create_new_resource_group = var.create_new_resource_group
 }
 
+
 module "load_balancer" {
   source = "./modules/load_balancer"
   resource_group_name = var.resource_group_name
@@ -88,4 +89,25 @@ module "load_balancer" {
   lb_name = var.lb_name
   public_ip_name = var.public_ip_name
   
+}
+
+data "azurerm_client_config" "example" {}
+
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
+}
+
+module "key_vault" {
+  source = "./modules/key_vault"
+
+  key_vault_name             = "examplekeyvault"
+  location                   = azurerm_resource_group.example.location
+  resource_group_name        = azurerm_resource_group.example.name
+  tenant_id                  = data.azurerm_client_config.example.tenant_id
+  administrator_login        = var.administrator_login
+  administrator_login_password = var.administrator_login_password
+  sku_name = var.sku_name
+  soft_delete_retention_days = var.soft_delete_retention_days
+  purge_protection_enabled = var.purge_protection_enabled
 }

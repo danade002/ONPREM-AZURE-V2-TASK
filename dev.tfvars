@@ -45,3 +45,6 @@ app_name = "insaitapp"
 
 #source code path
 source_code_path = "/path/to/your/source/code"
+
+administrator_login          = "insaitpgadmin"
+administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
