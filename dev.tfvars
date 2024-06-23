@@ -5,7 +5,8 @@ resource_group_name = "valley-dev"
 # keyvault
 key_vault_name               = "OnpremKeyVault012"
  administrator_login          = "insaitpgadmin"
-  administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
+ administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
+ sku_name = "premium"
 
 # Networking
 vnet_name            = "insaitvnet"

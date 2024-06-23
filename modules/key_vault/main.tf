@@ -3,9 +3,9 @@ resource "azurerm_key_vault" "key_vault" {
   location            = var.location
   resource_group_name = var.resource_group_name
 
-  sku_name = "standard"
+  sku_name = var.sku_name
   tenant_id = var.tenant_id
-  
+
 }
 
 resource "azurerm_key_vault_secret" "admin_login" {

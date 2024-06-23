@@ -27,3 +27,7 @@ variable "administrator_login_password" {
   description = "The administrator login password to store in the Key Vault."
   type        = string
 }
+
+variable "sku_name" {
+  
+}
