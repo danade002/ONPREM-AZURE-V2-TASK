@@ -1,4 +1,4 @@
-resource_group_name = "valley-dev12345"
+resource_group_name = "valley-dev"
 location     = "east us"
 create_new_resource_group = false
 
