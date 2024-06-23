@@ -7,12 +7,12 @@ resource "azurerm_key_vault" "key_vault" {
   purge_protection_enabled    = var.purge_protection_enabled
   tenant_id                  = data.azurerm_client_config.example.tenant_id
 }
- data "azurerm_client_config" "example" {}
+ data "azurerm_client_config" "azurerm_key_vault_access_policy" {}
 
 resource "azurerm_key_vault_access_policy" "azurerm_key_vault_access_policy" {
   key_vault_id = azurerm_key_vault.azurerm_key_vault_access_policy.id
-  tenant_id    = data.azurerm_client_config.example.tenant_id
-  object_id    = data.azurerm_client_config.example.object_id
+  tenant_id    = data.azurerm_client_config.azurerm_key_vault_access_policy.tenant_id
+  object_id    = data.azurerm_client_config.azurerm_key_vault_access_policy.object_id
 
   secret_permissions = [
     "Get",
