@@ -101,7 +101,7 @@ resource "azurerm_resource_group" "example" {
 module "key_vault" {
   source = "./modules/key_vault"
 
-  key_vault_name             = "examplekeyvault"
+  key_vault_name             = var.key_vault_name
   location                   = azurerm_resource_group.example.location
   resource_group_name        = azurerm_resource_group.example.name
   tenant_id                  = data.azurerm_client_config.example.tenant_id

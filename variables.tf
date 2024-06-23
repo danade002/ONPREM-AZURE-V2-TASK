@@ -169,3 +169,8 @@ variable "administrator_login_password" {
   description = "Administrator login password for the database"
   sensitive   = true
 }
+
+variable "key_vault_name" {
+  type        = string
+  description = "The name of the Key Vault"
+}
