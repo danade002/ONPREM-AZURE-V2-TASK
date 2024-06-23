@@ -82,6 +82,7 @@ module "resource_group" {
   location                  = var.location
   create_new_resource_group = var.create_new_resource_group
   resource_group_exists     = length(data.azurerm_resource_group.existing_rg) > 0
+ 
 }
 
 module "load_balancer" {
