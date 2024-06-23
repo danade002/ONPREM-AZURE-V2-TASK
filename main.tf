@@ -91,6 +91,19 @@ module "resource_group" {
   resource_group_exists     = length(data.azurerm_resource_group.existing_rg) > 0
 }
 
+data "azurerm_client_config" "current" {}
+
+module "key_vault" {
+  source                     = "./key_vault"
+  name                       = var.key_vault_name
+  location                   = var.location
+  resource_group_name        = var.resource_group_name
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  administrator_login        = var.administrator_login
+  administrator_login_password = var.administrator_login_password
+  soft_delete_enabled = true
+}
+
 module "load_balancer" {
   source = "./modules/load_balancer"
   resource_group_name = var.resource_group_name

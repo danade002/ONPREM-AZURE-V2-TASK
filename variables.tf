@@ -139,3 +139,18 @@ variable "create_new_resource_group" {
   type        = bool
   
 }
+
+variable "key_vault_name" {
+  description = "The name of the Key Vault."
+  type        = string
+}
+
+variable "administrator_login" {
+  description = "The administrator login name to store in the Key Vault."
+  type        = string
+}
+
+variable "administrator_login_password" {
+  description = "The administrator login password to store in the Key Vault."
+  type        = string
+}

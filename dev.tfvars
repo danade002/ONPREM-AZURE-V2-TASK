@@ -2,6 +2,11 @@ create_new_resource_group = false
 location     = "east us"
 resource_group_name = "valley-dev"
 
+# keyvault
+key_vault_name               = "OnpremKeyVault012"
+ administrator_login          = "insaitpgadmin"
+  administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
+
 # Networking
 vnet_name            = "insaitvnet"
 vnet_address_space   = ["10.0.0.0/16"]
