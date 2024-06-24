@@ -56,7 +56,7 @@ soft_delete_retention_days = 7
 sku_name = "premium"
 key_vault_name = "Predictive123"
 
-# app_service_id        = "<app-service-resource-id>"
-# linux_vm_id           = "<linux-vm-resource-id>"
-# postgresql_server_id  = "<postgresql-server-resource-id>"
-# application_insights_id = "<application-insights-resource-id>"
+app_service_id        = "<app-service-resource-id>"
+linux_vm_id           = "<linux-vm-resource-id>"
+postgresql_server_id  = "<postgresql-server-resource-id>"
+application_insights_id = "<application-insights-resource-id>"
