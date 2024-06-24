@@ -47,8 +47,8 @@ app_name = "insaitapp"
 source_code_path = "/path/to/your/source/code"
 
 secrets = {
- administrator_login          = "insaitpgadmin"
-administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
+ administrator-login          = "insaitpgadmin"
+administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
 }
 
 purge_protection_enabled = true
