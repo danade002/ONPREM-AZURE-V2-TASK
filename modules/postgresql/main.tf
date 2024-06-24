@@ -2,10 +2,10 @@ resource "azurerm_postgresql_server" "server" {
   name                         = var.server_name
   location                     = var.location
   resource_group_name = var.resource_group_name
-  sku_name                     = var.sku_name
-  storage_mb                   = var.storage_mb
-  version                      = var.version
-  ssl_enforcement_enabled      = var.ssl_enforcement_enabled
+  sku_name                     = "B_Gen5_1"
+  storage_mb                   = 5120
+  version                      = "11"
+  ssl_enforcement_enabled      = true
 }
 
 resource "azurerm_postgresql_database" "databases" {
@@ -13,7 +13,7 @@ resource "azurerm_postgresql_database" "databases" {
   name                = var.databases[count.index]
   resource_group_name = var.resource_group_name
   server_name         = azurerm_postgresql_server.server.name
-  charset             = var.charset
-  collation           = var.collation
+  charset             = "UTF8"
+  collation           = "English_United States.1252"
 }
 

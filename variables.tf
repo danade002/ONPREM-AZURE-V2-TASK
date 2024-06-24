@@ -150,35 +150,6 @@ variable "secrets" {
   type       =map(string)
 }
 
-variable "sku_name" {
-  type        = string
-  description = "The SKU name for the Key Vault"
-
-}
-
-variable "soft_delete_retention_days" {
-  type        = number
-  description = "The number of days to retain deleted keys"
-  
-}
-
-variable "purge_protection_enabled" {
-  type        = bool
-  description = "Enable or disable purge protection for the Key Vault"
-  
-}
-
-variable "charset" {
-  description = "The charset of the PostgreSQL server"
-  type        = string
-  
-}
-
-variable "collation" {
-  description = "The collation of the PostgreSQL server"
-  type        = string
-  
-}
 
 variable "ssl_enforcement_enabled" {
   description = "Enable SSL enforcement for the PostgreSQL server"
@@ -195,5 +166,23 @@ variable "storage_mb" {
 variable "version" {
   description = "The version of the PostgreSQL server"
   type        = string
+  
+}
+
+variable "sku_name" {
+  description = "The SKU name of the PostgreSQL server"
+  type        = string
+  
+}
+
+variable "purge_protection_enabled" {
+  description = "Enable purge protection for the Key Vault"
+  type        = bool
+  
+}
+
+variable "soft_delete_retention_days" {
+  description = "The number of days to retain soft-deleted secrets in the Key Vault"
+  type        = number
   
 }
