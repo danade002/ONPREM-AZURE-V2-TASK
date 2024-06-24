@@ -168,18 +168,18 @@ variable "soft_delete_retention_days" {
   
 }
 
-variable "app_service_id" {
-  type = string
-}
+# variable "app_service_id" {
+#   type = string
+# }
 
-variable "linux_vm_id" {
-  type = string
-}
+# variable "linux_vm_id" {
+#   type = string
+# }
 
-variable "postgresql_server_id" {
-  type = string
-}
+# variable "postgresql_server_id" {
+#   type = string
+# }
 
-variable "application_insights_id" {
-  type = string
-}
+# variable "application_insights_id" {
+#   type = string
+# }
