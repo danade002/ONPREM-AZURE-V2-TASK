@@ -91,22 +91,72 @@ module "load_balancer" {
   
 }
 
-# module "key_vault" {
-#   source              = "./modules/key_vault"
-#   key_vault_name      = var.key_vault_name
-#   location            = var.location
-#   resource_group_name = var.resource_group_name
-#   purge_protection_enabled = var.purge_protection_enabled
-#   soft_delete_retention_days = var.soft_delete_retention_days
-#   sku_name = var.sku_name
-#   tenant_id = data.azurerm_client_config.current.tenant_id
-#   administrator_login = var.secrets.administrator-login
-#   administrator_login_password = var.secrets.administrator-login-password
-# }
+module "key_vault" {
+  source              = "./modules/key_vault"
+  key_vault_name      = var.key_vault_name
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  purge_protection_enabled = var.purge_protection_enabled
+  soft_delete_retention_days = var.soft_delete_retention_days
+  sku_name = var.sku_name
+  tenant_id = data.azurerm_client_config.current.tenant_id
+  administrator_login = var.secrets.administrator-login
+  administrator_login_password = var.secrets.administrator-login-password
+}
 
-# module "key_vault_secrets" {
-#   source       = "./modules/key_vault_secrets"
-#   key_vault_id = module.key_vault.key_vault_id
-#   secrets      = var.secrets
-# }
-# data "azurerm_client_config" "current" {}
+module "key_vault_secrets" {
+  source       = "./modules/key_vault_secrets"
+  key_vault_id = module.key_vault.key_vault_id
+  secrets      = var.secrets
+}
+data "azurerm_client_config" "current" {}
+
+module "log_analytics_workspace" {
+  source              = "./modules/log_analytics_workspace"
+  name                = "log-analytics-workspace"
+  location            = var.location
+  resource_group_name =var.resource_group_name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
+module "app_service_diagnostics" {
+  source                       = "./modules/diagnostic_settings"
+  name                         = "app-service-diagnostics"
+  target_resource_id           = var.app_service_id
+  log_analytics_workspace_id   = module.log_analytics_workspace.id
+  logs = [
+    {
+      category = "AppServiceHTTPLogs"
+      enabled  = true
+      retention_policy = {
+        enabled = false
+      }
+    }
+  ]
+  metrics = [
+    {
+      category = "AllMetrics"
+      enabled  = true
+      retention_policy = {
+        enabled = false
+      }
+    }
+  ]
+}
+
+module "alerts" {
+  source              = "./modules/alerts"
+  name                = "Insait-alerts"
+  resource_group_name = var.resource_group_name
+  short_name          = "Insait"
+  email_receivers = [
+    { name = "idan", email_address = "idan@insait.io" },
+    { name = "renzo", email_address = "renzo@insait.io" },
+    { name = "yanay", email_address = "yanay@insait.io" }
+  ]
+  app_service_id         = var.app_service_id
+  linux_vm_id            = var.linux_vm_id
+  postgresql_server_id   = var.postgresql_server_id
+  application_insights_id = var.application_insights_id
+}
