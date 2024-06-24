@@ -21,12 +21,6 @@ registry_name = "insaitcontainerregistry"
 # PostgreSQL Server
 pg_server_name = "insaitpgserver"
 pg_databases   = ["insait_backend", "metabase", "bank_db"]
- sku_name                     = "B_Gen5_1"
-  storage_mb                   = 5120
-  version                      = "11"
-  ssl_enforcement_enabled      = true
-  charset             = "UTF8"
-  collation           = "English_United States.1252"
 
 # Azure DNS Zone
 dns_zone_name = "insaitdnszone.com"

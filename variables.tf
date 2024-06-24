@@ -150,25 +150,6 @@ variable "secrets" {
   type       =map(string)
 }
 
-
-variable "ssl_enforcement_enabled" {
-  description = "Enable SSL enforcement for the PostgreSQL server"
-  type        = bool
-  
-}
-
-variable "storage_mb" {
-  description = "The storage capacity of the PostgreSQL server"
-  type        = number
-  
-}
-
-variable "version" {
-  description = "The version of the PostgreSQL server"
-  type        = string
-  
-}
-
 variable "sku_name" {
   description = "The SKU name of the PostgreSQL server"
   type        = string
