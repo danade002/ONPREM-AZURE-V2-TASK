@@ -57,6 +57,6 @@ sku_name = "premium"
 key_vault_name = "Predictive123"
 
 app_service_id        = "<app-service-resource-id>"
-linux_vm_id           = "<linux-vm-resource-id>"
+linux_vm_id           = "/subscriptions/5b70678a-9913-4242-9e36-011a1b7c095e/resourceGroups/daniel-sandbox/providers/Microsoft.Compute/virtualMachines/insait-vm123"
 postgresql_server_id  = "<postgresql-server-resource-id>"
 application_insights_id = "<application-insights-resource-id>"

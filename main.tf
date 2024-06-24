@@ -64,6 +64,8 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
+  administrator-login = var.secrets.administrator-login
+  administrator-login-password = var.secrets.administrator-login-password
 }
 
 
