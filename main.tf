@@ -110,6 +110,5 @@ module "key_vault_secrets" {
   key_vault_id = module.key_vault.key_vault_id
   secrets      = var.secrets
 }
-
 data "azurerm_client_config" "current" {}
 
