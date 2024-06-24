@@ -4,8 +4,9 @@ data "azurerm_resource_group" "existing_rg" {
   count = var.create_new_resource_group ? 0 : 1
 }
 
+# Create a new resource group if the flag is set to true
 resource "azurerm_resource_group" "rg" {
-  count    = var.create_new_resource_group || length(data.azurerm_resource_group.existing_rg) == 0 ? 1 : 0
+  count    = var.create_new_resource_group ? 1 : 0
   name     = var.resource_group_name
   location = var.location
 }

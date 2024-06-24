@@ -140,30 +140,30 @@ variable "create_new_resource_group" {
   
 }
 
-variable "key_vault_name" {
-  type        = string
-  description = "The name of the Key Vault"
-}
+# variable "key_vault_name" {
+#   type        = string
+#   description = "The name of the Key Vault"
+# }
 
-variable "secrets" {
-  description = "A map of secrets to be stored in the Key Vault"
-  type       =map(string)
-}
+# variable "secrets" {
+#   description = "A map of secrets to be stored in the Key Vault"
+#   type       =map(string)
+# }
 
-variable "sku_name" {
-  description = "The SKU name of the PostgreSQL server"
-  type        = string
+# variable "sku_name" {
+#   description = "The SKU name of the PostgreSQL server"
+#   type        = string
   
-}
+# }
 
-variable "purge_protection_enabled" {
-  description = "Enable purge protection for the Key Vault"
-  type        = bool
+# variable "purge_protection_enabled" {
+#   description = "Enable purge protection for the Key Vault"
+#   type        = bool
   
-}
+# }
 
-variable "soft_delete_retention_days" {
-  description = "The number of days to retain soft-deleted secrets in the Key Vault"
-  type        = number
+# variable "soft_delete_retention_days" {
+#   description = "The number of days to retain soft-deleted secrets in the Key Vault"
+#   type        = number
   
-}
+# }
