@@ -30,11 +30,37 @@ Here's a brief description of the variables in the `dev.tfvars` file:
 - `dns_zone_name`: The name of the Azure DNS Zone.
 - `public_ip_name`: The name of the public IP address.
 - `lb_name`: The name of the Load Balancer.
+- `create_new_rg`: A flag to determine whether to create a new resource group or use an existing one. Set to true to create a new resource group, and false to use an existing resource group.
+- `existing_rg_name`: The name of the existing resource group to use if `create_new_rg` is set to false.
+- `new_rg_name`: The name of the new resource group to create if `create_new_rg` is set to true.
+- `location`: The location for the resource group and resources.
+
+## Variable Details
+
+### `create_new_rg`
+- **Description:** A flag to determine whether to create a new resource group or use an existing one. Set to `true` to create a new resource group, and `false` to use an existing resource group.
+- **Type:** bool
+- **Default:** false
+
+### `existing_rg_name`
+- **Description:** The name of the existing resource group to use if `create_new_rg` is set to `false`.
+- **Type:** string
+- **Default:** "existing-rg-name"
+
+### `new_rg_name`
+- **Description:** The name of the new resource group to create if `create_new_rg` is set to `true`.
+- **Type:** string
+- **Default:** "new-rg-name"
+
+### `location`
+- **Description:** The location for the resource group and resources.
+- **Type:** string
+- **Default:** "East US"
 
 ## How to Use
 
 1. Update the `dev.tfvars` file with your specific configuration values.
-2. Run `terraform init -backend-config='dev.config' `.
+2. Run `terraform init -backend-config='dev.config'`.
 3. Run `terraform plan -var-file=dev.tfvars` to see the changes that will be made.
 4. Run `terraform apply -var-file=dev.tfvars` to apply the changes.
 
@@ -57,8 +83,4 @@ This repository contains several modules, each responsible for creating a specif
 - `dns`: Creates a DNS zone.
 - `virtual_network`: Creates a virtual network.
 - `subnet`: Creates a subnet within the virtual network.
-- `resource group` :create resource  a resource group tpo deploy the infrastructure.
-
-
-
-
+- `resource_group`: Creates a resource group to deploy the infrastructure.

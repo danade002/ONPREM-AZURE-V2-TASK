@@ -91,24 +91,3 @@ module "load_balancer" {
   
 }
 
-
-module "key_vault" {
-  source              = "./modules/key_vault"
-  key_vault_name      = var.key_vault_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  purge_protection_enabled = var.purge_protection_enabled
-  soft_delete_retention_days = var.soft_delete_retention_days
-  sku_name = var.sku_name
-  tenant_id = data.azurerm_client_config.current.tenant_id
-  administrator_login = var.secrets.administrator-login
-  administrator_login_password = var.secrets.administrator-login-password
-}
-
-module "key_vault_secrets" {
-  source       = "./modules/key_vault_secrets"
-  key_vault_id = module.key_vault.key_vault_id
-  secrets      = var.secrets
-}
-data "azurerm_client_config" "current" {}
-
