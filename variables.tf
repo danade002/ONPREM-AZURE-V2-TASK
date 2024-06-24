@@ -167,3 +167,33 @@ variable "purge_protection_enabled" {
   description = "Enable or disable purge protection for the Key Vault"
   
 }
+
+variable "charset" {
+  description = "The charset of the PostgreSQL server"
+  type        = string
+  
+}
+
+variable "collation" {
+  description = "The collation of the PostgreSQL server"
+  type        = string
+  
+}
+
+variable "ssl_enforcement_enabled" {
+  description = "Enable SSL enforcement for the PostgreSQL server"
+  type        = bool
+  
+}
+
+variable "storage_mb" {
+  description = "The storage capacity of the PostgreSQL server"
+  type        = number
+  
+}
+
+variable "version" {
+  description = "The version of the PostgreSQL server"
+  type        = string
+  
+}

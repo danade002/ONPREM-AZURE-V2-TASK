@@ -64,6 +64,12 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
+    sku_name                     = var.sku_name
+  storage_mb                   = var.storage_mb
+  version                      = var.version
+  ssl_enforcement_enabled      = var.ssl_enforcement_enabled
+  collation = var.collation
+  charset = var.charset
 }
 
 
