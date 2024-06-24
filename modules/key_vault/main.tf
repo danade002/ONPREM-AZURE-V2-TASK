@@ -3,35 +3,25 @@ resource "azurerm_key_vault" "key_vault" {
   location                    = var.location
   resource_group_name         = var.resource_group_name
   sku_name                    = var.sku_name
-  soft_delete_retention_days  = var.soft_delete_retention_days
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
   purge_protection_enabled    = var.purge_protection_enabled
-  tenant_id                  = data.azurerm_client_config.key_vault.tenant_id
-}
- data "azurerm_client_config" "tenant_id" {}
+  soft_delete_retention_days = var.soft_delete_retention_days
 
-resource "azurerm_key_vault_access_policy" "azurerm_key_vault_access_policy" {
-  key_vault_id = azurerm_key_vault.azurerm_key_vault_access_policy.id
-  tenant_id    = data.azurerm_client_config.azurerm_key_vault_access_policy.tenant_id
-  object_id    = data.azurerm_client_config.azurerm_key_vault_access_policy.object_id
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
 
-  secret_permissions = [
-    "Get",
-    "Set",
-    "List",
-  ]
-}
-
-
-resource "azurerm_key_vault_secret" "admin_login" {
-  name         = "administrator-login"
-  value        = var.administrator_login
-  key_vault_id = azurerm_key_vault.key_vault.id
-  depends_on   = [azurerm_key_vault_access_policy.azurerm_key_vault_access_policy]
+    secret_permissions = [
+      "Get",
+      "List",
+      "Set",
+      "Delete",
+      "Purge",
+      "Recover",
+      "Backup",
+      "Restore",
+    ]
+  }
 }
 
-resource "azurerm_key_vault_secret" "admin_password" {
-  name         = "administrator-login-password"
-  value        = var.administrator_login_password
-  key_vault_id = azurerm_key_vault.key_vault.id
-  depends_on   = [azurerm_key_vault_access_policy.azurerm_key_vault_access_policy]
-}
+data "azurerm_client_config" "current" {}
