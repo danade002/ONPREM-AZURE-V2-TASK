@@ -2,8 +2,8 @@ resource "azurerm_postgresql_server" "server" {
   name                         = var.server_name
   location                     = var.location
   resource_group_name = var.resource_group_name
-   administrator_login          = var.administrator-login
-  administrator_login_password = var.administrator-login-password
+  administrator_login = var.secrets.administrator-login
+  administrator_login_password = var.secrets.administrator-login-password
   sku_name                     = "B_Gen5_1"
   storage_mb                   = 5120
   version                      = "11"
