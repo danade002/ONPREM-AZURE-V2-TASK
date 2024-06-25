@@ -103,8 +103,8 @@ module "key_vault" {
   tenant_id           = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days = var.soft_delete_retention_days
   purge_protection_enabled = var.purge_protection_enabled
-  administrator_login       = var.secrets.administrator_login
- administrator_login_password = var.secrets.administrator_login_password
+  administrator_login       = var.secrets.administrator-login
+ administrator_login_password = var.secrets.administrator-login-password
   existing_secret  = var.existing_secret
   new_secret_name  = var.new_secret_name
   new_secret_value = var.new_secret_value
