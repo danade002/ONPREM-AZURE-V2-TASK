@@ -39,5 +39,5 @@ resource "azurerm_key_vault_secret" "new_secret" {
   count        = var.use_existing_secret ? 0 : 1
   name         = var.new_secret_name
   value        = var.new_secret_value
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = var.key_vault_id
 }
