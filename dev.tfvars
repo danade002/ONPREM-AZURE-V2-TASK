@@ -1,4 +1,4 @@
-resource_group_name = "valley-dev"
+resource_group_name = "daniel-sandbox"
 location     = "east us"
 create_new_resource_group = false
 
