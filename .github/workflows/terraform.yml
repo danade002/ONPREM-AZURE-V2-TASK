@@ -44,6 +44,7 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init -backend-config='dev.config'
+        terraform force-unlock -force aef02d87-4e3e-37d5-f0df-dbe1b2597b49
    
     - name: Terraform Format
       run: terraform fmt -recursive
@@ -61,7 +62,7 @@ jobs:
         terraform plan -var-file='dev.tfvars'
 
     - name: Terraform Apply
-      if: (github.ref =='refs/heads/main')
+      # if: (github.ref =='refs/heads/main')
       run: |
         export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
         export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
