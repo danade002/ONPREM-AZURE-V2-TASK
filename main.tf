@@ -113,52 +113,52 @@ module "key_vault_secrets" {
 }
 data "azurerm_client_config" "current" {}
 
-# module "log_analytics_workspace" {
-#   source              = "./modules/log_analytics_workspace"
-#   name                = "log-analytics-workspace"
-#   location            = var.location
-#   resource_group_name =var.resource_group_name
-#   sku                 = "PerGB2018"
-#   retention_in_days   = 30
-# }
+module "log_analytics_workspace" {
+  source              = "./modules/log_analytics_workspace"
+  name                = "log-analytics-workspace"
+  location            = var.location
+  resource_group_name =var.resource_group_name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
 
-# module "app_service_diagnostics" {
-#   source                       = "./modules/diagnostic_settings"
-#   name                         = "app-service-diagnostics"
-#   target_resource_id           = var.app_service_id
-#   log_analytics_workspace_id   = module.log_analytics_workspace.id
-#   logs = [
-#     {
-#       category = "AppServiceHTTPLogs"
-#       enabled  = true
-#       retention_policy = {
-#         enabled = false
-#       }
-#     }
-#   ]
-#   metrics = [
-#     {
-#       category = "AllMetrics"
-#       enabled  = true
-#       retention_policy = {
-#         enabled = false
-#       }
-#     }
-#   ]
-# }
+module "app_service_diagnostics" {
+  source                       = "./modules/diagnostic_settings"
+  name                         = "app-service-diagnostics"
+  target_resource_id           = var.app_service_id
+  log_analytics_workspace_id   = module.log_analytics_workspace.id
+  logs = [
+    {
+      category = "AppServiceHTTPLogs"
+      enabled  = true
+      retention_policy = {
+        enabled = false
+      }
+    }
+  ]
+  metrics = [
+    {
+      category = "AllMetrics"
+      enabled  = true
+      retention_policy = {
+        enabled = false
+      }
+    }
+  ]
+}
 
-# module "alerts" {
-#   source              = "./modules/alerts"
-#   name                = "Insait-alerts"
-#   resource_group_name = var.resource_group_name
-#   short_name          = "Insait"
-#   email_receivers = [
-#     { name = "idan", email_address = "idan@insait.io" },
-#     { name = "renzo", email_address = "renzo@insait.io" },
-#     { name = "yanay", email_address = "yanay@insait.io" }
-#   ]
-#   app_service_id         = var.app_service_id
-#   linux_vm_id            = var.linux_vm_id
-#   postgresql_server_id   = var.postgresql_server_id
-#   application_insights_id = var.application_insights_id
-# }
+module "alerts" {
+  source              = "./modules/alerts"
+  name                = "Insait-alerts"
+  resource_group_name = var.resource_group_name
+  short_name          = "Insait"
+  email_receivers = [
+    { name = "idan", email_address = "idan@insait.io" },
+    { name = "renzo", email_address = "renzo@insait.io" },
+    { name = "yanay", email_address = "yanay@insait.io" }
+  ]
+  app_service_id         = var.app_service_id
+  linux_vm_id            = var.linux_vm_id
+  postgresql_server_id   = var.postgresql_server_id
+  application_insights_id = var.application_insights_id
+}
