@@ -56,7 +56,7 @@ soft_delete_retention_days = 7
 sku_name = "premium"
 key_vault_name = "Predictive123"
 
-app_service_id        = "<app-service-resource-id>"
+app_service_id        = "/subscriptions/5b70678a-9913-4242-9e36-011a1b7c095e/resourceGroups/daniel-sandbox/providers/Microsoft.Web/staticSites/Insait-static-web-app"
 linux_vm_id           = "/subscriptions/5b70678a-9913-4242-9e36-011a1b7c095e/resourceGroups/daniel-sandbox/providers/Microsoft.Compute/virtualMachines/insait-vm123"
-postgresql_server_id  = "<postgresql-server-resource-id>"
-application_insights_id = "<application-insights-resource-id>"
+postgresql_server_id  = "/subscriptions/5b70678a-9913-4242-9e36-011a1b7c095e/resourceGroups/daniel-sandbox/providers/Microsoft.DBforPostgreSQL/servers/insaitpgserver123"
+application_insights_id = "/subscriptions/5b70678a-9913-4242-9e36-011a1b7c095e/resourceGroups/daniel-sandbox/providers/microsoft.insights/components/insait-instance"
