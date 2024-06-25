@@ -140,11 +140,6 @@ variable "create_new_resource_group" {
   
 }
 
-variable "key_vault_name" {
-  type        = string
-  description = "The name of the Key Vault"
-}
-
 
 variable "sku_name" {
   description = "The SKU name of the PostgreSQL server"
