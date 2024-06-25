@@ -187,8 +187,4 @@ variable "secrets" {
   
 }
 
-variable "key_vault_id" {
-  description = "The ID of the Key Vault"
-  type        = string
-  
-}
+

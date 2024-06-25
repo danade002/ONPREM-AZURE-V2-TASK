@@ -108,7 +108,7 @@ module "key_vault" {
   existing_secret  = var.existing_secret
   new_secret_name  = var.new_secret_name
   new_secret_value = var.new_secret_value
-  key_vault_id = var.key_vault_id
+  key_vault_id     = module.key_vault.key_vault_id
   use_existing_secret = var.use_existing_secret
 }
 
