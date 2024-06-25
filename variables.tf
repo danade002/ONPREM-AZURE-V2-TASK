@@ -164,18 +164,6 @@ variable "soft_delete_retention_days" {
   
 }
 
-variable "administrator_login" {
-  description = "The administrator login for the Key Vault."
-  type        = string
-  
-}
-
-variable "administrator_login_password" {
-  description = "The administrator password for the Key Vault."
-  type        = string
-  
-}
-
 variable "existing_secret" {
   description = "Name of the pre-existing secret in Key Vault"
 }
