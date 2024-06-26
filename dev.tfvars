@@ -58,6 +58,7 @@ sku_name                   = "premium"
 key_vault_name             = "danielazureonpremBOX123"
 key_vault_id = "azurerm_key_vault.key_vault.id"
 
+
 # Administrator credentials and secret options
 administrator-login       = "insaitpgadmin12"
 administrator-login-password = "hP7-MH1o-AOL5B4N20fe12"
