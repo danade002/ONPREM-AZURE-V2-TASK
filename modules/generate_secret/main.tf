@@ -8,6 +8,6 @@ resource "random_password" "admin_password" {
 resource "azurerm_key_vault_secret" "admin_password_secret" {
   count       = var.use_generate_secret ? 1 : 0
   name        = "administrator-login-password"
-  value       = random_password.admin_password.result
+  value       = random_password.admin_password[count.index].result
   key_vault_id = var.key_vault_id
 }
