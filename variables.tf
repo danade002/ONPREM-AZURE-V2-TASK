@@ -178,6 +178,7 @@ variable "administrator-login-password" {
   
 }
 
+
 variable "existing_admin_login_secret_name" {
   type    = string
   default = ""
@@ -187,20 +188,21 @@ variable "existing_admin_password_secret_name" {
   type    = string
   default = ""
 }
+
 variable "generate_secret_length" {
   description = "Length of generated password"
-  default     = 16
+  
 }
 
 variable "generate_secret_special" {
   description = "Include special characters in generated password"
-  default     = true
+
 }
 
 variable "use_admin_credentials" {
   description = "Enable using admin credentials to create secrets"
   type        = bool
-  default     = false
+
 }
 
 variable "use_existing_secret" {
