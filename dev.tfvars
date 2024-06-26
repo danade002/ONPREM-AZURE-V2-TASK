@@ -55,7 +55,7 @@ secrets = {
 purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
-key_vault_name             = "danielkeyonpremBOX"
+key_vault_name             = "danielkeyonpremBOX123"
 
 # Administrator credentials and secret options
 administrator-login       = "insaitpgadmin12"
