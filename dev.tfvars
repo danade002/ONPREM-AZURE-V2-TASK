@@ -64,6 +64,6 @@ existing_secret_name = "your-existing-secret-name"
 generate_secret_length = 16
 generate_secret_special = true
 
-use_admin_credentials = true
-use_existing_secret = false
+use_admin_credentials = false
+use_existing_secret = true
 use_generate_secret = false
