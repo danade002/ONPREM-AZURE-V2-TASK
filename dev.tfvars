@@ -58,8 +58,8 @@ sku_name                   = "premium"
 key_vault_name             = "onprem12345"
 
 # Administrator credentials and secret options
-administrator-login       = "insaitpgadmin12"
-administrator-login-password = "hP7-MH1o-AOL5B4N20fe12"
+administrator-login       = "daniel12345"
+administrator-login-password = "daniel12345"
 existing_secret_name      = "daniel12345"
 generate_secret_length    = 16
 generate_secret_special   = true
