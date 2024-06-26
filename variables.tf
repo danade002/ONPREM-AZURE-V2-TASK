@@ -170,12 +170,12 @@ variable "soft_delete_retention_days" {
 
 variable "administrator-login" {
   description = "Administrator login name"
-  default     = "insaitpgadmin"
+ 
 }
 
 variable "administrator-login-password" {
   description = "Administrator login password"
-  default     = "hP7-MH1o-AOL5B4N20fe"
+  
 }
 
 variable "existing_secret_name" {
@@ -208,4 +208,16 @@ variable "use_generate_secret" {
   description = "Enable generating a new secret and storing in Key Vault"
   type        = bool
   default     = false
+}
+
+variable "administrator_login_password" {
+  description = "The administrator login password"
+  type        = string
+  
+}
+
+variable "administrator_login" {
+  description = "The administrator login name"
+  type        = string
+  
 }

@@ -64,6 +64,8 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
+  administrator_login = var.administrator_login
+  administrator_login_password = var.administrator_login_password
 }
 
 
@@ -114,8 +116,8 @@ data "azurerm_client_config" "current" {}
 module "admin_credentials" {
   source               = "./modules/admin_credentials"
   key_vault_id         = module.key_vault.key_vault_id
-  admin_login          = var.administrator-login
-  admin_password       = var.administrator-login-password
+  administrator-login         = var.administrator-login
+  administrator-login-password      = var.administrator-login-password
   use_admin_credentials = var.use_admin_credentials
 }
 
