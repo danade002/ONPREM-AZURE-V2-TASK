@@ -67,5 +67,5 @@ existing_admin_password_secret_name = "hP7-MH1o-AOL5B4N20fe12"
 generate_secret_length    = 16
 generate_secret_special   = true
 use_admin_credentials     = false
-use_existing_secret       = true
-use_generate_secret       = false
+use_existing_secret       = false
+use_generate_secret       = true
