@@ -209,15 +209,3 @@ variable "use_generate_secret" {
   type        = bool
   default     = false
 }
-
-variable "administrator-login-password" {
-  description = "The administrator login password"
-  type        = string
-  
-}
-
-variable "administrator-login" {
-  description = "The administrator login name"
-  type        = string
-  
-}
