@@ -60,7 +60,7 @@ key_vault_name             = "danielkeyonprem"
 # Administrator credentials and secret options
 administrator-login       = "insaitpgadmin12"
 administrator-login-password = "hP7-MH1o-AOL5B4N20fe12"
-existing_secret_name      = "nsaitpgadmin12"
+existing_secret_name      = "daniel12345"
 generate_secret_length    = 16
 generate_secret_special   = true
 use_admin_credentials     = false
