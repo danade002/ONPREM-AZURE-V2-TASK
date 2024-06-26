@@ -47,12 +47,11 @@ app_name                   = "insaitapp123"
 source_code_path           = "/path/to/your/source/code"
 
 # Azure Key Vault Settings
-locals {
+l
   secrets = var.use_existing_secret ? {} : {
     administrator-login          = "insaitpgadmin"
     administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
   }
-}
 
 secrets = local.secrets
 
