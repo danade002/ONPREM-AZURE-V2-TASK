@@ -178,17 +178,6 @@ variable "administrator-login-password" {
   
 }
 
-
-variable "existing_admin_login_secret_name" {
-  type    = string
-  default = ""
-}
-
-variable "existing_admin_password_secret_name" {
-  type    = string
-  default = ""
-}
-
 variable "generate_secret_length" {
   description = "Length of generated password"
   
@@ -205,14 +194,26 @@ variable "use_admin_credentials" {
 
 }
 
-variable "use_existing_secret" {
-  description = "Enable using existing secrets from Key Vault"
-  type        = bool
-  default     = false
-}
-
 variable "use_generate_secret" {
   description = "Enable generating a new secret and storing in Key Vault"
   type        = bool
-  default     = false
+
+}
+variable "use_existing_secret" {
+  type    = bool
+  default = false
+}
+
+variable "key_vault_id" {
+  type = string
+}
+
+variable "administrator_login" {
+  type    = string
+  default = ""
+}
+
+variable "administrator_login_password" {
+  type    = string
+  default = ""
 }

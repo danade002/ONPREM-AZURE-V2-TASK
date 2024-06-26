@@ -18,16 +18,25 @@ variable "tenant_id" {
   description = "The tenant ID for the Azure subscription"
 }
 
-variable "administrator_login" {
-  type        = string
-  description = "Administrator login for the database"
+variable "use_existing_secret" {
+  type    = bool
+  
 }
 
-variable "administrator_login_password" {
-  type        = string
-  description = "Administrator login password for the database"
-  sensitive   = true
+variable "key_vault_id" {
+  type = string
 }
+
+variable "administrator_login_value" {
+  type    = string
+  
+}
+
+variable "administrator_login_password_value" {
+  type    = string
+  
+}
+
 
 variable "soft_delete_retention_days" {
   type        = number

@@ -102,8 +102,10 @@ module "key_vault" {
   soft_delete_retention_days = var.soft_delete_retention_days
   sku_name = var.sku_name
   tenant_id = data.azurerm_client_config.current.tenant_id
-  administrator_login = var.secrets.administrator-login
-  administrator_login_password = var.secrets.administrator-login-password
+  key_vault_id = var.key_vault_id
+  use_existing_secret = var.use_existing_secret
+  administrator_login_value = local.administrator_login_value
+  administrator_login_password_value = local.administrator_login_password_value
 }
 
 module "key_vault_secrets" {
@@ -121,14 +123,14 @@ module "admin_credentials" {
   admin_password        = var.administrator-login-password
 }
 
+locals {
+  administrator_login_value          = var.use_existing_secret ? "" : var.administrator_login
+  administrator_login_password_value = var.use_existing_secret ? "" : var.administrator_login_password
+}
+
 module "existing_secret" {
   source       = "./modules/key_vault_secrets"
   key_vault_id = module.key_vault.key_vault_id
-
-  secrets = var.use_existing_secret ? {
-   "administrator-login"          = var.existing_admin_login_secret_name
-    "administrator-login-password" = var.existing_admin_password_secret_name
-  } : {}
 }
 
 module "generate_secret" {
