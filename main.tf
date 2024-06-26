@@ -116,9 +116,9 @@ data "azurerm_client_config" "current" {}
 module "admin_credentials" {
   source               = "./modules/admin_credentials"
   key_vault_id         = module.key_vault.key_vault_id
-  administrator-login         = var.administrator-login
-  administrator-login-password      = var.administrator-login-password
   use_admin_credentials = var.use_admin_credentials
+  admin_login           = var.administrator-login
+  admin_password        = var.administrator-login-password
 }
 
 module "existing_secret" {
