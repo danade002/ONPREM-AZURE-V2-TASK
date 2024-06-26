@@ -46,6 +46,10 @@ app_name = "insaitapp123"
 #source code path
 source_code_path = "/path/to/your/source/code"
 
+secrets = {
+ administrator-login          = "insaitpgadmin"
+administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
+}
 
 purge_protection_enabled = true
 soft_delete_retention_days = 7
