@@ -217,3 +217,13 @@ variable "administrator_login_password" {
   type    = string
   default = ""
 }
+
+variable "existing_admin_password_secret_name" {
+  type    = string
+  
+}
+
+variable "existing_admin_login_secret_name" {
+  type    = string
+  
+}
