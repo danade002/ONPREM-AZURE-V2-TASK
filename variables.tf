@@ -168,32 +168,15 @@ variable "soft_delete_retention_days" {
   
 }
 
-variable "admin_name" {
-  description = "Admin username"
-  type        = string
-  
+variable "option" {
+  type    = number
+
+}
+
+variable "admin_username" {
+  type = string
 }
 
 variable "admin_password" {
-  description = "Admin password"
-  type        = string
- 
-}
-
-variable "pre_existing_secret" {
-  description = "Pre-existing KeyVault secret ID"
-  type        = string
-  
-}
-
-variable "create_new_secret" {
-  description = "Flag to create a new KeyVault secret"
-  type        = bool
-  
-}
-
-variable "key_vault_id" {
-  description = "The ID of the KeyVault"
-  type        = string
-  
+  type = string
 }

@@ -104,27 +104,12 @@ module "key_vault" {
   administrator_login_password = var.secrets.administrator-login-password
 }
 
-module "admin_credentials" {
-  source = "./modules/key_vault_secret"
-  count  = (!var.create_new_secret && var.pre_existing_secret == null) ? 1 : 0
+module "keyvault_secrets" {
+  source = "./modules/keyvault_secrets"
 
-  admin_name     = var.admin_name
+  option         = var.option
+  admin_username = var.admin_username
   admin_password = var.admin_password
-  key_vault_id   = var.key_vault_id
-}
-
-module "use_existing_secret" {
-  source = "./modules/key_vault_secret"
-  count  = var.pre_existing_secret != null ? 1 : 0
-
-  pre_existing_secret = var.pre_existing_secret
-}
-
-module "create_new_secret" {
-  source = "./modules/key_vault_secret"
-  count  = var.create_new_secret ? 1 : 0
-
-  key_vault_id = var.key_vault_id
 }
 
 data "azurerm_client_config" "current" {}

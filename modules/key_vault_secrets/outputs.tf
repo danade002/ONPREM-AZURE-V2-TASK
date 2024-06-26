@@ -1,13 +1,11 @@
-output "selected_secret" {
-  value = var.pre_existing_secret != null ? var.pre_existing_secret : azurerm_key_vault_secret.new_secret[0].id
+output "admin_credentials_secret_id" {
+  value = azurerm_key_vault_secret.admin_credentials[*].id
 }
 
-output "admin_credentials" {
-  value = {
-    name     = var.admin_name
-    password = var.admin_password
-     condition = var.admin_name != null && var.admin_password != null
-  }
+output "existing_secret_id" {
+  value = azurerm_key_vault_secret.existing_secret[*].id
 }
 
- 
+output "new_secret_id" {
+  value = azurerm_key_vault_secret.new_secret[*].id
+}
