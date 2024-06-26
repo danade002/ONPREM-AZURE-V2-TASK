@@ -210,13 +210,13 @@ variable "use_generate_secret" {
   default     = false
 }
 
-variable "administrator_login_password" {
+variable "administrator-login-password" {
   description = "The administrator login password"
   type        = string
   
 }
 
-variable "administrator_login" {
+variable "administrator-login" {
   description = "The administrator login name"
   type        = string
   
