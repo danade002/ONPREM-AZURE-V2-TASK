@@ -67,4 +67,4 @@ generate_secret_length    = 16
 generate_secret_special   = true
 use_admin_credentials     = false
 use_existing_secret       = true
-use_generate_secret       = true
+use_generate_secret       = false
