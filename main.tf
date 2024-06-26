@@ -126,8 +126,8 @@ module "existing_secret" {
   key_vault_id = module.key_vault.key_vault_id
 
   secrets = var.use_existing_secret ? {
-    "administrator-login"          = var.existing_secret_name
-    "administrator-login-password" = var.existing_secret_name
+    "administrator-login"          = var.existing_admin_login_secret_name
+    "administrator-login-password" = var.existing_admin_password_secret_name
   } : {}
 }
 

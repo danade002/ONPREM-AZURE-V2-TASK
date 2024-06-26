@@ -178,10 +178,15 @@ variable "administrator-login-password" {
   
 }
 
-variable "existing_secret_name" {
-  description = "Name of the existing secret in Key Vault"
+variable "existing_admin_login_secret_name" {
+  type    = string
+  default = ""
 }
 
+variable "existing_admin_password_secret_name" {
+  type    = string
+  default = ""
+}
 variable "generate_secret_length" {
   description = "Length of generated password"
   default     = 16
