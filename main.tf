@@ -120,7 +120,7 @@ module "admin_credentials" {
 }
 
 module "existing_secret" {
-  source       = "./modules/key_vault_secret"
+  source       = "./modules/key_vault_secrets"
   key_vault_id = module.key_vault.key_vault_id
 
   secrets = var.use_existing_secret ? {
