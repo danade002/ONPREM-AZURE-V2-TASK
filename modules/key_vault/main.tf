@@ -33,9 +33,6 @@ resource "azurerm_key_vault_secret" "admin_login" {
   value        = var.administrator_login_value
   key_vault_id = azurerm_key_vault.key_vault.id
 
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "azurerm_key_vault_secret" "admin_login_password" {
@@ -45,7 +42,5 @@ resource "azurerm_key_vault_secret" "admin_login_password" {
   value        = var.administrator_login_password_value
   key_vault_id = azurerm_key_vault.key_vault.id
 
-  lifecycle {
-    prevent_destroy = true
-  }
+
 }
