@@ -168,12 +168,12 @@ variable "soft_delete_retention_days" {
   
 }
 
-variable "admin_login" {
+variable "administrator-login" {
   description = "Administrator login name"
   default     = "insaitpgadmin"
 }
 
-variable "admin_password" {
+variable "administrator-login-password" {
   description = "Administrator login password"
   default     = "hP7-MH1o-AOL5B4N20fe"
 }
