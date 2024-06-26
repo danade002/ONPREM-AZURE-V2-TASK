@@ -1,9 +1,22 @@
-variable "key_vault_id" {
-  description = "The ID of the Key Vault"
+variable "admin_name" {
+  description = "Admin username"
   type        = string
+  default     = null
 }
 
-variable "secrets" {
-  description = "A map of secrets to be stored in the Key Vault"
-  type       =map(string)
+variable "admin_password" {
+  description = "Admin password"
+  type        = string
+  default     = null
+}
+
+variable "pre_existing_secret" {
+  description = "Pre-existing KeyVault secret ID"
+  type        = string
+  default     = null
+}
+
+variable "key_vault_id" {
+  description = "The ID of the KeyVault"
+  type        = string
 }

@@ -47,26 +47,3 @@ variable "sku_name" {
   default     = "standard"
   
 }
-
-variable "existing_secret" {
-  description = "Name of the pre-existing secret in Key Vault"
-}
-
-variable "new_secret_name" {
-  description = "Name of the new secret to create in Key Vault"
-}
-
-variable "new_secret_value" {
-  description = "Value of the new secret to create in Key Vault"
-}
-
-variable "use_existing_secret" {
-  description = "Set to true if you want to use an existing secret, false to create a new one"
-  default     = true
-}
-
-variable "key_vault_id" {
-  description = "The ID of the Key Vault"
-  type        = string
-  
-}

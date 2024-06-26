@@ -140,6 +140,15 @@ variable "create_new_resource_group" {
   
 }
 
+variable "key_vault_name" {
+  type        = string
+  description = "The name of the Key Vault"
+}
+
+variable "secrets" {
+  description = "A map of secrets to be stored in the Key Vault"
+  type       =map(string)
+}
 
 variable "sku_name" {
   description = "The SKU name of the PostgreSQL server"
@@ -159,32 +168,32 @@ variable "soft_delete_retention_days" {
   
 }
 
-variable "existing_secret" {
-  description = "Name of the pre-existing secret in Key Vault"
-}
-
-variable "new_secret_name" {
-  description = "Name of the new secret to create in Key Vault"
-}
-
-variable "new_secret_value" {
-  description = "Value of the new secret to create in Key Vault"
-}
-
-variable "use_existing_secret" {
-  description = "Set to true if you want to use an existing secret, false to create a new one"
-
-}
-
-variable "secrets" {
-  description = "A map of secrets to be stored in the Key Vault"
-  type        = map(string)
+variable "admin_name" {
+  description = "Admin username"
+  type        = string
   
 }
 
+variable "admin_password" {
+  description = "Admin password"
+  type        = string
+ 
+}
 
-variable "key_vault_name" {
-  description = "The name of the Key Vault"
+variable "pre_existing_secret" {
+  description = "Pre-existing KeyVault secret ID"
+  type        = string
+  
+}
+
+variable "create_new_secret" {
+  description = "Flag to create a new KeyVault secret"
+  type        = bool
+  
+}
+
+variable "key_vault_id" {
+  description = "The ID of the KeyVault"
   type        = string
   
 }

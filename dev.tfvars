@@ -1,4 +1,4 @@
-resource_group_name = "daniel-sandbox"
+resource_group_name = "valley-dev"
 location     = "east us"
 create_new_resource_group = false
 
@@ -54,11 +54,31 @@ administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
 purge_protection_enabled = true
 soft_delete_retention_days = 7
 sku_name = "premium"
-key_vault_name = "Predictive123"
-existing_secret     = "Predictive123"
-new_secret_name     = "daniel-secret123"
-new_secret_value    =  {
-administrator-login        = "insaitpgadmin123"
-administrator-login-password = "hP7-MH1o-AOL5B4N20fe123"
-}
-use_existing_secret = false
+key_vault_name = "Predictiveazure0123"
+
+
+ Option 1: Provide admin credentials
+admin_name       = "insaitpgadmin"
+admin_password   = "hP7-MH1o-AOL5B4N20fe"
+
+# Leave these as defaults
+pre_existing_secret = null
+create_new_secret = false
+
+# # Leave these as defaults
+# admin_name       = null
+# admin_password   = null
+
+# # Option 2: Provide a pre-existing KeyVault secret ID
+# pre_existing_secret = "existing-secret-id"
+
+# # Ensure this is set to false
+# create_new_secret = false
+
+# # Leave these as defaults
+# admin_name       = null
+# admin_password   = null
+# pre_existing_secret = null
+
+# # Option 3: Create a new KeyVault secret
+# create_new_secret = true
