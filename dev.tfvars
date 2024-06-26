@@ -56,6 +56,7 @@ purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
 key_vault_name             = "danielkeyonpremBOX123"
+key_vault_id = "azurerm_key_vault.key_vault.id"
 
 # Administrator credentials and secret options
 administrator-login       = "insaitpgadmin12"
