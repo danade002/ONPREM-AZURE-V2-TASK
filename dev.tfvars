@@ -47,18 +47,15 @@ app_name                   = "insaitapp123"
 source_code_path           = "/path/to/your/source/code"
 
 # Azure Key Vault Settings
-l
-  secrets = var.use_existing_secret ? {} : {
-    administrator-login          = "insaitpgadmin"
-    administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
-  }
-
-secrets = local.secrets
+secrets = {
+  administrator-login          = "insaitpgadmin"
+  administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
+}
 
 purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
-key_vault_name             = "onpremdanielkv034123"
+key_vault_name             = "danielkeyonprem"
 
 # Administrator credentials and secret options
 administrator-login       = "insaitpgadmin12"
@@ -66,6 +63,6 @@ administrator-login-password = "hP7-MH1o-AOL5B4N20fe12"
 existing_secret_name      = "onpremdanielkv034123"
 generate_secret_length    = 16
 generate_secret_special   = true
-use_admin_credentials     = false
-use_existing_secret       = true
+use_admin_credentials     = true
+use_existing_secret       = false
 use_generate_secret       = false
