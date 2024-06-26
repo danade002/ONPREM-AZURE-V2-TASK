@@ -1,12 +1,9 @@
-variable "option" {
-  type    = number
-
+variable "key_vault_id" {
+  description = "ID of the Azure Key Vault"
 }
 
-variable "admin_username" {
-  type = string
-}
-
-variable "admin_password" {
-  type = string
+variable "secrets" {
+  description = "Map of secrets to manage in Azure Key Vault"
+  type        = map(string)
+  default     = {}
 }

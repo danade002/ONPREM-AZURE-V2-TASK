@@ -168,15 +168,44 @@ variable "soft_delete_retention_days" {
   
 }
 
-variable "option" {
-  type    = number
-
-}
-
-variable "admin_username" {
-  type = string
+variable "admin_login" {
+  description = "Administrator login name"
+  default     = "insaitpgadmin"
 }
 
 variable "admin_password" {
-  type = string
+  description = "Administrator login password"
+  default     = "hP7-MH1o-AOL5B4N20fe"
+}
+
+variable "existing_secret_name" {
+  description = "Name of the existing secret in Key Vault"
+}
+
+variable "generate_secret_length" {
+  description = "Length of generated password"
+  default     = 16
+}
+
+variable "generate_secret_special" {
+  description = "Include special characters in generated password"
+  default     = true
+}
+
+variable "use_admin_credentials" {
+  description = "Enable using admin credentials to create secrets"
+  type        = bool
+  default     = false
+}
+
+variable "use_existing_secret" {
+  description = "Enable using existing secrets from Key Vault"
+  type        = bool
+  default     = false
+}
+
+variable "use_generate_secret" {
+  description = "Enable generating a new secret and storing in Key Vault"
+  type        = bool
+  default     = false
 }

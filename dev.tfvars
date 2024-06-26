@@ -56,7 +56,14 @@ soft_delete_retention_days = 7
 sku_name = "premium"
 key_vault_name = "Predictiveazure0123"
 
+admin_login = "insaitpgadmin"
+admin_password = "hP7-MH1o-AOL5B4N20fe"
 
- option = 1
-admin_username = "your_admin_username"
-admin_password = "your_admin_password"
+existing_secret_name = "your-existing-secret-name"
+
+generate_secret_length = 16
+generate_secret_special = true
+
+use_admin_credentials = true
+use_existing_secret = false
+use_generate_secret = false

@@ -104,12 +104,35 @@ module "key_vault" {
   administrator_login_password = var.secrets.administrator-login-password
 }
 
-module "keyvault_secrets" {
-  source = "./modules/keyvault_secrets"
+module "key_vault_secrets" {
+  source       = "./modules/key_vault_secrets"
+  key_vault_id = module.key_vault.key_vault_id
+  secrets      = var.secrets
+}
+data "azurerm_client_config" "current" {}
 
-  option         = var.option
-  admin_username = var.admin_username
-  admin_password = var.admin_password
+module "admin_credentials" {
+  source               = "./modules/admin_credentials"
+  key_vault_id         = module.key_vault.key_vault_id
+  admin_login          = var.admin_login
+  admin_password       = var.admin_password
+  use_admin_credentials = var.use_admin_credentials
 }
 
-data "azurerm_client_config" "current" {}
+module "existing_secret" {
+  source       = "./modules/key_vault_secret"
+  key_vault_id = module.key_vault.key_vault_id
+
+  secrets = var.use_existing_secret ? {
+    "administrator-login"          = var.existing_secret_name
+    "administrator-login-password" = var.existing_secret_name
+  } : {}
+}
+
+module "generate_secret" {
+  source               = "./modules/generate_secret"
+  key_vault_id         = module.key_vault.key_vault_id
+  generate_secret_length = var.generate_secret_length
+  generate_secret_special = var.generate_secret_special
+  use_generate_secret  = var.use_generate_secret
+}
