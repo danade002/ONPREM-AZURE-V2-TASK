@@ -2,11 +2,11 @@ variable "key_vault_id" {
   description = "ID of the Azure Key Vault"
 }
 
-variable "administrator-login" {
+variable "admin_login" {
   description = "Administrator login name"
 }
 
-variable "administrator-login-password" {
+variable "admin_password" {
   description = "Administrator login password"
 }
 
