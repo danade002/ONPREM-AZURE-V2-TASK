@@ -145,10 +145,7 @@ variable "key_vault_name" {
   description = "The name of the Key Vault"
 }
 
-variable "secrets" {
-  description = "A map of secrets to be stored in the Key Vault"
-  type       =map(string)
-}
+
 
 variable "sku_name" {
   description = "The SKU name of the PostgreSQL server"
