@@ -56,8 +56,8 @@ soft_delete_retention_days = 7
 sku_name = "premium"
 key_vault_name = "onpremdanielkv034123"
 
-administrator-login = "insaitpgadmin123"
-administrator-login-password = "hP7-MH1o-AOL5B4N20fe123"
+administrator-login = "insaitpgadmin12"
+administrator-login-password = "hP7-MH1o-AOL5B4N20fe12"
 
 existing_secret_name = "onpremdanielkv034123"
 
