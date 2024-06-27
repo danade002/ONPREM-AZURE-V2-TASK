@@ -201,7 +201,7 @@ variable "use_generate_secret" {
 }
 variable "use_existing_secret" {
   type    = bool
-  default = false
+  
 }
 
 variable "key_vault_id" {
@@ -218,12 +218,3 @@ variable "administrator_login_password" {
   default = ""
 }
 
-variable "existing_admin_password_secret_name" {
-  type    = string
-  
-}
-
-variable "existing_admin_login_secret_name" {
-  type    = string
-  
-}
