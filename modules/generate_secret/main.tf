@@ -1,7 +1,7 @@
 resource "azurerm_key_vault_secret" "generated_secret" {
   count       = var.use_generate_secret ? 1 : 0  # Only create the secret if use_generate_secret is true
   name        = var.secret_name
-  value       = random_password.generate.result
+  value       = random_password.generate[count.index].result  # Access result using count.index
   key_vault_id = var.key_vault_id
 }
 
