@@ -199,6 +199,10 @@ variable "use_generate_secret" {
   type        = bool
 
 }
+variable "secret_name" {
+  description = "Name of the secret to create in Key Vault"
+  
+}
 variable "use_existing_secret" {
   type    = bool
   

@@ -134,9 +134,10 @@ module "existing_secret" {
 }
 
 module "generate_secret" {
-  source               = "./modules/generate_secret"
-  key_vault_id         = module.key_vault.key_vault_id
-  generate_secret_length = var.generate_secret_length
+  source                  = "./modules/generate_secret"
+  key_vault_id            = module.key_vault.key_vault_id
+  secret_name             = var.secret_name
+  generate_secret_length  = var.generate_secret_length
   generate_secret_special = var.generate_secret_special
-  use_generate_secret  = var.use_generate_secret
+  use_generate_secret     = var.use_generate_secret
 }

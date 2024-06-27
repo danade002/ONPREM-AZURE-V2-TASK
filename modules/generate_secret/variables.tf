@@ -16,3 +16,8 @@ variable "use_generate_secret" {
   description = "Enable the module to generate a new secret"
   type        = bool
 }
+
+variable "secret_name" {
+  description = "Name of the secret to create"
+  
+}
