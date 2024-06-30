@@ -131,7 +131,7 @@ locals {
 }
 
 module "key_vault_secrets" {
-  source       = "./modules/key_vault_secret"
+  source       = "./modules/key_vault_secrets"
   key_vault_id = module.key_vault.id
   secrets = {
     administrator-login = {
