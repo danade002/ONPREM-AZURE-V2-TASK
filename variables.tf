@@ -137,12 +137,12 @@ variable "create_new_resource_group" {
   type        = bool
 }
 
-variable "administrator_login" {
+variable "administrator-login" {
   description = "Administrator login name"
   type        = string
 }
 
-variable "administrator_login_password" {
+variable "administrator-login-password" {
   description = "Administrator login password"
   type        = string
 }

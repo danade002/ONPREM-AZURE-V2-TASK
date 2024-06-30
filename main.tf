@@ -98,13 +98,13 @@ module "key_vault" {
   purge_protection_enabled      = var.purge_protection_enabled
   key_vault_name                = var.key_vault_name
   use_existing_secret           = var.use_existing_secret
-  administrator_login_value     = var.administrator_login
-  administrator_login_password_value = var.administrator_login_password
+  administrator_login_value     = var.administrator-login
+  administrator_login_password_value = var.administrator-login-password
   key_vault_id                  = var.key_vault_id
   use_generate_secret           = var.use_generate_secret
   existing_secret_name          = var.existing_secret_name
   use_admin_credentials = var.use_admin_credentials
-  administrator_login_password = var.administrator_login_password
+  administrator_login_password = var.administrator-login-password
   generate_secret = var.use_generate_secret
 
 }
