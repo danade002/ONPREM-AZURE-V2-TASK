@@ -75,6 +75,12 @@ variable "administrator_login_password" {
   
 }
 
+variable "administrator_login" {
+  type        = string
+  description = "Administrator login password"
+  
+}
+
 variable "use_admin_credentials" {
   type        = bool
   description = "Flag to use provided admin credentials"
