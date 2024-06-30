@@ -64,8 +64,8 @@ module "postgresql" {
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
-  administrator_login = var.administrator-login
-  administrator_login_password = var.administrator-login-password
+  administrator_login = var.administrator_login
+  administrator_login_password = var.administrator_login_password
 }
 
 
@@ -95,49 +95,50 @@ module "load_balancer" {
 
 module "key_vault" {
   source              = "./modules/key_vault"
-  key_vault_name      = var.key_vault_name
   location            = var.location
   resource_group_name = var.resource_group_name
-  purge_protection_enabled = var.purge_protection_enabled
+  tenant_id           = data.azurerm_key_vault_secret.existing
+  sku_name            = var.sku_name
   soft_delete_retention_days = var.soft_delete_retention_days
-  sku_name = var.sku_name
-  tenant_id = data.azurerm_client_config.current.tenant_id
-  key_vault_id = var.key_vault_id
+  purge_protection_enabled = var.purge_protection_enabled
+  key_vault_name = var.key_vault_name
   use_existing_secret = var.use_existing_secret
-  administrator_login_value = local.administrator_login_value
-  administrator_login_password_value = local.administrator_login_password_value
+  administrator_login_value = var.administrator_login
+  administrator_login_password_value = var.administrator_login_password
+  key_vault_id = var.key_vault_id
 }
 
-module "key_vault_secrets" {
-  source       = "./modules/key_vault_secrets"
-  key_vault_id = module.key_vault.key_vault_id
-  secrets      = var.secrets
+resource "random_password" "generated_password" {
+  length  = 16
+  special = true
+  override_special = "_%@"
+  keepers = {
+    # Generate a new password if `use_generate_secret` is true
+    generate = var.use_generate_secret
+  }
 }
-data "azurerm_client_config" "current" {}
 
-module "admin_credentials" {
-  source               = "./modules/admin_credentials"
-  key_vault_id         = module.key_vault.key_vault_id
-  use_admin_credentials = var.use_admin_credentials
-  admin_login           = var.administrator-login
-  admin_password        = var.administrator-login-password
+data "azurerm_key_vault_secret" "existing" {
+  name         = var.existing_secret_name
+  key_vault_id = module.key_vault.id
+  count        = var.use_existing_secret ? 1 : 0
 }
 
 locals {
-  administrator_login_value          = var.use_existing_secret ? "" : var.administrator_login
-  administrator_login_password_value = var.use_existing_secret ? "" : var.administrator_login_password
+  final_admin_login_password = var.use_admin_credentials ? var.administrator_login_password : (
+    var.use_existing_secret ? data.azurerm_key_vault_secret.existing[0].value : random_password.generated_password.result
+  )
 }
 
-module "existing_secret" {
-  source       = "./modules/key_vault_secrets"
-  key_vault_id = module.key_vault.key_vault_id
-}
-
-module "generate_secret" {
-  source                  = "./modules/generate_secret"
-  key_vault_id            = module.key_vault.key_vault_id
-  secret_name             = var.secret_name
-  generate_secret_length  = var.generate_secret_length
-  generate_secret_special = var.generate_secret_special
-  use_generate_secret     = var.use_generate_secret
+module "key_vault_secrets" {
+  source       = "./modules/key_vault_secret"
+  key_vault_id = module.key_vault.id
+  secrets = {
+    administrator-login = {
+      value = var.use_admin_credentials ? var.administrator_login : "admin"
+    }
+    administrator-login-password = {
+      value = local.final_admin_login_password
+    }
+  }
 }

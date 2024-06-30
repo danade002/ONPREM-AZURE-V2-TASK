@@ -135,90 +135,80 @@ variable "resource_group_name" {
 }
 
 variable "create_new_resource_group" {
-  description = "Boolean to determine if a new resource group should be created"
+  description = "Flag to create a new resource group"
   type        = bool
+  
+}
+
+variable "administrator_login" {
+  description = "Administrator login name"
+  type        = string
+ 
+}
+
+variable "administrator_login_password" {
+  description = "Administrator login password"
+  type        = string
+ 
+}
+
+variable "use_admin_credentials" {
+  description = "Flag to use provided admin credentials"
+  type        = bool
+
+}
+
+variable "use_existing_secret" {
+  description = "Flag to use existing Key Vault secret"
+  type        = bool
+  
+}
+
+variable "use_generate_secret" {
+  description = "Flag to generate a new secret in Key Vault"
+  type        = bool
+
+}
+
+variable "existing_secret_name" {
+  description = "Name of the existing secret in Key Vault"
+  type        = string
   
 }
 
 variable "key_vault_name" {
+  description = "Name of the Key Vault"
   type        = string
+ 
+}
+
+variable "key_vault_id" {
+  description = "Key Vault ID"
+  
+}
+
+variable "key_vault_name" {
   description = "The name of the Key Vault"
-}
-
-variable "secrets" {
-  description = "A map of secrets to be stored in the Key Vault"
-  type       =map(string)
-}
-
-variable "sku_name" {
-  description = "The SKU name of the PostgreSQL server"
   type        = string
   
 }
 
-variable "purge_protection_enabled" {
-  description = "Enable purge protection for the Key Vault"
-  type        = bool
+variable "sku_name" {
+  description = "The SKU name for the Key Vault"
+  type        = string
   
 }
 
 variable "soft_delete_retention_days" {
-  description = "The number of days to retain soft-deleted secrets in the Key Vault"
+  description = "The number of days to retain deleted keys"
   type        = number
   
 }
 
-variable "administrator-login" {
-  description = "Administrator login name"
- 
-}
-
-variable "administrator-login-password" {
-  description = "Administrator login password"
-  
-}
-
-variable "generate_secret_length" {
-  description = "Length of generated password"
-  
-}
-
-variable "generate_secret_special" {
-  description = "Include special characters in generated password"
-
-}
-
-variable "use_admin_credentials" {
-  description = "Enable using admin credentials to create secrets"
+variable "purge_protection_enabled" {
+  description = "Enable or disable purge protection for the Key Vault"
   type        = bool
-
-}
-
-variable "use_generate_secret" {
-  description = "Enable generating a new secret and storing in Key Vault"
-  type        = bool
-
-}
-variable "secret_name" {
-  description = "Name of the secret to create in Key Vault"
   
-}
-variable "use_existing_secret" {
-  type    = bool
-  
-}
+} 
 
-variable "key_vault_id" {
-  type = string
-}
-
-variable "administrator_login" {
-  type    = string
-  default = ""
-}
-
-variable "administrator_login_password" {
-  type    = string
-  default = ""
-}
 

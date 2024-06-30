@@ -1,9 +1,11 @@
 variable "key_vault_id" {
-  description = "ID of the Azure Key Vault"
+  description = "Key Vault ID"
+  type        = string
 }
 
 variable "secrets" {
-  description = "Map of secrets to manage in Azure Key Vault"
-  type        = map(string)
-  default     = {}
+  description = "Map of secrets to be stored in the Key Vault"
+  type        = map(object({
+    value = string
+  }))
 }
