@@ -15,16 +15,27 @@ resource "azurerm_key_vault" "key_vault" {
 
     key_permissions = [
       "Get",
-      "List",  
+      "List",
+      "Create",
+      "Import",
+      "Update",
+      "Delete",
+      "Recover",
+      "Backup",
+      "Restore",
+      "Purge",
     ]
 
     secret_permissions = [
       "Get",
       "List",
       "Set",
-      "delete",
+      "Delete",
+      "Recover",
+      "Backup",
+      "Restore",
+      "Purge",
     ]
   }
 }
-
 data "azurerm_client_config" "current" {}
