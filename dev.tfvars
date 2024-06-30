@@ -50,7 +50,7 @@ source_code_path           = "/path/to/your/source/code"
 purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
-key_vault_name             = "danad00233"
+key_vault_name             = "Insaitdanad00233"
 key_vault_id = "azurerm_key_vault.key_vault.id"
 
 # Administrator credentials and secret options
