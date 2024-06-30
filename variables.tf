@@ -190,3 +190,8 @@ variable "purge_protection_enabled" {
   description = "Enable or disable purge protection for the Key Vault"
   type        = bool
 }
+
+variable "generate_secret" {
+  description = "Flag to generate a new secret in Key Vault"
+  type        = bool
+}
