@@ -110,6 +110,7 @@ module "key_vault" {
   use_admin_credentials = var.use_admin_credentials
   use_generate_secret = var.use_generate_secret
   administrator_login_password = var.administrator_login_password
+  administrator_login = var.administrator_login
 }
 
 module "key_vault_secrets" {
