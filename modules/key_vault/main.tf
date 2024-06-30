@@ -6,7 +6,7 @@ resource "azurerm_key_vault_secret" "admin_login" {
   count        = var.use_existing_secret ? 0 : 1
   name         = "administrator-login"
   value        = var.administrator_login_value
-  key_vault_id = azurerm_key_vault.key_vault.id
+  key_vault_id = var.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "admin_login_password" {
