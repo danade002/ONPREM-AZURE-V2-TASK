@@ -1,5 +1,5 @@
 output "key_vault_id" {
-  value = azurerm_key_vault.key_vault.id
+  value = var.key_vault_id
 }
 
 output "final_admin_login_password" {
