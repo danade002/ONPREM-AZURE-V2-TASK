@@ -9,6 +9,7 @@ terraform {
       version = "1.13.1"
     }
   }
+  
   backend "azurerm" {
     container_name = "tfstate"
     key            = "terraform.tfstate"
@@ -16,13 +17,11 @@ terraform {
 }
 
 provider "azurerm" {
-  skip_provider_registration = true
   features {}
-  
+  skip_provider_registration = true
 }
 
 provider "azapi" {}
-
 
 module "virtual_network" {
   source              = "./modules/virtual_network"
@@ -42,7 +41,7 @@ module "subnet" {
 
 module "linux_virtual_machine" {
   source               = "./modules/linux_virtual_machine"
-  resource_group_name = var.resource_group_name
+  resource_group_name  = var.resource_group_name
   location             = var.location
   vm_name              = var.vm_name
   vm_size              = var.vm_size
@@ -60,7 +59,7 @@ module "container_registry" {
 
 module "postgresql" {
   source              = "./modules/postgresql"
- resource_group_name =var.resource_group_name
+  resource_group_name = var.resource_group_name
   location            = var.location
   server_name         = var.pg_server_name
   databases           = var.pg_databases
@@ -68,10 +67,9 @@ module "postgresql" {
   administrator_login_password = var.administrator_login_password
 }
 
-
 module "dns" {
   source              = "./modules/dns"
-resource_group_name = var.resource_group_name
+  resource_group_name = var.resource_group_name
   location            = var.location
   dns_zone_name       = var.dns_zone_name
 }
@@ -83,61 +81,37 @@ module "resource_group" {
   create_new_resource_group = var.create_new_resource_group
 }
 
-
 module "load_balancer" {
-  source = "./modules/load_balancer"
+  source              = "./modules/load_balancer"
   resource_group_name = var.resource_group_name
-  location = var.location
-  lb_name = var.lb_name
-  public_ip_name = var.public_ip_name
-  
+  location            = var.location
+  lb_name             = var.lb_name
+  public_ip_name      = var.public_ip_name
 }
 
 module "key_vault" {
-  source              = "./modules/key_vault"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  sku_name            = var.sku_name
-  soft_delete_retention_days = var.soft_delete_retention_days
-  purge_protection_enabled = var.purge_protection_enabled
-  key_vault_name = var.key_vault_name
-  use_existing_secret = var.use_existing_secret
-  administrator_login_value = var.administrator_login
+  source                        = "./modules/key_vault"
+  location                      = var.location
+  resource_group_name           = var.resource_group_name
+  sku_name                      = var.sku_name
+  soft_delete_retention_days    = var.soft_delete_retention_days
+  purge_protection_enabled      = var.purge_protection_enabled
+  key_vault_name                = var.key_vault_name
+  use_existing_secret           = var.use_existing_secret
+  administrator_login_value     = var.administrator_login
   administrator_login_password_value = var.administrator_login_password
-  key_vault_id = var.key_vault_id
-}
-
-resource "random_password" "generated_password" {
-  length  = 16
-  special = true
-  override_special = "_%@"
-  keepers = {
-    # Generate a new password if `use_generate_secret` is true
-    generate = var.use_generate_secret
-  }
-}
-
-data "azurerm_key_vault_secret" "existing" {
-  name         = var.existing_secret_name
-  key_vault_id = module.key_vault.id
-  count        = var.use_existing_secret ? 1 : 0
-}
-
-locals {
-  final_admin_login_password = var.use_admin_credentials ? var.administrator_login_password : (
-    var.use_existing_secret ? data.azurerm_key_vault_secret.existing[0].value : random_password.generated_password.result
-  )
+  key_vault_id                  = var.key_vault_id
 }
 
 module "key_vault_secrets" {
   source       = "./modules/key_vault_secrets"
-  key_vault_id = module.key_vault.id
+  key_vault_id = module.key_vault.key_vault_id
   secrets = {
     administrator-login = {
       value = var.use_admin_credentials ? var.administrator_login : "admin"
     }
     administrator-login-password = {
-      value = local.final_admin_login_password
+      value = module.key_vault.final_admin_login_password
     }
   }
 }

@@ -50,7 +50,7 @@ source_code_path           = "/path/to/your/source/code"
 purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
-key_vault_name             = "danade0023"
+key_vault_name             = "dande002673"
 key_vault_id = "module.key_vault.key_vault_id"
 
 # Administrator credentials and secret options
