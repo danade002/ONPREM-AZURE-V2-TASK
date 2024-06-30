@@ -52,7 +52,6 @@ soft_delete_retention_days = 7
 sku_name                   = "premium"
 key_vault_name             = "Insaitdanad00233"
 key_vault_id = "azurerm_key_vault.key_vault.id"
-
 # Administrator credentials and secret options
 administrator_login         = "insaitpgadmin12"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe12"
