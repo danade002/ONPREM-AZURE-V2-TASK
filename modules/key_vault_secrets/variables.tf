@@ -39,10 +39,3 @@ variable "use_generate_secret" {
   
 }
 
-variable "secrets" {
-  description = "Map of additional secrets to be stored in Azure Key Vault."
-  type        = map(object({
-    value = string
-  }))
-  
-}

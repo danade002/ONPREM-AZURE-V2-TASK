@@ -35,10 +35,18 @@ resource "azurerm_key_vault_secret" "admin_login_password" {
   key_vault_id = var.key_vault_id
 }
 
-// Only create the secrets if use_generate_secret is true and no secrets are provided
-resource "azurerm_key_vault_secret" "secrets" {
-  for_each     = var.use_generate_secret && length(var.secrets) == 0 ? {} : {}
-  name         = each.key
-  value        = each.value.value
+resource "random_password" "generated_secret_value" {
+  length            = 20
+  special           = true
+  override_special  = "_%@"
+  keepers = {
+    generate = var.use_generate_secret
+  }
+}
+
+resource "azurerm_key_vault_secret" "generated_secret" {
+  count       = var.use_generate_secret ? 1 : 0
+  name        = "generated-secret"
+  value       = random_password.generated_secret_value.result
   key_vault_id = var.key_vault_id
 }
