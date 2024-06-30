@@ -59,4 +59,4 @@ administrator_login_password = "hP7-MH1o-AOL5B4N20fe12"
 use_admin_credentials       = false
 use_existing_secret         = true
 use_generate_secret         = false
-existing_secret_name        = "administrator_login, administrator_login_password"
+existing_secret_name        = "Insaitdanad00233"
