@@ -46,16 +46,11 @@ app_name                   = "insaitapp123"
 # Source Code Path
 source_code_path           = "/path/to/your/source/code"
 
-# Azure Key Vault Settings
-secrets = {
-  administrator-login          = "insaitpgadmin"
-  administrator-login-password = "hP7-MH1o-AOL5B4N20fe"
-}
-
+#key vault
 purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
-key_vault_name             = "danazureault123"
+key_vault_name             = "danade0023"
 key_vault_id = "azurerm_key_vault.key_vault.id"
 
 
