@@ -60,4 +60,3 @@ use_admin_credentials       = false
 use_existing_secret         = false
 use_generate_secret         = true
 existing_secret_name        = "existing-secret-name"  
-
