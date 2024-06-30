@@ -51,8 +51,7 @@ purge_protection_enabled   = true
 soft_delete_retention_days = 7
 sku_name                   = "premium"
 key_vault_name             = "danade0023"
-key_vault_id = "azurerm_key_vault.key_vault.id"
-
+key_vault_id = "module.key_vault.key_vault_id"
 
 # Administrator credentials and secret options
 administrator_login         = "insaitpgadmin12"
