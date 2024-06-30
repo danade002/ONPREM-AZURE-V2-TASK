@@ -1,4 +1,3 @@
-
 resource "random_password" "generated_password" {
   length            = 16
   special           = true
@@ -21,13 +20,24 @@ locals {
 }
 
 resource "azurerm_key_vault_secret" "admin_login" {
+  count = var.use_admin_credentials ? 1 : 0
+
   name         = "administrator-login"
-  value        = var.use_admin_credentials ? var.administrator_login : "admin"
+  value        = var.administrator_login
   key_vault_id = var.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "admin_login_password" {
+  count = var.use_admin_credentials ? 1 : 0
+
   name         = "administrator-login-password"
-  value        = local.final_admin_login_password
+  value        = var.administrator_login_password
+  key_vault_id = var.key_vault_id
+}
+
+resource "azurerm_key_vault_secret" "secrets" {
+  for_each     = var.use_generate_secret ? {} : var.secrets
+  name         = each.key
+  value        = each.value.value
   key_vault_id = var.key_vault_id
 }

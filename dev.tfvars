@@ -47,17 +47,22 @@ app_name                   = "insaitapp123"
 source_code_path           = "/path/to/your/source/code"
 
 #key vault
-purge_protection_enabled   = true
-soft_delete_retention_days = 7
-sku_name                   = "premium"
-key_vault_name             = "danazonprem"
+key_vault_name             = "danade0023"
 key_vault_id = "module.key_vault.key_vault_id"
 
 # Administrator credentials and secret options
-enabled_for_disk_encryption = false
-administrator_login         = "insaitpgadmin12"
+administrator_login = "insaitpgadmin12"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe12"
-use_admin_credentials       = true
-use_existing_secret         = false
-use_generate_secret         = false
-existing_secret_name        = "existing-secret-name"
+use_admin_credentials = true
+use_existing_secret = false
+use_generate_secret = false
+existing_secret_name = "myExistingSecret"
+
+secrets = {
+  "administrator_login" = {
+    value = "insaitpgadmin12"
+  }
+  "administrator_login_password" = {
+    value = "hP7-MH1o-AOL5B4N20fe12"
+  }
+}

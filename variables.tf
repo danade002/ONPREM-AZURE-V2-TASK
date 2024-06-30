@@ -137,69 +137,57 @@ variable "create_new_resource_group" {
   type        = bool
 }
 
-
-variable "key_vault_name" {
-  description = "Name of the Key Vault"
-  type        = string
-}
-
 variable "key_vault_id" {
-  description = "Key Vault ID"
-}
-
-variable "sku_name" {
-  description = "The SKU name for the Key Vault"
+  description = "ID of the Azure Key Vault where secrets will be stored."
   type        = string
-}
-
-variable "soft_delete_retention_days" {
-  description = "The number of days to retain deleted keys"
-  type        = number
-}
-
-variable "purge_protection_enabled" {
-  description = "Enable or disable purge protection for the Key Vault"
-  type        = bool
-}
-
-variable "use_existing_secret" {
-  description = "Whether to use an existing secret"
-  type        = bool
-  
-}
-
-variable "use_generate_secret" {
-  description = "Whether to generate a new secret"
-  type        = bool
-  
 }
 
 variable "use_admin_credentials" {
-  description = "Whether to use provided admin credentials"
-  type        = bool
-  
-}
-
-variable "existing_secret_name" {
-  description = "Whether to use an existing secret"
+  description = "Flag to indicate if administrator login credentials should be used."
   type        = bool
   
 }
 
 variable "administrator_login" {
-  description = "The admin login name"
+  description = "Administrator login name."
   type        = string
   
 }
 
 variable "administrator_login_password" {
-  description = "The admin login password"
+  description = "Administrator login password."
+  type        = string
+ 
+}
+
+variable "key_vault_name" {
+  type        = string
+  description = "The name of the Key Vault"
+  
+}
+
+variable "existing_secret_name" {
+  description = "Name of the existing secret in Azure Key Vault."
   type        = string
   
 }
 
-variable "enabled_for_disk_encryption" {
-  description = "Whether the key vault is enabled for disk encryption"
+variable "use_existing_secret" {
+  description = "Flag to indicate if an existing secret should be used from Azure Key Vault."
   type        = bool
+  
+}
+
+variable "use_generate_secret" {
+  description = "Flag to indicate if a new secret should be generated."
+  type        = bool
+  
+}
+
+variable "secrets" {
+  description = "Map of additional secrets to be stored in Azure Key Vault."
+  type        = map(object({
+    value = string
+  }))
   
 }

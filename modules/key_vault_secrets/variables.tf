@@ -1,39 +1,48 @@
-# ./modules/key_vault_secrets/variables.tf
-
 variable "key_vault_id" {
-  description = "The ID of the Key Vault."
+  description = "ID of the Azure Key Vault where secrets will be stored."
   type        = string
-}
-
-variable "use_existing_secret" {
-  description = "Whether to use an existing secret."
-  type        = bool
 }
 
 variable "use_admin_credentials" {
-  description = "Whether to use provided admin credentials."
+  description = "Flag to indicate if administrator login credentials should be used."
   type        = bool
+  
 }
 
 variable "administrator_login" {
-  description = "The admin login name."
+  description = "Administrator login name."
   type        = string
-  default     = ""
+  
 }
 
 variable "administrator_login_password" {
-  description = "The admin login password."
+  description = "Administrator login password."
   type        = string
-  default     = ""
+  
 }
 
 variable "existing_secret_name" {
-  description = "The name of the existing secret."
+  description = "Name of the existing secret in Azure Key Vault."
   type        = string
-  default     = ""
+
+}
+
+variable "use_existing_secret" {
+  description = "Flag to indicate if an existing secret should be used from Azure Key Vault."
+  type        = bool
+  
 }
 
 variable "use_generate_secret" {
-  description = "Whether to generate a new secret."
+  description = "Flag to indicate if a new secret should be generated."
   type        = bool
+  
+}
+
+variable "secrets" {
+  description = "Map of additional secrets to be stored in Azure Key Vault."
+  type        = map(object({
+    value = string
+  }))
+  
 }
