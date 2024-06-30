@@ -13,7 +13,7 @@ resource "azurerm_key_vault_secret" "admin_login_password" {
   count        = var.use_existing_secret ? 0 : 1
   name         = "administrator-login-password"
   value        = var.administrator_login_password_value
-  key_vault_id = azurerm_key_vault.key_vault.id
+  key_vault_id = var.key_vault_id
 }
 
 # Generate a random password if required
@@ -30,7 +30,7 @@ resource "random_password" "generated_password" {
 data "azurerm_key_vault_secret" "existing" {
   count       = var.use_existing_secret ? 1 : 0
   name        = var.existing_secret_name
-  key_vault_id = azurerm_key_vault.key_vault.id
+  key_vault_id = var.key_vault_id
 }
 
 # Determine the final admin login password
