@@ -59,10 +59,10 @@ use_generate_secret = false
 existing_secret_name = "myExistingSecret"
 
 secrets = {
-  "administrator_login" = {
-    value = "insaitpgadmin12"
+  "administrator-login" = {
+    value = "yourAdminLoginSecretValue"
   }
-  "administrator_login_password" = {
-    value = "hP7-MH1o-AOL5B4N20fe12"
+  "administrator-login-password" = {
+    value = "yourAdminPasswordSecretValue"
   }
 }
