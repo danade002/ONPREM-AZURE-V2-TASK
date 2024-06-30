@@ -191,7 +191,3 @@ variable "purge_protection_enabled" {
   type        = bool
 }
 
-variable "generate_secret" {
-  description = "Flag to generate a new secret in Key Vault"
-  type        = bool
-}

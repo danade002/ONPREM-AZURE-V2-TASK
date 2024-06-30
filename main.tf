@@ -104,8 +104,9 @@ module "key_vault" {
   use_generate_secret           = var.use_generate_secret
   existing_secret_name          = var.existing_secret_name
   use_admin_credentials = var.use_admin_credentials
-  generate_secret = var.generate_secret
   administrator_login_password = var.administrator_login_password
+  generate_secret = var.use_generate_secret
+
 }
 
 module "key_vault_secrets" {
