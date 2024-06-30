@@ -13,11 +13,6 @@ variable "resource_group_name" {
   description = "The name of the resource group"
 }
 
-variable "tenant_id" {
-  type        = string
-  description = "The tenant ID for the Azure subscription"
-}
-
 variable "use_existing_secret" {
   type    = bool
   
