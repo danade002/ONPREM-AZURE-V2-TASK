@@ -53,9 +53,9 @@ sku_name                   = "premium"
 key_vault_name             = "TONYDVEOPS123"
 key_vault_id = "azurerm_key_vault.key_vault.id"
 # Administrator credentials and secret options
-administrator_login         = "insaitpgadmin12"
-administrator_login_password = "hP7-MH1o-AOL5B4N20fe12"
+administrator-login         = "insaitpgadmin12"
+administrator-login-password = "hP7-MH1o-AOL5B4N20fe12"
 use_admin_credentials       = false
 use_existing_secret         = true
 use_generate_secret         = false
-existing_secret_name        = "administrator_login_password"
+existing_secret_name        = "administrator-login-password"
