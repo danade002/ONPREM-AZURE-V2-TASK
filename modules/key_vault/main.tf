@@ -21,6 +21,7 @@ resource "azurerm_key_vault" "key_vault" {
     secret_permissions = [
       "Get",
       "List",
+      "Set",
     ]
   }
 }
