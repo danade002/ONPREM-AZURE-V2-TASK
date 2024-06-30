@@ -137,35 +137,6 @@ variable "create_new_resource_group" {
   type        = bool
 }
 
-variable "administrator_login" {
-  description = "Administrator login name"
-  type        = string
-}
-
-variable "administrator_login_password" {
-  description = "Administrator login password"
-  type        = string
-}
-
-variable "use_admin_credentials" {
-  description = "Flag to use provided admin credentials"
-  type        = bool
-}
-
-variable "use_existing_secret" {
-  description = "Flag to use existing Key Vault secret"
-  type        = bool
-}
-
-variable "use_generate_secret" {
-  description = "Flag to generate a new secret in Key Vault"
-  type        = bool
-}
-
-variable "existing_secret_name" {
-  description = "Name of the existing secret in Key Vault"
-  type        = string
-}
 
 variable "key_vault_name" {
   description = "Name of the Key Vault"
@@ -191,3 +162,44 @@ variable "purge_protection_enabled" {
   type        = bool
 }
 
+variable "use_existing_secret" {
+  description = "Whether to use an existing secret"
+  type        = bool
+  
+}
+
+variable "use_generate_secret" {
+  description = "Whether to generate a new secret"
+  type        = bool
+  
+}
+
+variable "use_admin_credentials" {
+  description = "Whether to use provided admin credentials"
+  type        = bool
+  
+}
+
+variable "existing_secret_name" {
+  description = "Whether to use an existing secret"
+  type        = bool
+  
+}
+
+variable "administrator_login" {
+  description = "The admin login name"
+  type        = string
+  
+}
+
+variable "administrator_login_password" {
+  description = "The admin login password"
+  type        = string
+  
+}
+
+variable "enabled_for_disk_encryption" {
+  description = "Whether the key vault is enabled for disk encryption"
+  type        = bool
+  
+}

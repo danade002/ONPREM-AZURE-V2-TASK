@@ -94,34 +94,26 @@ module "load_balancer" {
 }
 
 module "key_vault" {
-  source              = "./modules/key_vault"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  sku_name            = var.sku_name
+  source                     = "./modules/key_vault"
+  location                   = var.location
+  resource_group_name        = var.resource_group_name
+  sku_name                   = var.sku_name
   soft_delete_retention_days = var.soft_delete_retention_days
-  purge_protection_enabled = var.purge_protection_enabled
-  key_vault_name = var.key_vault_name
-  use_existing_secret = var.use_existing_secret
-  administrator_login_value = var.administrator_login
+  purge_protection_enabled   = var.purge_protection_enabled
+  key_vault_name             = var.key_vault_name
+  key_vault_id               = var.key_vault_id
+  use_existing_secret        = var.use_existing_secret
   administrator_login_password_value = var.administrator_login_password
-  key_vault_id = var.key_vault_id
-  generate_secret = var.use_generate_secret
-  existing_secret_name = var.existing_secret_name
-  use_admin_credentials = var.use_admin_credentials
-  use_generate_secret = var.use_generate_secret
-  administrator_login_password = var.administrator_login_password
-  administrator_login = var.administrator_login
+  administrator_login_value = var.administrator_login
 }
 
 module "key_vault_secrets" {
-  source                   = "./modules/key_vault_secrets"
-  key_vault_id             = module.key_vault.key_vault_id
-  secrets = {
-    "administrator_login" = {
-      value = module.key_vault.administrator_login
-    }
-    "administrator_logi_password" = {
-      value = module.key_vault.administrator_login_password
-    }
-  }
+  source                     = "./modules/key_vault_secrets"
+  key_vault_id               = module.key_vault.id
+  use_existing_secret        = var.use_existing_secret
+  use_admin_credentials      = var.use_admin_credentials
+  administrator_login        = var.administrator_login
+  administrator_login_password = var.administrator_login_password
+  existing_secret_name       = var.existing_secret_name
+  use_generate_secret        = var.use_generate_secret
 }
