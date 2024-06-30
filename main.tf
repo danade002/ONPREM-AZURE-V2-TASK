@@ -116,10 +116,10 @@ module "key_vault_secrets" {
   source                   = "./modules/key_vault_secrets"
   key_vault_id             = module.key_vault.key_vault_id
   secrets = {
-    "admin-login" = {
+    "administrator_login" = {
       value = module.key_vault.administrator_login
     }
-    "admin-login-password" = {
+    "administrator_logi_password" = {
       value = module.key_vault.administrator_login_password
     }
   }
