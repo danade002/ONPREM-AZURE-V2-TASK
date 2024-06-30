@@ -56,8 +56,8 @@ key_vault_id = "azurerm_key_vault.key_vault.id"
 # Administrator credentials and secret options
 administrator_login         = "insaitpgadmin12"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe12"
-use_admin_credentials       = true
+use_admin_credentials       = false
 use_existing_secret         = false
-use_generate_secret         = false
+use_generate_secret         = true
 existing_secret_name        = "existing-secret-name"  
 
