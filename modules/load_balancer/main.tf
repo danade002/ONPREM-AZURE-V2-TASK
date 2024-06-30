@@ -41,4 +41,3 @@ resource "azurerm_lb_rule" "lb_rule" {
   frontend_ip_configuration_name = "LoadBalancerFrontend"
   probe_id                       = azurerm_lb_probe.lb_probe.id
 }
-

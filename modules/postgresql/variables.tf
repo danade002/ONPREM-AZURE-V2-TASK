@@ -17,3 +17,13 @@ variable "databases" {
   description = "The list of PostgreSQL databases to create"
   type        = list(string)
 }
+
+variable "administrator_login" {
+  description = "The administrator login name"
+  type        = string
+}
+
+variable "administrator_login_password" {
+  description = "The administrator login password"
+  type        = string
+}

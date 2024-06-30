@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.0"
-    }
-
-  }
-}
 
 # Define a Public IP Address
 resource "azurerm_public_ip" "public_ip" {

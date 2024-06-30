@@ -4,12 +4,6 @@ variable "create_new_resource_group" {
   default     = false
 }
 
-variable "resource_group_exists" {
-  description = "Boolean flag to check if the resource group already exists."
-  type        = bool
-  default     = false
-}
-
 variable "location" {
   description = "The Azure location where the resource group will be created"
   type        = string
@@ -20,3 +14,4 @@ variable "resource_group_name" {
   type        = string
   
 }
+

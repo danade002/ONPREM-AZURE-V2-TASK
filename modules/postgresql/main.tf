@@ -2,10 +2,10 @@ resource "azurerm_postgresql_server" "server" {
   name                         = var.server_name
   location                     = var.location
   resource_group_name = var.resource_group_name
+  administrator_login = var.administrator_login
+  administrator_login_password = var.administrator_login_password
   sku_name                     = "B_Gen5_1"
   storage_mb                   = 5120
-  administrator_login          = "insaitpgadmin"
-  administrator_login_password = "hP7-MH1o-AOL5B4N20fe"
   version                      = "11"
   ssl_enforcement_enabled      = true
 }
