@@ -109,4 +109,5 @@ module "key_vault_secrets" {
   existing_secret_name        = var.existing_secret_name
   use_existing_secret         = var.use_existing_secret
   use_generate_secret         = var.use_generate_secret
+  secrets = var.secrets
 }

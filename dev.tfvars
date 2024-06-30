@@ -47,8 +47,8 @@ app_name                   = "insaitapp123"
 source_code_path           = "/path/to/your/source/code"
 
 #key vault
-key_vault_name             = "onpremdanvaults12"
-key_vault_id = "azurerm_key_vault.key_vault.id"
+key_vault_name             = "onpremdanvaults"
+key_vault_id = "module.key_vault.key_vault_id"
 
 # Administrator credentials and secret options
 administrator_login = "insaitpgadmin12"
@@ -57,3 +57,12 @@ use_admin_credentials = true
 use_existing_secret = false
 use_generate_secret = false
 existing_secret_name = "myExistingSecret"
+
+secrets = {
+  "administrator-login" = {
+    value = "yourAdminLoginName"
+  }
+  "administrator-login-password" = {
+    value = "PasswordSecretValue@_1234"
+  }
+}
