@@ -44,6 +44,7 @@ jobs:
         export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
         export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         terraform init -backend-config='dev.config'
+        terraform force-unlock -force 9647bf1f-50ee-e61d-bcd5-711db4c044e5
         
     - name: Terraform Format
       run: terraform fmt -recursive
