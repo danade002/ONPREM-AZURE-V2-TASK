@@ -47,7 +47,7 @@ app_name                   = "insaitapp123"
 source_code_path           = "/path/to/your/source/code"
 
 #key vault
-key_vault_name             = "danade0023"
+key_vault_name             = "onpremdanvaults"
 key_vault_id = "module.key_vault.key_vault_id"
 
 # Administrator credentials and secret options
