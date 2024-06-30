@@ -34,9 +34,10 @@ data "azurerm_key_vault_secret" "existing" {
 # Determine the final admin login password
 locals {
   final_admin_login_password = var.use_admin_credentials ? var.administrator_login_password_value : (
-    var.use_existing_secret ? data.azurerm_key_vault_secret.existing[0].value : random_password.generated_password.result
+    var.use_existing_secret ? data.azurerm_key_vault_secret.existing[0].value : random_password.generated_password[0].result
   )
 }
+
 
 # Define Azure Key Vault resource
 resource "azurerm_key_vault" "key_vault" {
