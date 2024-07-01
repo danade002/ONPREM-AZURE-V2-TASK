@@ -65,8 +65,8 @@ module "postgresql" {
   server_name                 = var.pg_server_name
   key_vault_id                = var.key_vault_id
   databases = var.pg_databases
-  administrator-login-secret-name = var.administrator-login-secret-name
-  administrator-login-password-secret-name = var.administrator-login-password-secret-name
+  administrator_login_secret_name = var.administrator_login_secret_name
+  administrator_login_password_secret_name = var.administrator_login_password_secret_name
 }
 
 module "dns" {

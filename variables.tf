@@ -184,10 +184,10 @@ variable "use_generate_secret" {
   
 }
 
-variable "administrator-login-secret-name" {
+variable "administrator_login_secret_name" {
   description = "Name of the secret in Azure Key Vault for PostgreSQL server administrator login"
 }
 
-variable "administrator-login-password-secret-name" {
+variable "administrator_login_password_secret_name" {
   description = "Name of the secret in Azure Key Vault for PostgreSQL server administrator password"
 }
