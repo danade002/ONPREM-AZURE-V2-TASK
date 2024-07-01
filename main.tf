@@ -63,7 +63,7 @@ module "postgresql" {
   location                    = var.location
   resource_group_name         = var.resource_group_name
   server_name                 = var.pg_server_name
-  key_vault_id                = module.keyvault.key_vault_id
+  key_vault_id                = var.key_vault_id
   administrator_login_secret_name = var.administrator_login_secret_name
   administrator_login_password_secret_name = var.administrator_login_password_secret_name
   databases = var.pg_databases

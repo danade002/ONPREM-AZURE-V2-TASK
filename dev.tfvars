@@ -48,7 +48,7 @@ source_code_path           = "/path/to/your/source/code"
 
 #key vault
 key_vault_name             = "onpremdanvaults"
-key_vault_id = "module.key_vault.key_vault_id"
+key_vault_id = "azurerm_key_vault.key_vault.id"
 
 # Administrator credentials and secret options
 administrator_login = "insaitpgadmin12"
