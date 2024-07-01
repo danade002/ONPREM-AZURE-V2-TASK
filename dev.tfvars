@@ -53,22 +53,9 @@ key_vault_id = "module.key_vault.key_vault_id"
 # Administrator credentials and secret options
 administrator_login = "insaitpgadmin12"
 administrator_login_password = "hP7-MH1o-AOL5B4N20fe12"
-use_admin_credentials = false
+use_admin_credentials = true
 use_existing_secret = false
-use_generate_secret = true
-existing_secret_name = "myExistingSecret"
-
-#Monitoring & Alerts
-retention_in_days   = 30
-
-email_addresses = [
-  "daniel@insait.io",
-  "danielade@insait.io",
-  "daniel12@insait.io"
-]
-
-
-# Threshold values for alerts
-http_errors_threshold       = 10
-vm_downtime_threshold       = 90
-postgresql_deadlocks_threshold = 1
+use_generate_secret = false
+existing_secret_name = ""
+administrator_login_secret_name = "administrator_login"
+administrator_login_password_secret_name = "administrator_login_password"

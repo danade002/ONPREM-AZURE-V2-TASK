@@ -59,15 +59,15 @@ module "container_registry" {
 }
 
 module "postgresql" {
-  source              = "./modules/postgresql"
- resource_group_name =var.resource_group_name
-  location            = var.location
-  server_name         = var.pg_server_name
-  databases           = var.pg_databases
-  administrator_login = var.administrator_login
-  administrator_login_password = var.administrator_login_password
+  source                      = "./modules/postgresql"
+  location                    = var.location
+  resource_group_name         = var.resource_group_name
+  server_name                 = var.pg_server_name
+  key_vault_id                = module.keyvault.key_vault_id
+  administrator_login_secret_name = var.administrator_login_secret_name
+  administrator_login_password_secret_name = var.administrator_login_password_secret_name
+  databases = var.pg_databases
 }
-
 
 module "dns" {
   source              = "./modules/dns"
@@ -110,61 +110,3 @@ module "key_vault_secrets" {
   use_existing_secret         = var.use_existing_secret
   use_generate_secret         = var.use_generate_secret
 }
-
-module "retrieve_existing_ids" {
-  source               = "./modules/retrieve_existing_ids"
-  resource_group_name = var.resource_group_name
-
-}
-
-module "app_service_diagnostics" {
-  source                      = "./modules/diagnostic_settings"
-  name                        = var.app_service_diagnostics_name
-  target_resource_id          = module.retrieve_existing_ids.app_service_id
-  log_analytics_workspace_id  = module.log_analytics_workspace.id
-  log_categories              = var.app_service_log_categories
-  metric_categories           = var.app_service_metric_categories
-}
-
-module "vm_diagnostics" {
-  source                      = "./modules/diagnostic_settings"
-  name                        = var.vm_diagnostics_name
-  target_resource_id          = module.retrieve_existing_ids.vm_id
-  log_analytics_workspace_id  = module.log_analytics_workspace.id
-  log_categories              = var.vm_log_categories
-  metric_categories           = var.vm_metric_categories
-}
-
-module "postgresql_diagnostics" {
-  source                      = "./modules/diagnostic_settings"
-  name                        = var.postgresql_diagnostics_name
-  target_resource_id          = module.retrieve_existing_ids.postgresql_id
-  log_analytics_workspace_id  = module.log_analytics_workspace.id
-  log_categories              = var.postgresql_log_categories
-  metric_categories           = var.postgresql_metric_categories
-}
-
-
-module "log_analytics_workspace" {
-  source              = "./modules/log_analytics_workspace"
-  name                = var.log_analytics_workspace_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  retention_in_days   = var.log_analytics_retention_days
-}
-
-module "action_group" {
-  source              = "./modules/action_group"
-  name                = var.action_group_name
-  resource_group_name = var.resource_group_name
-  short_name          = var.action_group_short_name
-  email_receivers     = var.email_receivers
-}
-
-module "alert_rules" {
-  source              = "./modules/alert_rules"
-  resource_group_name = var.resource_group_name
-  action_group_id     = module.action_group.id
-  alerts              = var.alert_criteria
-}
-
