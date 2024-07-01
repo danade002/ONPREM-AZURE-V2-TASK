@@ -1,11 +1,11 @@
 data "azurerm_key_vault_secret" "administrator_login_secret" {
   name         = var.administrator_login_secret_name
-  key_vault_id = var.key_vault_id
+  key_vault_id = azurerm_key_vault.key_vault.id
 }
 
 data "azurerm_key_vault_secret" "administrator_login_password_secret" {
   name         = var.administrator_login_password_secret_name
-  key_vault_id = var.key_vault_id
+  key_vault_id = azurerm_key_vault.key_vault.id
 }
 
 resource "azurerm_postgresql_server" "server" {
