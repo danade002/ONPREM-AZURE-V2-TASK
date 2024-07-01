@@ -1,3 +1,7 @@
+Here is the updated README file including the administrator credentials and secret options, along with instructions on how to use the conditions for the three scenarios:
+
+---
+
 # Azure Terraform Infrastructure for On-Prem
 
 This repository contains the Terraform configuration files for setting up the On-Prem infrastructure on Azure.
@@ -34,28 +38,64 @@ Here's a brief description of the variables in the `dev.tfvars` file:
 - `existing_rg_name`: The name of the existing resource group to use if `create_new_rg` is set to false.
 - `new_rg_name`: The name of the new resource group to create if `create_new_rg` is set to true.
 - `location`: The location for the resource group and resources.
+- `administrator_login`: The admin login username.
+- `administrator_login_password`: The admin login password.
+- `use_admin_credentials`: A flag to use provided admin credentials.
+- `use_existing_secret`: A flag to use an existing secret from Azure Key Vault.
+- `use_generate_secret`: A flag to generate a new secret.
+- `existing_secret_name`: The name of the existing secret to be used if `use_existing_secret` is set to true.
 
 ## Variable Details
 
 ### `create_new_rg`
 - **Description:** A flag to determine whether to create a new resource group or use an existing one. Set to `true` to create a new resource group, and `false` to use an existing resource group.
 - **Type:** bool
-- **Default:** false
+
 
 ### `existing_rg_name`
 - **Description:** The name of the existing resource group to use if `create_new_rg` is set to `false`.
 - **Type:** string
-- **Default:** "existing-rg-name"
+
 
 ### `new_rg_name`
 - **Description:** The name of the new resource group to create if `create_new_rg` is set to `true`.
 - **Type:** string
-- **Default:** "new-rg-name"
+
 
 ### `location`
 - **Description:** The location for the resource group and resources.
 - **Type:** string
-- **Default:** "East US"
+-
+
+### `administrator_login`
+- **Description:** The admin login username.
+- **Type:** string
+
+
+### `administrator_login_password`
+- **Description:** The admin login password.
+- **Type:** string
+
+
+### `use_admin_credentials`
+- **Description:** A flag to use provided admin credentials.
+- **Type:** bool
+
+
+### `use_existing_secret`
+- **Description:** A flag to use an existing secret from Azure Key Vault.
+- **Type:** bool
+
+
+### `use_generate_secret`
+- **Description:** A flag to generate a new secret.
+- **Type:** bool
+
+
+### `existing_secret_name`
+- **Description:** The name of the existing secret to be used if `use_existing_secret` is set to `true`.
+- **Type:** string
+
 
 ## How to Use
 
@@ -84,3 +124,47 @@ This repository contains several modules, each responsible for creating a specif
 - `virtual_network`: Creates a virtual network.
 - `subnet`: Creates a subnet within the virtual network.
 - `resource_group`: Creates a resource group to deploy the infrastructure.
+
+## Key Vault and Secrets Management
+
+This configuration includes the management of Azure Key Vault and secrets with the following resources:
+
+- `random_password.generated_password`: Generates a random password with special characters.
+- `azurerm_key_vault_secret.existing`: Retrieves an existing secret from the Key Vault.
+- `azurerm_key_vault_secret.admin_login`: Stores the admin login in the Key Vault.
+- `azurerm_key_vault_secret.admin_login_password`: Stores the admin login password in the Key Vault.
+- `random_password.generated_secret_value`: Generates a random value for a secret.
+- `azurerm_key_vault_secret.generated_secret`: Stores the generated secret in the Key Vault.
+- `azurerm_key_vault.key_vault`: Configures the Azure Key Vault with access policies.
+
+## Administrator Credentials and Secret Options
+
+The following variables allow you to manage the administrator credentials and secrets:
+
+- `administrator_login`: The admin login username.
+- `administrator_login_password`: The admin login password.
+- `use_admin_credentials`: A flag to use provided admin credentials.
+- `use_existing_secret`: A flag to use an existing secret from Azure Key Vault.
+- `use_generate_secret`: A flag to generate a new secret.
+- `existing_secret_name`: The name of the existing secret to be used if `use_existing_secret` is set to true.
+
+### Using the Conditions for the Three Scenarios
+
+1. **Using Provided Admin Credentials**:
+   - Set `use_admin_credentials` to `true`.
+   - Ensure `administrator_login` and `administrator_login_password` are provided in `dev.tfvars`.
+
+2. **Using an Existing Secret**:
+   - Set `use_existing_secret` to `true`.
+   - Set `existing_secret_name` to the name of the existing secret in the Key Vault.
+   - Ensure `use_admin_credentials` and `use_generate_secret` are set to `false`.
+
+3. **Generating a New Secret**:
+   - Set `use_generate_secret` to `true`.
+   - Ensure `use_admin_credentials` and `use_existing_secret` are set to `false`.
+
+By setting the appropriate flags, you can control whether to use provided admin credentials, an existing secret, or generate a new secret dynamically.
+
+---
+
+This README file provides a comprehensive guide for setting up the Azure Terraform infrastructure, including the use of conditions for administrator credentials and secret management.

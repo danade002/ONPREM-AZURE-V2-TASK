@@ -58,11 +58,17 @@ use_existing_secret = false
 use_generate_secret = true
 existing_secret_name = "myExistingSecret"
 
-secrets = {
-  "administrator-login" = {
-    value = "yourAdminLoginName"
-  }
-  "administrator-login-password" = {
-    value = "PasswordSecretValue@_1234"
-  }
-}
+#Monitoring & Alerts
+retention_in_days   = 30
+
+email_addresses = [
+  "daniel@insait.io",
+  "danielade@insait.io",
+  "daniel12@insait.io"
+]
+
+
+# Threshold values for alerts
+http_errors_threshold       = 10
+vm_downtime_threshold       = 90
+postgresql_deadlocks_threshold = 1
