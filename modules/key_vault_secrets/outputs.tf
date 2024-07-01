@@ -1,19 +1,17 @@
-output "admin_login_secret_id" {
-  description = "The ID of the administrator login secret in Azure Key Vault"
-  value       = azurerm_key_vault_secret.admin_login[0].id
+output "admin_secret_names" {
+  description = "Names of the secrets related to administrator credentials"
+  value = [
+    azurerm_key_vault_secret.admin_login[*].name,
+    azurerm_key_vault_secret.admin_login_password[*].name,
+  ]
 }
 
-output "admin_login_password_secret_id" {
-  description = "The ID of the administrator login password secret in Azure Key Vault"
-  value       = azurerm_key_vault_secret.admin_login_password[0].id
-}
-
-output "generated_secret_id" {
-  description = "The ID of the generated secret in Azure Key Vault"
-  value       = azurerm_key_vault_secret.generated_secret[0].id
+output "generated_secret_name" {
+  description = "Name of the generated secret"
+  value       = var.use_generate_secret ? azurerm_key_vault_secret.generated_secret[0].name : ""
 }
 
 output "existing_secret_value" {
-  description = "The value of the existing secret in Azure Key Vault"
-  value       = data.azurerm_key_vault_secret.existing[0].value
+  description = "Value of the existing secret retrieved from Key Vault"
+  value       = var.use_existing_secret ? data.azurerm_key_vault_secret.existing[0].value : ""
 }

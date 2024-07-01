@@ -57,5 +57,5 @@ use_admin_credentials = true
 use_existing_secret = false
 use_generate_secret = false
 existing_secret_name = ""
-administrator_login_secret_name = "administrator_login"
-administrator_login_password_secret_name = "administrator_login_password"
+administrator-login-secret-name = "administrator_login"
+administrator-login-password-secret-name = "administrator_login_password"

@@ -1,41 +1,41 @@
-variable "key_vault_id" {
-  description = "ID of the Azure Key Vault where secrets will be stored."
-  type        = string
-}
-
 variable "use_admin_credentials" {
-  description = "Flag to indicate if administrator login credentials should be used."
+  description = "Whether to use provided administrator credentials"
   type        = bool
-  
+
 }
 
 variable "administrator_login" {
-  description = "Administrator login name."
+  description = "Administrator login name"
   type        = string
   
 }
 
 variable "administrator_login_password" {
-  description = "Administrator login password."
+  description = "Administrator login password"
   type        = string
   
 }
 
-variable "existing_secret_name" {
-  description = "Name of the existing secret in Azure Key Vault."
-  type        = string
+variable "use_existing_secret" {
+  description = "Whether to use an existing secret from Key Vault"
+  type        = bool
 
 }
 
-variable "use_existing_secret" {
-  description = "Flag to indicate if an existing secret should be used from Azure Key Vault."
-  type        = bool
+variable "existing_secret_name" {
+  description = "Name of the existing secret in Key Vault"
+  type        = string
   
 }
 
 variable "use_generate_secret" {
-  description = "Flag to indicate if a new secret should be generated."
+  description = "Whether to generate a new secret and store it in Key Vault"
   type        = bool
   
 }
 
+variable "key_vault_id" {
+  description = "ID of the Azure Key Vault"
+  type        = string
+  
+}

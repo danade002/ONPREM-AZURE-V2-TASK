@@ -14,11 +14,11 @@ variable "key_vault_id" {
   description = "ID of the Azure Key Vault"
 }
 
-variable "administrator_login_secret_name" {
+variable "administrator-login-secret-name" {
   description = "Name of the secret in Azure Key Vault for PostgreSQL server administrator login"
 }
 
-variable "administrator_login_password_secret_name" {
+variable "administrator-login-password-secret-name" {
   description = "Name of the secret in Azure Key Vault for PostgreSQL server administrator password"
 }
 
