@@ -1,11 +1,11 @@
 output "app_service_id" {
-  value = data.azurerm_app_service.example_app_service.id
+  value = data.azurerm_app_service.Insaitstaticwebapp123.id
 }
 
 output "vm_id" {
-  value = data.azurerm_virtual_machine.example_vm.id
+  value = data.azurerm_virtual_machine.insait-vm123.id
 }
 
 output "postgresql_id" {
-  value = data.azurerm_postgresql_server.example_postgresql.id
+  value = data.azurerm_postgresql_server.insaitpgserver123.id
 }
