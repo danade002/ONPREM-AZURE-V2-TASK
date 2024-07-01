@@ -10,17 +10,21 @@ variable "server_name" {
   description = "Name of the PostgreSQL server"
 }
 
-variable "key_vault_id" {
-  description = "ID of the Azure Key Vault"
-}
-
 variable "administrator_login_secret_name" {
-  description = "Name of the secret in Azure Key Vault for PostgreSQL server administrator login"
+  description = "Name of the administrator login secret"
+  type        = string
 }
 
 variable "administrator_login_password_secret_name" {
-  description = "Name of the secret in Azure Key Vault for PostgreSQL server administrator password"
+  description = "Name of the administrator login password secret"
+  type        = string
 }
+
+variable "key_vault_id" {
+  description = "ID of the Key Vault"
+  type        = string
+}
+
 
 variable "databases" {
   description = "List of databases to create on the PostgreSQL server"
